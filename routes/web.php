@@ -38,6 +38,10 @@ route::get('/', function() {
     return view('about.index');
 });
 
+route::get('/phpinfo', function() {
+    return phpinfo();
+});
+
 
 
 
