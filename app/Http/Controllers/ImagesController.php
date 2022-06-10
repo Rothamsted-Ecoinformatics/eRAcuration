@@ -14,7 +14,6 @@ class ImagesController extends Controller
     public function index()
     {
         $images = Image::orderBy('fileLocation') ->get();
-        
         return view('images.index', [
             'images' => $images
         ]);

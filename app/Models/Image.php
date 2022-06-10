@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $connection = 'sqlsrv';
+
     protected $casts = 
     [
         'forWWW' => 'boolean',

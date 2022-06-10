@@ -28,11 +28,13 @@ class ImageDatatables extends LivewireDatatable
     
     public $model = Image::class;
   
+    
     /**
      * Write code on Method
      *
      * @return response()
      */
+    
     public function columns()
     {
         return [
@@ -78,12 +80,7 @@ class ImageDatatables extends LivewireDatatable
             Column::name('imageType')
             -> label('Image Type')
             -> filterable(['600X400', 'banners', 'metadata', 'people']),
-
-            Column::callback(['id', 'filename', 'imageType', 'exptID'], function ($id, $filename,  $imageType, $exptID) {
-                return view('images.image-display', ['id' => $id, 'filename' => $filename, 'imageType' => $imageType, 'exptID' => $exptID ]);
-            })
-            ->label('Thumbnail (DEV - ONLINE)')
-            ->unsortable(),
+          
 
             Column::name('caption')
                 -> label('Caption')
@@ -94,13 +91,24 @@ class ImageDatatables extends LivewireDatatable
                 -> label('Description')
                 -> truncate(30)
                 -> hide(),        
+            /*
+            Column::callback(['filename', 'imageType', 'exptID'], function ($filename,  $imageType, $exptID) {
+                    return view('images.image-display', ['filename' => $filename, 'imageType' => $imageType, 'exptID' => $exptID ]);
+                })
+                ->label('Thumbnail (DEV - ONLINE)')
+                ->unsortable(),
+            */
+            Column::callback(['URL'], function ($URL ) {
+                return view('images.callback', ['URL' => $URL]);
+            })
+            ->label('Thumbnail (TEST)')
+            ->unsortable(),
 
             BooleanColumn::name('forWWW')
                 -> label('For galleries')
                 ,
             BooleanColumn::name('isReviewed')
-                -> label('Reviewed?')
-                ,
+                -> label('Reviewed?'),
 
             NumberColumn::name('width')
                 -> label('Width')
@@ -116,4 +124,5 @@ class ImageDatatables extends LivewireDatatable
 
         ];
     }
+    
 }
