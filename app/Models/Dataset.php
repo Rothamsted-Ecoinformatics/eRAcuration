@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Admingrt;
+
 use App\Models\Experiment;
 use App\Models\DocumentSubjects;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,13 +13,14 @@ class Dataset extends Model
     use HasFactory;
     
     protected $table = 'metadata_document';
+    protected $connection = 'sqlsrv';
 
     public function admingrt() {
-        return $this->belongsTo(Admingrt::class, 'grt_id');
+        return $this->belongsTo(Admingrt::class, 'general_resource_type_id');
     }
 
     public function experiment() {
-        return $this->belongsTo(Experiment::class, 'lte_id');
+        return $this->belongsTo(Experiment::class, 'experiment_id');
     }
 
     public function subjects()

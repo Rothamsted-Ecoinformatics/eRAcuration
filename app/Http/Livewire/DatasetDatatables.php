@@ -55,10 +55,7 @@ class DatasetDatatables extends LivewireDatatable
             -> label('Experiment')
             -> filterable (),
 
-            Column::name('admingrt.type_value')
-            ->label('Type')
-            -> filterable (['Dataset', 'Text' ]),
-
+          
             Column::name('dstype')
             -> label('Dataset Access')
             -> filterable(['OA', 'Other']),

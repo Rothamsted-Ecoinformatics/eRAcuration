@@ -9,6 +9,12 @@ class experiment extends Model
 {
     use HasFactory;
 
-    protected $table = 'experiment';
-    protected $primaryKey = 'experiment_id';
+    protected $table = 'experiments';
+    protected $primaryKey = 'id';
+
+    // An experiment has many images
+    public function images()
+    {
+        return $this -> hasMany(Image::class);
+    }
 }

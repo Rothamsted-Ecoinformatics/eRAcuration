@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\SubjectController;
@@ -17,7 +16,7 @@ use App\Http\Controllers\SubjectController;
 |
 */
 
-Route::resource('images', ImagesController::class);
+Route::resource('images', ImageController::class);
 Route::resource('datasets', DatasetController::class );
 Route::resource('subjects', SubjectController::class);
 Route::GET('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
@@ -28,19 +27,20 @@ Route::get('user-datatables', function () {
 }) ->name('home');
 
 route::get('/about', function() {
-    return view('about.index');
+    return view('documentation.index');
 }) -> name('about');
 route::get('/editor', function() {
-    return view('about.editor');
+    return view('documentation.editor');
 }) -> name('editor');
 
 route::get('/', function() {
-    return view('about.index');
+    return view('documentation.index');
 });
+
 
 route::get('/phpinfo', function() {
     return phpinfo();
-});
+})->name('phpinfo');
 
 
 
