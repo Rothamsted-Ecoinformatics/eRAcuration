@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\SubjectController;
 

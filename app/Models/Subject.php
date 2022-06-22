@@ -16,6 +16,6 @@ class Subject extends Model
      */
     public function datasets()
     {
-        return $this->belongsToMany(Dataset::class, 'document_subjects', 'subject_id', 'document_id');
+        return $this->belongsToMany(Dataset::class, 'document_subjects', 'subject_id', 'metadata_document_id');
     }
 }

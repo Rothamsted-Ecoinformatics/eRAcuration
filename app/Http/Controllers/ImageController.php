@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Experiment;
 use App\Models\Image;
+use App\Models\ImageType;
 use Illuminate\Http\Request;
 
-class ImagesController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,11 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $images = Image::orderBy('fileLocation') ->get();
+        $images = Image::orderBy('file_location') ->get();
+        $experiment_codes = Experiment::pluck('code')->toArray();
+        //dd($experiment_codes);
         return view('images.index', [
+            'experiment_codes' => $experiment_codes,
             'images' => $images
         ]);
     }

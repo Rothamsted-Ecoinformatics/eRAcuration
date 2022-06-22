@@ -39,41 +39,48 @@ class DatasetDatatables extends LivewireDatatable
                 -> sortBy('id')
                 -> link('datasets/{{id}}', '{{id}}'),
 
-            NumberColumn::name('isReady')
+            NumberColumn::name('is_ready')
                 -> label('Ready')
                 -> editable(),
             
-            NumberColumn::name('md_id')
-                -> label('MD_ID')
+            NumberColumn::name('old_id')
+                -> label('OLD_ID')
                 -> hide(),
 
             Column::name('identifier')
             -> label('Identifier')
             -> filterable(),
-
-            Column::name('experiment.experiment_code')
-            -> label('Experiment')
-            -> filterable (),
-
-          
-            Column::name('dstype')
-            -> label('Dataset Access')
-            -> filterable(['OA', 'Other']),
-
+            
             Column::name('short_name')
             -> label('Dataset')
             -> filterable(),
 
+            Column::name('dataset_type')
+            -> label('Dataset Access')
+            -> filterable(['OA', 'Other']),  
+             
             NumberColumn::name('publication_year')
-            -> label('Year'),
+            -> label('Year'),            
             
-            Column::name('URL')
+            Column::name('url')
             ->label('URL'),
 
             Column::name('title')
             ->label('title')
-            -> editable()
+            -> editable(),
+            
+/*
+            Column::name('experiments.code')
+            -> label('Experiment')
+            -> filterable (),
+ 
+         
+            
+         
 
+
+
+*/
         ];
     }
 
