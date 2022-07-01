@@ -7,6 +7,7 @@ use Livewire\Component;
 
 use App\Models\Image;
 use App\Models\ImageType;
+use App\Models\Experiment;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -29,7 +30,8 @@ class ImageDatatables extends LivewireDatatable
     
     
     public $model = Image::class;
-  
+    public $with = "experiment";
+    
     
     /**
      * Write code on Method
@@ -45,85 +47,11 @@ class ImageDatatables extends LivewireDatatable
                 -> sortBy('id')
                 -> link('images/{{id}}/edit', '{{id}}'),
 
-                //TO DO here, try to extractthe list of experiments in a bettrway. 
-                Column::name('experiment.code')
+                //TO DO here, try to extract the list of experiments in a better way. 
+            Column::name('experiment.code')
                 -> label('Experiment')
-                /*-> filterable($this->code),
-                */
-                ->filterable([
-                'R/AG/6',
-                'R/BK/1',
-'R/BN/7',
-'R/CS/1',
-'R/CS/10',
-'R/CS/13',
-'R/CS/14',
-'R/CS/2',
-'R/CS/326',
-'R/CS/408',
-'R/CS/477',
-'R/CS/6',
-'R/CS/683',
-'R/CS/684',
-'R/CS/767',
-'R/EX/4',
-'R/GC/8',
-'R/HB/2',
-'R/MA/1',
-'R/P/5',
-'R/PG/5',
-'R/RA/1',
-'R/RN/1',
-'R/RN/11',
-'R/RN/2',
-'R/RN/5',
-'R/RN/7',
-'R/RN/8',
-'R/RN/9',
-'R/RS/1',
-'R/RS/2',
-'R/RS/5',
-'R/RS/9',
-'R/WF/3',
-'R/WW/3',
-'S/RN/1',
-'S/RN/2',
-'W/CS/10',
-'W/CS/326',
-'W/CS/427',
-'W/CS/428',
-'W/CS/439',
-'W/CS/478',
-'W/RN/15',
-'W/RN/3',
-'W/RN/4',
-'X1',
-'X10',
-'X11',
-'X13',
-'X14',
-'X2',
-'X3',
-'X4',
-'X5',
-'W/XW/6',
-'X8',
-'RMS',
-'R/BB/1',
-'R/RO',
-'R/GE/9',
-'WMS',
-'SMS',
-'BMS',
-'W/RN/12',
-'R/BK/1/W',
-'DOCS',
-'W/RN/13',
-'BB/2',
-'W/XB/6',
-'RRES',
-'WOB'
-                ]),
+                -> filterable($this->codes),
+                
                 
             Column::name('file_location')
             -> label('File Location')
@@ -179,5 +107,10 @@ class ImageDatatables extends LivewireDatatable
 
         ];
     }
-    
+    // if I want a Property Named Codes, I make a function called getCodesProperty!
+    public function getCodesProperty()
+    {
+        return Experiment::distinct()
+        ->pluck('code');
+    }
 }

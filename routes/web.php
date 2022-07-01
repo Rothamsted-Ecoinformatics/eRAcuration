@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CropController;
 use App\Http\Controllers\DatasetController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SubjectController;
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\SubjectController;
 Route::resource('images', ImageController::class);
 Route::resource('datasets', DatasetController::class );
 Route::resource('subjects', SubjectController::class);
+Route::resource('crops', CropController::class);
 Route::GET('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
 
 #//example of user table

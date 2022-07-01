@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Experiment;
-use App\Models\Image;
-use App\Models\ImageType;
+
 use Illuminate\Http\Request;
 
-class ImageController extends Controller
+class CropController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +13,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-       // $images = Image::orderBy('file_location') ->get();
-        //$codes = Image::distinct('experiment_code')->pluck('experiment_code');
-        //dd($codes);
-        return view('images.index', [
-            //'codes' => $codes,
-            //'images' => $images
-        ]);
+        return view('crops.index', [
+            
+        ]);//
     }
 
     /**
@@ -31,9 +25,9 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('images.create');//
+        //
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,8 +36,7 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //TO DO - save the image
-        return redirect ('/images');
+        //
     }
 
     /**
@@ -66,9 +59,6 @@ class ImageController extends Controller
     public function edit($id)
     {
         //
-        $image = Image::find($id);
-        
-        return view('images.edit') ->with('image',$image);
     }
 
     /**
@@ -80,20 +70,7 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        
-        $image = Image::where('id',$id) 
-        ->update([
-            'caption' => $request-> input('caption'),
-            'description' => $request-> input('description'),
-            'orientation' => $request -> input('orientation'),
-            'authorID' => $request -> input('authorID'),
-            'filename' => $request -> input('filename'),
-            'forWWW' => $request -> input('forWWW'),
-            'isReviewed' => $request -> input('isReviewed')
-        ]);
-
-        return redirect ('/images');
+        //
     }
 
     /**
