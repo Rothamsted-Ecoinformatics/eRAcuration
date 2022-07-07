@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <style>
         [x-cloak] {
             display: none !important;
