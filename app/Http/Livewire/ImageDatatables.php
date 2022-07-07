@@ -23,14 +23,16 @@ use function Ramsey\Uuid\v1;
 
 class ImageDatatables extends LivewireDatatable
 {
-    public $hideable = 'select';
-    public $exportable = true;
-    public $complex = true;
-    public $persistComplexQuery = true;
-    
-    
     public $model = Image::class;
+    
     public $with = "experiment";
+    public $hideable = 'select';
+    
+    //public $complex = true;
+    //public $persistComplexQuery = true;
+    
+    
+   
     
     
     /**
@@ -61,8 +63,8 @@ class ImageDatatables extends LivewireDatatable
             -> label('File Name'),
 
             Column::name('image_type.image_type')
-            -> label('Image Type'),
-          //-> filterable(['600X400', 'banners', 'metadata', 'people'])
+            -> label('Image Type')
+            -> filterable(['600X400', 'banners', 'metadata', 'people']),
 
             Column::name('caption')
                 -> label('Caption')
@@ -73,19 +75,13 @@ class ImageDatatables extends LivewireDatatable
                 -> label('Description')
                 -> truncate(30)
                 -> hide(),        
-            /*
-            Column::callback(['filename', 'imageType', 'exptID'], function ($filename,  $imageType, $exptID) {
-                    return view('images.image-display', ['filename' => $filename, 'imageType' => $imageType, 'exptID' => $exptID ]);
-                })
-                ->label('Thumbnail (DEV - ONLINE)')
-                ->unsortable(),
-            
-            Column::callback(['URL'], function ($URL ) {
-                return view('images.callback', ['URL' => $URL]);
+        
+            Column::callback(['file_location'], function ($file_location  ) {
+                return view('images.callback', ['file_location' => $file_location]);
             })
             ->label('Thumbnail (TEST)')
             ->unsortable(),
-*/
+
             BooleanColumn::name('is_www')
                 -> label('For www'),
 

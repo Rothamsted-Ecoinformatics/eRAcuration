@@ -41,7 +41,7 @@
 
                         </ul>
 <ul>
-                            <li><img class="" src="{{ $image->URL }}"></li>
+                            <li><img class="" src="http://local-info.rothamsted.ac.uk/eRA/era2018-new/images/{{ $image->file_location }}">http://local-info.rothamsted.ac.uk/eRA/era2018-new/{{ $image->file_location }}</li>
                         </ul>
                     </div>
                 </div>
