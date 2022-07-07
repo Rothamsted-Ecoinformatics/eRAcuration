@@ -13,10 +13,10 @@
         </div>
 
         <div class="card-body">
-            <livewire:datatable model="App\Models\Subject" 
-            name="subjects" 
+            <livewire:subject-datatables  
+            
             searchable="subject" 
-            include="subject, subject_uri"/>
+            />
 
         </div>
     </div>

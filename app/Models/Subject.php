@@ -18,4 +18,8 @@ class Subject extends Model
     {
         return $this->belongsToMany(Dataset::class, 'document_subjects', 'subject_id', 'metadata_document_id');
     }
+
+    public function subject_schemas() {
+        return $this->belongsTo(SubjectSchema::class, 'subject_schemas_id');
+    }
 }
