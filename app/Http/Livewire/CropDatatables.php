@@ -49,10 +49,10 @@ historic_name
                 ->label('Name'),
 
            
-
+/*
             Column::name('subject_schemas.name')
                 -> label('Schema'),
-                
+ */               
 
             Column::name('crop_name_uri')
                 -> link('{{crop_name_uri}}', '{{crop_name}}')
