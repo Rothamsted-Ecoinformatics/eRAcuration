@@ -10,4 +10,6 @@ class SubjectSchema extends Model
     use HasFactory;
 
     protected $table = "subject_schemas";
+
+    
 }

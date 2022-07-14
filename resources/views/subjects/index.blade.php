@@ -13,10 +13,34 @@
         </div>
 
         <div class="card-body">
-            <livewire:subject-datatables  
+            {{-- <livewire:subject-datatables  
             
             searchable="subject" 
-            />
+            /> 
+            
+            NumberColumn::name('id')
+                -> label('ID')
+                -> link('subjects/{{id}}', '{{id}}'),
+
+            Column::name('subject')               
+                ->label('Keyword'), 
+                
+            Column::name('uri')
+                ->label('Subject ID'),
+                
+            Column::name('subject_schemas.name')
+                -> label('Schema'),--}}
+            <livewire:datatable
+    model="App\Models\Subject"
+    with="subject_schemas"
+    sort="subject|asc"
+    include="id, subject, subject_schemas.name|Schema"
+    searchable="subject, subject_schemas.name"
+    hideable="select"
+    exportable
+/>
+
+
 
         </div>
     </div>

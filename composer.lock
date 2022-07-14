@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dd160c2ee3eb46bd8882482b3cffd18",
+    "content-hash": "383a8643698f8c7ce19bb2f62bccbdbe",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -2372,16 +2372,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.10.4",
+            "version": "v2.10.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "2d68c61a8edf338534fdd8e2b2750dca2e741439"
+                "reference": "020ad095cf1239138b097d22b584e2701ec3edfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/2d68c61a8edf338534fdd8e2b2750dca2e741439",
-                "reference": "2d68c61a8edf338534fdd8e2b2750dca2e741439",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/020ad095cf1239138b097d22b584e2701ec3edfb",
+                "reference": "020ad095cf1239138b097d22b584e2701ec3edfb",
                 "shasum": ""
             },
             "require": {
@@ -2433,7 +2433,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.10.4"
+                "source": "https://github.com/livewire/livewire/tree/v2.10.6"
             },
             "funding": [
                 {
@@ -2441,20 +2441,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-18T22:35:27+00:00"
+            "time": "2022-06-19T02:54:20+00:00"
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.37",
+            "version": "3.1.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SpartnerNL/Laravel-Excel.git",
-                "reference": "49ccd4142d3d7bce492d6bfb9dd9a27b12935408"
+                "reference": "8a54972e3d616c74687c3cbff15765555761885c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/49ccd4142d3d7bce492d6bfb9dd9a27b12935408",
-                "reference": "49ccd4142d3d7bce492d6bfb9dd9a27b12935408",
+                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/8a54972e3d616c74687c3cbff15765555761885c",
+                "reference": "8a54972e3d616c74687c3cbff15765555761885c",
                 "shasum": ""
             },
             "require": {
@@ -2507,7 +2507,7 @@
             ],
             "support": {
                 "issues": "https://github.com/SpartnerNL/Laravel-Excel/issues",
-                "source": "https://github.com/SpartnerNL/Laravel-Excel/tree/3.1.37"
+                "source": "https://github.com/SpartnerNL/Laravel-Excel/tree/3.1.40"
             },
             "funding": [
                 {
@@ -2519,7 +2519,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-28T10:20:04+00:00"
+            "time": "2022-05-02T13:50:01+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -2701,23 +2701,24 @@
         },
         {
             "name": "mediconesystems/livewire-datatables",
-            "version": "v0.7.0",
+            "version": "v0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
-                "reference": "cb527079f2c184d279c194b1a12b53a380e396d1"
+                "reference": "c2931fb62f0e7d482dc73976fd87f3c0eb44905b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/cb527079f2c184d279c194b1a12b53a380e396d1",
-                "reference": "cb527079f2c184d279c194b1a12b53a380e396d1",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/c2931fb62f0e7d482dc73976fd87f3c0eb44905b",
+                "reference": "c2931fb62f0e7d482dc73976fd87f3c0eb44905b",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^7.0|^8.0|^9.0",
                 "livewire/livewire": "^2.4.4",
                 "maatwebsite/excel": "^3.1",
-                "php": "^7.2.5|^8.0"
+                "php": "^8.0",
+                "reedware/laravel-relation-joins": "^2.4|^3.0"
             },
             "require-dev": {
                 "laravel/legacy-factories": "^1.0.4",
@@ -2749,18 +2750,23 @@
                     "name": "Mark Salmon",
                     "email": "mark.salmon@mediconesystems.com",
                     "role": "Developer"
+                },
+                {
+                    "name": "Shane Burrell",
+                    "email": "shane@shaneburrell.com",
+                    "role": "Developer"
                 }
             ],
+            "description": "Fork of the livewire-datatables package. This has several modifications and additions.",
             "homepage": "https://github.com/mediconesystems/livewire-datatables",
             "keywords": [
-                "livewire-datatables",
-                "mediconesystems"
+                "livewire-datatables-fork"
             ],
             "support": {
                 "issues": "https://github.com/MedicOneSystems/livewire-datatables/issues",
-                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.7.0"
+                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.9.5"
             },
-            "time": "2022-02-22T11:02:59+00:00"
+            "time": "2022-06-16T11:36:38+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3770,16 +3776,16 @@
         },
         {
             "name": "psr/simple-cache",
-            "version": "1.0.1",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/753fa598e8f3b9966c886fe13f370baa45ef0e24",
+                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24",
                 "shasum": ""
             },
             "require": {
@@ -3815,9 +3821,9 @@
                 "simple-cache"
             ],
             "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/master"
+                "source": "https://github.com/php-fig/simple-cache/tree/1.0.0"
             },
-            "time": "2017-10-23T01:57:42+00:00"
+            "time": "2017-01-02T13:31:39+00:00"
         },
         {
             "name": "psy/psysh",
@@ -4329,6 +4335,69 @@
                 }
             ],
             "time": "2022-02-13T17:12:05+00:00"
+        },
+        {
+            "name": "reedware/laravel-relation-joins",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tylernathanreed/laravel-relation-joins.git",
+                "reference": "943620791dbf991dda06963967b0aaa28445768c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tylernathanreed/laravel-relation-joins/zipball/943620791dbf991dda06963967b0aaa28445768c",
+                "reference": "943620791dbf991dda06963967b0aaa28445768c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.30.4|^8.23|^9.0",
+                "illuminate/support": "^7.30.4|^8.23|^9.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/container": "^7.30.4|^8.23|^9.0",
+                "mockery/mockery": "^1.4.3",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^8.5|^9.5",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Reedware\\LaravelRelationJoins\\LaravelRelationJoinServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Reedware\\LaravelRelationJoins\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tyler Reed",
+                    "email": "tylernathanreed@gmail.com"
+                }
+            ],
+            "description": "Adds the ability to join on a relationship by name.",
+            "keywords": [
+                "eloquent",
+                "join",
+                "laravel",
+                "query",
+                "relation"
+            ],
+            "support": {
+                "issues": "https://github.com/tylernathanreed/laravel-relation-joins/issues",
+                "source": "https://github.com/tylernathanreed/laravel-relation-joins/tree/v3.0.0"
+            },
+            "time": "2022-02-09T15:28:12+00:00"
         },
         {
             "name": "spatie/commonmark-shiki-highlighter",

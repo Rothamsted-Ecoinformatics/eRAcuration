@@ -156,10 +156,13 @@ updated_at: timestamps
      * Copy is a way to use an existing item as a template to make a new one. 
      * So we have a copy form filled in with selected fields from the ID, but it is then passed to a Store that creates a new row. 
      * 
+     * consider using the function "replicate and then send to the edit and save"
      */
     public function copy($id)
     {
          
+        //consider using replicate function then the edit and save so that save on forms. :) 
+        // https://medium.com/@imanborumand/8-interesting-functions-of-laravel-eloquent-orm-783df3e41b81
         $dataset = Dataset::find($id);
         $subjects = Dataset::findOrFail($id)->subjects()->get();
         $experiments = Experiment::where('GLTENID', '>', 0)

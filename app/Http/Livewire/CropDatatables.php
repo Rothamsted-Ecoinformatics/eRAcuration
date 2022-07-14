@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
+//use Livewire\Component;
 use App\Models\Crop;
 use App\Models\SubjectSchema;
-use illuminate\Support\Str;
-use Mediconesystems\LivewireDatatables;
+//use illuminate\Support\Str;
+//use Mediconesystems\LivewireDatatables;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
-use Mediconesystems\LivewireDatatables\DateColumn;
+//use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 
@@ -48,11 +48,8 @@ historic_name
             Column::name('crop_name')               
                 ->label('Name'),
 
-           
-/*
             Column::name('subject_schemas.name')
                 -> label('Schema'),
- */               
 
             Column::name('crop_name_uri')
                 -> link('{{crop_name_uri}}', '{{crop_name}}')

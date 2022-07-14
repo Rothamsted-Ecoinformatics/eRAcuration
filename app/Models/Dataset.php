@@ -22,11 +22,11 @@ class Dataset extends Model
     public function experiment() {
         return $this->belongsTo(Experiment::class, 'experiment_id');
     }
-/*
+
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, Dataset::class, 'document_id', 'subject_id');
     }
-*/
+
 
 }
