@@ -87,10 +87,10 @@ class ImageController extends Controller
             'caption' => $request-> input('caption'),
             'description' => $request-> input('description'),
             'orientation' => $request -> input('orientation'),
-            'authorID' => $request -> input('authorID'),
+            'person_id' => $request -> input('person_id'),
             'filename' => $request -> input('filename'),
-            'forWWW' => $request -> input('forWWW'),
-            'isReviewed' => $request -> input('isReviewed')
+            'is_www' => $request -> input('forWWW'),
+            'is_reviewed' => $request -> input('isReviewed')
         ]);
 
         return redirect ('/images');

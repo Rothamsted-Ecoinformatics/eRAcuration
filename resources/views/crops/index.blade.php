@@ -4,7 +4,7 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-between">
                 <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">eRAcure Crops
+                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">eRAcuration Crops
                     </h1>
                 </div>
                 <div class="basis-1/4 p-3">

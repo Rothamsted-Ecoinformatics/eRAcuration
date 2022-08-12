@@ -19,13 +19,13 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class DatasetDatatables extends LivewireDatatable
 {
     
-    public $hideable = 'select';
-    public $exportable = true;
-    
-   
-    
+    //public $hideable = 'select';
+    //public $exportable = true;
     public $model = Dataset::class;
+    public $with = "experiment, general_resource_type, specific_resource_type";
+    //public $searchable="identifier, title, short_name, experiment.code";
   
+
     /**
      * Write code on Method
      *
@@ -68,19 +68,16 @@ class DatasetDatatables extends LivewireDatatable
             Column::name('title')
             ->label('title')
             -> editable(),
-            
-/*
-            Column::name('experiments.code')
-            -> label('Experiment')
-            -> filterable (),
- 
-         
-            
-         
 
+            Column::name('experiment.code')
+            -> label('Experiment'),
 
-
-*/
+            Column::name('general_resource_type.type_value')
+            -> label('General Resource Type'),
+    
+            Column::name('specific_resource_type.type_value')
+            -> label('Specific Resource Type')
+       
         ];
     }
 

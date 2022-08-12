@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PeriodPersonRoleType extends Model
+class DocumentFile extends Model
 {
     use HasFactory;
-    protected $table = 'person_role_types';
+    protected $table = 'document_files';
+    protected $primaryKey = 'id';
 }

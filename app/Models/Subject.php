@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    use HasFactory;
-    protected $table = 'subjects';
-    protected $primaryKey = 'subject_id';
-
+    use HasFactory;    
     /**
      * The documents that that belong to the subjects.
      */

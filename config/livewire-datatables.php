@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'suppress_search_highlights' => false,
+    'suppress_search_highlights' => true,
 
     /*
     |--------------------------------------------------------------------------

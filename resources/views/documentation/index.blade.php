@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
-            <h1 class="text-4xl text-slate-100 text-bold justify-center p-9 ">About eRAcure</h1>
+            <h1 class="text-4xl text-slate-100 text-bold justify-center p-9 ">About eRAcuration</h1>
         </div>
         <div class="card-body">
             <h2 class="text-3xl uppercase font-extrabold pt-5  px-5">Goals</h2>

@@ -68,7 +68,7 @@
                         </label>
                         <label class="block pt-2">
                             <span class="text-gray-700">Credits</span>
-                            <select class="form-select block w-full rounded-lg mt-1" name="authorID">
+                            <select class="form-select block w-full rounded-lg mt-1" name="person_id">
                                 <option value="1">Rothamsted Research</option>
                                 <option value="2">Other</option>
                             </select>

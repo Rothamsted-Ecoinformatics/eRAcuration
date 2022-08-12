@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
-            <h1 class="text-4xl text-slate-100 text-bold justify-center p-9 ">eRAcure - Subjects (Keywords)</h1>
+            <h1 class="text-4xl text-slate-100 text-bold justify-center p-9 ">eRAcuration - Subjects (Keywords)</h1>
         </div>
 
         <div class="pt-5 px-9">

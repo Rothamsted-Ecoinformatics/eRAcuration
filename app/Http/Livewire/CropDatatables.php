@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Livewire;
-
+use Illuminate\Support\Facades\DB;
 //use Livewire\Component;
-use App\Models\Crop;
+use App\Models\vCrop;
 use App\Models\SubjectSchema;
 //use illuminate\Support\Str;
 //use Mediconesystems\LivewireDatatables;
@@ -15,7 +15,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class CropDatatables extends LivewireDatatable
 {
-    public $model = Crop::class;
+    public $model = vCrop::class;
     public $hideable = 'select';
     public $exportable = true;
     public $complex = true;
@@ -23,7 +23,7 @@ class CropDatatables extends LivewireDatatable
     
     
     
-    public $with = "subject_schemas";
+    //public $with = "subject_schemas";
   
     /**
      * Write code on Method
@@ -33,11 +33,16 @@ class CropDatatables extends LivewireDatatable
     public function columns()
     {
         /*
+id
+crop_name
 subject_schemas_id
 crop_name_uri
 scientific_name
 scientific_name_uri
 historic_name
+schema_abbrevation
+schema_name
+schema_uri
         */
         return [
             NumberColumn::name('id')
@@ -48,7 +53,7 @@ historic_name
             Column::name('crop_name')               
                 ->label('Name'),
 
-            Column::name('subject_schemas.name')
+            Column::name('schema_name')
                 -> label('Schema'),
 
             Column::name('crop_name_uri')

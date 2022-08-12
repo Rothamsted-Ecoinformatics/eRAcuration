@@ -9,4 +9,8 @@ class FundingAward extends Model
 {
     use HasFactory;
     protected $table = 'funding_awards';
+
+    public function organisation() {
+        return $this->belongsTo(Organisation::class, 'organisation_id');
+    }
 }

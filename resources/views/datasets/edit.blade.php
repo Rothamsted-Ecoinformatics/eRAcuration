@@ -1,87 +1,34 @@
 @extends('layouts.app')
 @section('content')
-<form action="/datasets/{{ $dataset->id }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div class="card">
-        <div class="card-header bg-blue-600 text-center">
-            <div class="flex flex-row items-center justify-between">
-                <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">Edit : {{ $dataset->title }}
-                    </h1>
-                </div>
-                <div class="basis-1/4 p-3">
-                    
-                        <button type = "submit" class="float-right inline-block  px-5 py-3 rounded-lg transform transition 
+    <form action="/datasets/{{ $dataset->id }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="card">
+            <div class="card-header bg-blue-600 text-center">
+                <div class="flex flex-row items-center justify-between">
+                    <div class="basis-3/4 p-3">
+                        <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">Edit : {{ $dataset->id }} -
+                            {{ $dataset->title }}
+                        </h1>
+                    </div>
+                    <div class="basis-1/4 p-3">
+                        <a href="/datasets/{{ $dataset->id }}"
+                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition 
+                        bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                        active:bg-gray-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Cancel</a>
+                        <button type="submit"
+                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition 
                         bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
                         active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card-body">
-            {{-- Field in Metadata Documents
-  --: not needed in the form
-  * : form input started
-  **: form input finished 
-
--- id : autoincrement
--- md_id : That will have to be created with a kind of random formula
-* lte_id : 
--- URL : will be calculated from expt, shortname and version
-* identifier: Will need to have a way to check that it exists or not 
-* identifier_type: List  taken from another table
-** dstype: list from another table
-** title
-* publisher: need to list the organisations
-** publication_year
-** grt_id
-srt_id
-** format_id
-fa_id
-grade
-isReady
-isExternal
-[language]
-version
-rights_text
-rights_licence_uri
-rights_licence
-** description_toc
-** description_technical_info
-** description_quality
-** description_provenance
-** description_methods
-** description_abstract
-** description_other
-short_name
-doi_created
-created_at
-updated_at
-language
-SSMA_TimeStamp --}}
-            <div class="antialiased text-gray-900 px-6">
-                <div class="max-w-xl mx-auto py-12 md:max-w-4xl">
-                    <label class="block">
-                        <span class="text-gray-700">Title</span>
-                        <input type="text" name="title" class="form-input mt-1 block rounded-md w-full"
-                            value="{{ $dataset->title }}" />
-                    </label>
-                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                        <div class="grid grid-cols-1 gap-6">
-                            
-                            <label class="block">
-                                <span class="text-gray-700">Select Experiment</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="lte_id">
-
-                                    @foreach ($experiments as $experiment)
-                                        <option value="{{ $experiment->experiment_id }}"
-                                            @if ($dataset->lte_id == $experiment->experiment_id) selected @endif>
-                                            {{ $experiment->experiment_name }} ({{ $experiment->experiment_code }})
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </label>
-
+            <div class="card-body">
+                {{-- Field in Metadata Documents --}}
+                <div class="antialiased text-gray-900 px-3">
+                    <div class="max-w-xl mx-auto py-0 md:max-w-4xl">
+                        <div class="bg-gray-300">
                             <label class="block">
                                 @php
                                     $startURL = 'http://doi.org/';
@@ -105,157 +52,217 @@ SSMA_TimeStamp --}}
                                         @endphp
                                     @break
                                 @endswitch
-                                <span class="text-gray-700">Identifier</span>
+                                <span class="text-gray-700 p-2 font-semibold text-lg">Identifier</span>
                                 <div class="text-slate-900  text-lg font-thin  p-2"><a
-                                       class="text-blue-700 hover:text-blue-500 hover:underline active:text-rose-600  visited:text-violet-900" href="{{ $startURL }}{{ $dataset->identifier }}">{{ $dataset->identifier }}</a>  ({{ $dataset->identifier_type }})
+                                        class="text-blue-700 hover:text-blue-500 hover:underline active:text-rose-600  visited:text-violet-900"
+                                        href="{{ $startURL }}{{ $dataset->identifier }}">{{ $dataset->identifier }}</a>
+                                    ({{ $dataset->identifier_type }})
                                 </div>
-                                <div class="text-gray-700 text-sm font-thin font-italic bg-yellow-100 p-2">I don't think we
-                                    want to edit the DOI. Do we? </div>
-                            </label>
-                           
-
-                            <label class="block">
-                                <span class="text-gray-700">Publisher</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="identifier_type">
-                                    <option>TODO Rothamsted Research</option>
-                                    <option>TODO ...</option>
-                                </select>
-                                <div class="text-gray-700 text-sm font-thin font-italic bg-yellow-100 p-2">Lists the
-                                    Organisation's table </div>
+                                <div
+                                    class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                    In general we
+                                    do not want to edit the DOI</div>
                             </label>
                             <label class="block">
-                                <span class="text-gray-700">Authors</span>
-                                <select class="form-multiselect block w-full mt-1   rounded-md" multiple="" name="authors">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
+                                <span class="text-gray-700 p-2 font-semibold text-lg">URL</span>
+                                <div class="text-slate-900  text-lg font-thin  p-2"><a
+                                        class="text-blue-700 hover:text-blue-500 hover:underline active:text-rose-600  visited:text-violet-900"
+                                        href="{{ $startURL }}{{ $dataset->identifier }}">{{ $dataset->url }}</a>
+                                </div>
+                                <div
+                                    class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                    URL will be
+                                    updated
+                                    automatically if needed.</div>
                             </label>
-                            <label class="block">
-                                <span class="text-gray-700">or Authoring Organisations</span>
-                                <select class="form-multiselect block w-full mt-1   rounded-md" multiple="" name="authors">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
-                            </label>
-                            <label class="block">
-                                <span class="text-gray-700">Contributors</span>
-                                <select class="form-multiselect block w-full mt-1   rounded-md" multiple=""
-                                    name="contributors">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
-                            </label>
-
-
                         </div>
-                        <div class="grid grid-cols-1 gap-6">
-                            <label class="block">
-                                <span class="text-gray-700">Short Name</span>
-                                <input type="text" name="shortname" class="form-input mt-1 block rounded-md w-full"
-                                    value="{{ $dataset->short_name }}" />
-                                <div class="text-gray-700 text-sm font-thin font-italic bg-yellow-100 p-2">Folder name</div>
-                            </label>
-                            <label class="block rounded-md">
-                                <span class="text-gray-700">Version</span>
-                                <input type="number" class="form-input mt-1 block rounded-md w-full" name="version"
-                                    value="1" />
-                            </label>
-                            <label class="block">
-                                <span class="text-gray-700">Publication Year</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="publication_year">
-                                    @php
-                                        $yearSelected = ' ';
-                                    @endphp
-                                    @for ($year = 2010; $year < 2025; $year++)
-                                        @if ($year == 2022)
-                                            @php
-                                                $yearSelected = ' selected';
-                                            @endphp
-                                        @else
-                                            @php
-                                                $yearSelected = ' ';
-                                            @endphp
-                                        @endif
-                                        <option value="{{ $year }}" {{ $yearSelected }}>{{ $year }}
-                                        </option>
-                                    @endfor
+                        <label class="block">
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Title</span>
+                            <input type="text" name="title" class="form-input mt-1 block rounded-md w-full"
+                                value="{{ $dataset->title }}" />
+                        </label>
+                        <label class="block">
+                            <span class="text-gray-700 p-2 font-semibold text-lg">URL</span>
+                            <input type="text" name="url" class="form-input mt-1 block rounded-md w-full"
+                                value="{{ $dataset->url }}" />
+                        </label>
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                            <div class="grid grid-cols-1 gap-6">
 
-                                </select>
-                                <div class="text-gray-700 text-sm font-thin font-italic bg-yellow-100 p-2">Lists years 1950
-                                    >>> </div>
-                            </label>
-                            <label class="block">
-                                <span class="text-gray-700">Dataset Access Type</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="dstype">
-                                    <option value="OA">OA</option>
-                                    <option value="Frictionless">Frictionless</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Select Experiment</span>
+                                    <select class="form-select block w-full mt-1  rounded-md" name="experiment_id">
 
-                            <label class="block">
-                                <span class="text-gray-700">Format</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="format_id">
-                                    <option value="1">html</option>
-                                    <option value="2">doc</option>
-                                    <option value="3">txt</option>
-                                    <option value="4">pdf</option>
-                                    <option value="5">xml</option>
-                                    <option value="6">json</option>
-                                    <option value="7">csv</option>
-                                    <option value="8">tab</option>
-                                    <option value="9">xls</option>
-                                    <option value="10">docx</option>
-                                    <option value="11" selected>xlsx</option>
-                                    <option value="12">jpg</option>
-                                    <option value="13">gif</option>
-                                    <option value="14">png</option>
+                                        @foreach ($experiments as $experiment)
+                                            <option value="{{ $experiment->id }}"
+                                                @if ($dataset->experiment_id == $experiment->id) selected @endif>
+                                                {{ $experiment->name }} ({{ $experiment->code }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </label>
 
-                                </select>
-                            </label>
-                            <label class="block">
-                                <span class="text-gray-700">Resource General Type</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="grt_id">
-                                    <option value="4">Dataset</option>
 
-                                    <option value="12">Text</option>
-                                </select>
-                            </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">is_ready State</span>
+                                    <input type="text" name="is_ready" class="form-input mt-1 block rounded-md w-full"
+                                        value="{{ $dataset->is_ready }}" />
+                                    <div
+                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                        0: really
+                                        nothing to show - 1: only shows on intranet test site and not minted - 2: shows on
+                                        internet and minted DOI</div>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Grade</span>
+                                    <input type="text" name="grade" class="form-input mt-1 block rounded-md w-full"
+                                        value="{{ $dataset->grade }}" />
+                                    <div
+                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                        This value
+                                        seems deprecated now</div>
+                                </label>
 
-                            <label class="block">
-                                <span class="text-gray-700">Resource Specific Type</span>
-                                <select class="form-select block w-full mt-1  rounded-md" name="srt_id">
-                                    <option value="1">Book</option>
-                                    <option value="2">Book Chapter</option>
-                                    <option value="3">Manual</option>
-                                    <option value="4">Report</option>
-                                    <option value="5" selected>Crop yield data</option>
-                                    <option value="6">Web resource</option>
-                                    <option value="7">Crop nutrient data</option>
-                                    <option value="8">Species observation data</option>
-                                    <option value="9">Field plot map</option>
-                                    <option value="10">Rainfall data</option>
-                                    <option value="11">Soil data</option>
-                                    <option value="12">Experiment details</option>
-                                    <option value="13">Treatment details</option>
-                                    <option value="14">Disease data</option>
-                                    <option value="15">Temperature data</option>
-                                    <option value="16">30 year mean weather data</option>
-                                    <option value="17">Weather Data</option>
-                                </select>
-                            </label>
-                            <label class="block">
-                                <span class="text-gray-700">Keywords</span>
-                                <ul>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">DOI minted</span>
+                                    <input type="text" name="doi_created" class="form-input mt-1 block rounded-md w-full"
+                                        value="{{ $dataset->doi_created }}" />
+                                    <div
+                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                        Delete this
+                                        if you need the DOI to be minted again. Do not edit otherwise</div>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">is External</span>
+                                    <input type="text" name="is_external" class="form-input mt-1 block rounded-md w-full"
+                                        value="{{ $dataset->is_external }}" />
+                                    <div
+                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                        in the
+                                        extremely rare case when the dataset is described here, but hosted womewhere else
+                                        and we do not mint the DOI</div>
+                                </label>
+
+
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Publisher</span>
+                                    <select class="form-select block w-full mt-1  rounded-md" name="publisher_id">
+                                        @foreach ($organisations as $organisation)
+                                            <option value="{{ $organisation->id }}"
+                                                @if ($dataset->publisher_id == $organisation->id) selected @endif>
+                                                {{ $organisation->name }} ({{ $organisation->abbreviation }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Authors</span>
+                                    
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">or Authoring Organisations</span>
+
+                                    <p>TODO: we might want something fancy</p>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
+
+                                    <p>TODO: we might want something fancy</p>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Funding Awards</span>
+                                    <p>to do</p>
+                                </label>
+
+
+                            </div>
+                            <div class="grid grid-cols-1 gap-6">
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Short Name</span>
+                                    <input type="text" name="shortname" class="form-input mt-1 block rounded-md w-full"
+                                        value="{{ $dataset->short_name }}" />
+                                    <div
+                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
+                                        This is the
+                                        name of the folder,
+                                        or a short name for the dataset. Case sensitive. Leave blank for documents that are
+                                        at the root of the experiment </div>
+                                </label>
+                                <label class="block rounded-md">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Version</span>
+                                    <input type="number" class="form-input mt-1 block rounded-md w-full" name="version"
+                                        value="1" />
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Publication Year</span>
+                                    <select class="form-select block w-full mt-1  rounded-md" name="publication_year">
+                                        @php
+                                            $yearSelected = ' ';
+                                        @endphp
+                                        @for ($year = 2010; $year < 2025; $year++)
+                                            @if ($dataset->publication_year == $year)
+                                                @php
+                                                    $yearSelected = ' selected';
+                                                @endphp
+                                            @else
+                                                @php
+                                                    $yearSelected = ' ';
+                                                @endphp
+                                            @endif
+                                            <option value="{{ $year }}" {{ $yearSelected }}>{{ $year }}
+                                            </option>
+                                        @endfor
+
+                                    </select>
+
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Dataset Access Type</span>
+                                    <select class="form-select block w-full mt-1  rounded-md" name="dataset_type">
+                                        <option value="OA">OA</option>
+                                        <option value="Frictionless">Frictionless</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </label>
+
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Format</span>
+                                    <select class="form-select block w-full mt-1  rounded-md" name="document_format_id">
+                                        @foreach ($document_formats as $document_format)
+                                            <option value="{{ $document_format->id }}"
+                                                @if ($dataset->document_format_id == $document_format->id) selected @endif>
+                                                {{ $document_format->id }} ({{ $document_format->mime_type }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <p>this is now absent in this version of the database: are we resintating it?</p>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Resource General Type</span>
+                                    <select class="form-select block w-full mt-1  rounded-md"
+                                        name="general_resource_type_id">
+                                        <option value="4">Dataset</option>
+
+                                        <option value="12">Text</option>
+                                    </select>
+                                </label>
+
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Resource Specific Type</span>
+                                    <select class="form-select block w-full mt-1  rounded-md"
+                                        name="specific_resource_type_id">
+                                        @foreach ($specific_resource_types as $specific_resource_type)
+                                            <option value="{{ $specific_resource_type->id }}"
+                                                @if ($dataset->specific_resource_type_id == $specific_resource_type->id) selected @endif>
+                                                {{ $specific_resource_type->type_value }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Keywords</span>
+                                    {{-- <ul>
                                     @foreach ($subjects as $subject)
                                         <li>{{ $subject->subject }}</li>
                                     @endforeach
@@ -270,102 +277,110 @@ SSMA_TimeStamp --}}
 
 
 
-                                </select>
-                                <p>See also Select2 multiple livewire component</p>
-                            </label>
-                            <label class="block">
-                                <span class="text-gray-700">Document Dates</span>
-                                <p>Here I suggest having a table with the dates already created, and a button to add another
-                                    dates. When updated, automatic updated date added</p>
-                            </label>
+                                </select> --}}
+                                    <p>See also Select2 multiple livewire component</p>
+                                </label>
+                                <label class="block">
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Document Dates</span>
+                                    <p>Here I suggest having a table with the dates already created, and a button to add
+                                        another
+                                        dates. When updated, automatic updated date added</p>
+                                </label>
 
+                            </div>
                         </div>
                     </div>
+                    <div class="max-w-4xl mx-auto py-12">
+
+
+                        <h2 class="text-2xl font-bold">Abstracts and Descriptions</h2>
+                        <label class="block">
+                            <span class="text-gray-700">Abstract</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md " rows="8" placeholder="This is Compulsory"
+                                name="description_abstract">{{ $dataset->description_abstract }} </textarea>
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Table of Content</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md " rows="8" name="description_toc">{{ $dataset->description_toc }} </textarea>
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Technical Information</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_technical_info">{{ $dataset->description_technical_info }} </textarea>
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Quality Assurance</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_quality">{{ $dataset->description_quality }} </textarea>
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Provenance</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_provenance">{{ $dataset->description_provenance }} </textarea>
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Methods</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_methods">{{ $dataset->description_methods }} </textarea>
+                        </label>
+
+
+                        <label class="block">
+                            <span class="text-gray-700">Other</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_other">{{ $dataset->description_other }} </textarea>
+                        </label>
+
+
+                        <label class="block">
+                            <span class="text-gray-700">Copyright</span>
+                            <input type="text" name="rights_text" class="form-input mt-1 block rounded-md w-full"
+                                value="Copyright Rothamsted Research" />
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Copyright Licence URL</span>
+                            <input type="text" name="rights_licence_uri"
+                                class="form-input mt-1 block rounded-md w-full"
+                                value="http://creativecommons.org/licenses/by/4.0" />
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Copyright Licence</span>
+                            <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="3" placeholder=""
+                                name="rights_licence">This work is licensed under the terms of the Creative Commons Attribution 4.0 International License</textarea>
+                        </label>
+                        <label class="block">
+                            <span class="text-gray-700">Funding Awards</span>
+                            <p>to do</p>
+                        </label>
+                    </div>
                 </div>
-                <div class="max-w-4xl mx-auto py-12">
-                    <h2 class="text-2xl font-bold">Associated Files</h2>
-                    <p>Here I suggest having a table with the files already created, and a button to add another file. </p>
+                <div class="flex flex-row items-center justify-between">
+                    <div class="basis-3/4 p-3">
+                        <h1 class="text-4xl text-slate-600 text-bold justify-center p-8 ">Editing :{{ $dataset->id }} -
+                            {{ $dataset->title }}
+                        </h1>
+                    </div>
+                    <div class="basis-1/4 p-3">
 
-                    <h2 class="text-2xl font-bold">Abstracts and Descriptions</h2>
-                    <label class="block">
-                        <span class="text-gray-700">Abstract</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="4" placeholder="This is Compulsory"
-                            name="description_abstract">{{ $dataset->description_abstract }} </textarea>
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Table of Content</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md " rows="4" 
-                            name="description_toc">{{ $dataset->description_toc }} </textarea>
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Technical Information</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="4" 
-                            name="description_technical_info">{{ $dataset->description_technical_info }} </textarea>
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Quality Assurance</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="4" 
-                            name="description_quality">{{ $dataset->description_quality }} </textarea>
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Provenance</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="4" 
-                            name="description_provenance">{{ $dataset->description_provenance }} </textarea>
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Methods</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="4" 
-                            name="description_methods">{{ $dataset->description_methods }} </textarea>
-                    </label>
-
-
-                    <label class="block">
-                        <span class="text-gray-700">Other</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="4" 
-                            name="description_other">{{ $dataset->description_other }} </textarea>
-                    </label>
-
-                    <h2 class="text-2xl font-bold">Associated Documents</h2>
-                    <p>Here I suggest having a table with the Documents already associated, and a button to add
-                        another one.
-                    </p>
-
-                    <label class="block">
-                        <span class="text-gray-700">Copyright</span>
-                        <input type="text" name="rights_text" class="form-input mt-1 block rounded-md w-full"
-                            value="Copyright Rothamsted Research" />
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Copyright Licence URL</span>
-                        <input type="text" name="rights_licence_uri" class="form-input mt-1 block rounded-md w-full"
-                             value="http://creativecommons.org/licenses/by/4.0" />
-                    </label>
-
-                    <label class="block">
-                        <span class="text-gray-700">Copyright Licence</span>
-                        <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="3" placeholder=""
-                            name="rights_licence">This work is licensed under the terms of the Creative Commons Attribution 4.0 International License</textarea>
-                    </label>
-                    <label class="block">
-                        <span class="text-gray-700">Funding Awards</span>
-                        <select class="form-multiselect block w-full mt-1   rounded-md" multiple name="funding">
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                            <option>Option 4</option>
-                            <option>Option 5</option>
-                        </select>
-                    </label>
+                        <button type="submit"
+                            class="float-right inline-block  px-5 py-3 rounded-lg transform transition 
+                        bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                        active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
+                    </div>
                 </div>
+
             </div>
-
         </div>
+    </form>
+
+    <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
+        <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
+
+        <ul>
+            <li></li>
+        </ul>
+
     </div>
-</form>
 @endsection

@@ -14,4 +14,9 @@ class experiment extends Model
     {
         return $this -> hasMany(Image::class);
     }
+
+    public function datasets()
+    {
+        return $this -> hasMany(Dataset::class, 'experiment_id');
+    }
 }

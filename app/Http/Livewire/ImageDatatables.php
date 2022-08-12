@@ -25,7 +25,7 @@ class ImageDatatables extends LivewireDatatable
 {
     public $model = Image::class;
     
-    public $with = "experiment";
+    public $with = "experiment, author";
     public $hideable = 'select';
     
     //public $complex = true;
@@ -75,7 +75,9 @@ class ImageDatatables extends LivewireDatatable
                 -> label('Description')
                 -> truncate(30)
                 -> hide(),        
-        
+                Column::name('author.name')
+                -> label('Author'),
+              
             Column::callback(['file_location'], function ($file_location  ) {
                 return view('images.callback', ['file_location' => $file_location]);
             })

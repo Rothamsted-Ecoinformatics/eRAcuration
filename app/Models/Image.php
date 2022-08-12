@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Experiment;
 use App\Models\ImageType;
+use App\Models\Person;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +28,10 @@ class Image extends Model
     public function image_type()
     {
         return $this->belongsTo(ImageType::class, 'image_type_id');
+    }
+
+    public function author() {
+        return $this->belongsTo(Organisation::class, 'person_id');
     }
 
 }
