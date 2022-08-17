@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
 use App\Models\Dataset;
 use App\Models\DocumentFile;
 use App\Models\DocumentFormat;
@@ -12,6 +10,8 @@ use App\Models\Experiment;
 use App\Models\Organisation;
 use App\Models\SpecificResourceType;
 use App\Models\Subject;
+use App\Models\PersonRole;
+use App\Models\PersonRoleType;
 
 class DatasetController extends Controller
 {
@@ -66,11 +66,11 @@ class DatasetController extends Controller
         $files = DocumentFile::where('metadata_document_id', $id)->get();
         $authors = Dataset::findOrFail($id)->authors()->get();
         $authorOrgs = Dataset::findOrFail($id)->authorOrgs()->get();
-
+        //using the belongsToMany function
         $contributors = Dataset::findOrFail($id)
         ->contributors()
         ->get();
-
+        //using PersonRole as a model
         //these are lists that are more general to use in Select statements
         $experiments = Experiment::where('glten_id', '>', 0)
         ->orWhere('code', 'like', '%MS%')
@@ -130,7 +130,9 @@ class DatasetController extends Controller
      */
     public function edit($id)
     {
+
         $arrData = $this-> getData($id);
+        //dd($arrData);
 
         return view('datasets.edit', $arrData);
 
@@ -152,8 +154,6 @@ created_at: timestamps
 updated_at: timestamps
 
 */
-
-
         $dataset = Dataset::where('id',$id)
         ->update([
             'experiment_id' => $request-> input('experiment_id'),
@@ -211,7 +211,6 @@ updated_at: timestamps
             'experiments' => $experiments,
             //'subjects' => $subjects
         ]) ;
-
 
     }
 

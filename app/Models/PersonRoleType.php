@@ -9,6 +9,4 @@ class PersonRoleType extends Model
 {
     use HasFactory;
     protected $table = 'person_role_types';
-
-    
 }

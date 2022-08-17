@@ -21,7 +21,7 @@ class Dataset extends Model
 
     protected $table = 'metadata_documents';
     public $timestamps = false;
-    
+
     public function experiment() {
         return $this->belongsTo(Experiment::class, 'experiment_id');
     }
@@ -60,13 +60,17 @@ class Dataset extends Model
     {
         return $this->belongsToMany(Organisation::class, 'organisation_creators', 'metadata_document_id', 'organisation_id');
     }
-    //this contributors is a bit more complicated because I need to fetch teh role through the roletype. 
+    //this contributors is a bit more complicated because I need to fetch the role through the roletype.
+    //we created the pivot class PersonRole as a PIVOT (see model PersonRole)
+    // see https://www.youtube.com/watch?v=V5xINbA-z9o for that trick to get the role type
     public function contributors()
     {
+
         return $this->belongsToMany(Person::class, 'person_roles', 'metadata_document_id', 'person_id')
         ->withPivot('person_role_type_id')
-    ;
-        
+        ->using(PersonRole::class);
+
+
     }
 
 }

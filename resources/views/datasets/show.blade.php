@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
     <div class="card">
@@ -8,47 +9,20 @@
                     </h1>
                 </div>
                 <div class="basis-1/4 p-3">
-                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition 
-                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition
+                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                     active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
                         href="/datasets/{{ $dataset->id }}/edit">edit</a>
-                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition 
-                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition
+                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                     active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
                         href="/datasets/{{ $dataset->id }}/copy">Use as Template</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            {{-- Field in Metadata Documents
 
 
-
-general_resource_type_id
-specific_resource_type_id
-version
-lang
-is_ready
-grade
-is_external
-short_name
-dataset_type
-url
-identifier
-identifier_type
-doi_created
-title
-rights_text
-rights_licence_uri
-rights_licence
-description_abstract
-description_methods
-description_toc
-description_technical_info
-description_quality
-description_provenance
-description_other
-old_id --}}
             <div class="flex flex-row">
                 <div class="basis-1/3 p-3">
                     <div class="border-2 border-slate-400 rounded-xl p-5">
@@ -161,10 +135,11 @@ old_id --}}
                             <tbody>
                                 @foreach ($contributors as $contributor)
                                     <tr>
-                                        <td>{{ $contributor->pivot->person_role_type_id }} </td>
+                                        <td>{{ $contributor->pivot->person_role_type->type_value}} </td>
                                         <td>{{ $contributor->given_name }} {{ $contributor->family_name }} </td>
                                     </tr>
                                 @endforeach
+
                             </tbody>
                         </table>
                         <h3 class="text-lg font-bold text-slate-600">Abstract - description_abstract</h3>

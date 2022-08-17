@@ -13,14 +13,13 @@
                     </div>
                     <div class="basis-1/4 p-3">
                         <a href="/datasets/{{ $dataset->id }}"
-                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition 
-                        bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
+                        bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                         active:bg-gray-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Cancel</a>
                         <button type="submit"
-                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition 
-                        bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
+                        bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                         active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
-
                     </div>
                 </div>
             </div>
@@ -88,11 +87,9 @@
                         </label>
                         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                             <div class="grid grid-cols-1 gap-6">
-
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Select Experiment</span>
                                     <select class="form-select block w-full mt-1  rounded-md" name="experiment_id">
-
                                         @foreach ($experiments as $experiment)
                                             <option value="{{ $experiment->id }}"
                                                 @if ($dataset->experiment_id == $experiment->id) selected @endif>
@@ -101,8 +98,6 @@
                                         @endforeach
                                     </select>
                                 </label>
-
-
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">is_ready State</span>
                                     <input type="text" name="is_ready" class="form-input mt-1 block rounded-md w-full"
@@ -122,7 +117,6 @@
                                         This value
                                         seems deprecated now</div>
                                 </label>
-
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">DOI minted</span>
                                     <input type="text" name="doi_created" class="form-input mt-1 block rounded-md w-full"
@@ -142,8 +136,6 @@
                                         extremely rare case when the dataset is described here, but hosted womewhere else
                                         and we do not mint the DOI</div>
                                 </label>
-
-
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Publisher</span>
                                     <select class="form-select block w-full mt-1  rounded-md" name="publisher_id">
@@ -154,33 +146,171 @@
                                             </option>
                                         @endforeach
                                     </select>
-
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Authors</span>
-                                    
+
+                                    <table class="min-w-full">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="w-2/3 text-left">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Authors</span>
+                                                </th>
+                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                                    <span class=" text-blue-500" href="">Add </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $stripe = 'bg-gray-200';
+                                            @endphp
+                                            @foreach ($authors as $author)
+                                                @if ($stripe == 'bg-white')
+                                                    @php
+                                                        $stripe = 'bg-gray-200';
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $stripe = 'bg-white';
+                                                    @endphp
+                                                @endif
+                                                <tr class="{{ $stripe }}">
+                                                    <td class="w-1/4 text-left py-3 px-4">{{ $author->given_name }}
+                                                        {{ $author->family_name }}</td>
+                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                        <span class=" text-red-500" href="">Delete</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">or Authoring Organisations</span>
-
-                                    <p>TODO: we might want something fancy</p>
+                                    <table class="min-w-full">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="w-2/3 text-left">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">or Authoring
+                                                        Organisations</span>
+                                                </th>
+                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                                    <span class=" text-blue-500" href="">Add </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $stripe = 'bg-gray-200';
+                                            @endphp
+                                            @foreach ($authorOrgs as $authorOrg)
+                                                @if ($stripe == 'bg-white')
+                                                    @php
+                                                        $stripe = 'bg-gray-200';
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $stripe = 'bg-white';
+                                                    @endphp
+                                                @endif
+                                                <tr class="{{ $stripe }}">
+                                                    <td class="w-1/4 text-left py-3 px-4">{{ $authorOrg->name }}
+                                                        ({{ $authorOrg->abbreviation }})
+                                                    </td>
+                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                        <span class=" text-red-500" href="">Delete</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
-
-                                    <p>TODO: we might want something fancy</p>
+                                    <table class="min-w-full">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="w-2/3 text-left" colspan=2>
+                                                    <span
+                                                        class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
+                                                </th>
+                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                                    <span class=" text-blue-500" href="">Add </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $stripe = 'bg-gray-200';
+                                            @endphp
+                                            @foreach ($contributors as $contributor)
+                                                @if ($stripe == 'bg-white')
+                                                    @php
+                                                        $stripe = 'bg-gray-200';
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $stripe = 'bg-white';
+                                                    @endphp
+                                                @endif
+                                                <tr class="{{ $stripe }}">
+                                                    <td class="w-1/3 text-left py-3 px-4">{{ $contributor->given_name }}
+                                                        {{ $contributor->family_name }}</td>
+                                                    <td class="w-1/3 text-left py-3 px-4">
+                                                        {{ $contributor->pivot->person_role_type->type_value }}</td>
+                                                    <td class="w-1/3 text-right py-3 px-4">
+                                                        <span class=" text-green-500" href="">Edit</span>
+                                                        <span class=" text-red-500" href="">Delete</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Funding Awards</span>
-                                    <p>to do</p>
+                                    <table class="min-w-full">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="w-2/3 text-left">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Funding
+                                                        Awards</span>
+                                                </th>
+                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                                    <span class=" text-blue-500" href="">Add </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $stripe = 'bg-gray-200';
+                                            @endphp
+                                            @foreach ($funders as $funder)
+                                                @if ($stripe == 'bg-white')
+                                                    @php
+                                                        $stripe = 'bg-gray-200';
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $stripe = 'bg-white';
+                                                    @endphp
+                                                @endif
+                                                </li>
+                                                <tr class="{{ $stripe }}">
+                                                    <td class="w-1/4 text-left py-3 px-4">{{ $funder->reference_number }}
+                                                        ({{ $funder->organisation->abbreviation }})
+                                                    </td>
+                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                        <span class=" text-red-500" href="">Delete</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </label>
-
-
                             </div>
                             <div class="grid grid-cols-1 gap-6">
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Short Name</span>
-                                    <input type="text" name="shortname" class="form-input mt-1 block rounded-md w-full"
+                                    <input type="text" name="shortname"
+                                        class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->short_name }}" />
                                     <div
                                         class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
@@ -213,9 +343,7 @@
                                             <option value="{{ $year }}" {{ $yearSelected }}>{{ $year }}
                                             </option>
                                         @endfor
-
                                     </select>
-
                                 </label>
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Dataset Access Type</span>
@@ -225,7 +353,6 @@
                                         <option value="Other">Other</option>
                                     </select>
                                 </label>
-
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Format</span>
                                     <select class="form-select block w-full mt-1  rounded-md" name="document_format_id">
@@ -247,7 +374,6 @@
                                         <option value="12">Text</option>
                                     </select>
                                 </label>
-
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Resource Specific Type</span>
                                     <select class="form-select block w-full mt-1  rounded-md"
@@ -261,24 +387,43 @@
                                     </select>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Keywords</span>
-                                    {{-- <ul>
-                                    @foreach ($subjects as $subject)
-                                        <li>{{ $subject->subject }}</li>
-                                    @endforeach
-                                </ul>
-                                <select class="select2-multiple form-control block w-full mt-1   rounded-md"
-                                    multiple="subjects" name="subjects">
-                                    @foreach ($subjects as $subject)
-                                        <option value="{{ $subject->subject_id }}" class="uppercase">
-                                            {{ $subject->subject }}</option>
-                                    @endforeach
-
-
-
-
-                                </select> --}}
-                                    <p>See also Select2 multiple livewire component</p>
+                                    <table class="min-w-full">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="w-2/3 text-left">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Keywords</span>
+                                                </th>
+                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                                    <span class=" text-blue-500" href="">Add </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $stripe = 'bg-gray-200';
+                                            @endphp
+                                            @foreach ($subjects as $subject)
+                                                @if ($stripe == 'bg-white')
+                                                    @php
+                                                        $stripe = 'bg-gray-200';
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $stripe = 'bg-white';
+                                                    @endphp
+                                                @endif
+                                                </li>
+                                                <tr class="{{ $stripe }}">
+                                                    <td class="w-1/4 text-left py-3 px-4">{{ $subject->subject }}
+                                                    </td>
+                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                        <span class=" text-red-500" href="">Delete</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </label>
                                 </label>
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Document Dates</span>
@@ -286,7 +431,6 @@
                                         another
                                         dates. When updated, automatic updated date added</p>
                                 </label>
-
                             </div>
                         </div>
                     </div>
@@ -363,24 +507,19 @@
                         </h1>
                     </div>
                     <div class="basis-1/4 p-3">
-
                         <button type="submit"
-                            class="float-right inline-block  px-5 py-3 rounded-lg transform transition 
-                        bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                            class="float-right inline-block  px-5 py-3 rounded-lg transform transition
+                        bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                         active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </form>
-
     <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
         <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
-
         <ul>
             <li></li>
         </ul>
-
     </div>
 @endsection
