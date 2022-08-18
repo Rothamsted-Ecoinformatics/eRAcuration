@@ -69,7 +69,7 @@ class DatasetController extends Controller
         //using the belongsToMany function
         $contributors = Dataset::findOrFail($id)
         ->contributors()
-        ->dd();
+        ->get();
         //using PersonRole as a model
         //these are lists that are more general to use in Select statements
         $experiments = Experiment::where('glten_id', '>', 0)

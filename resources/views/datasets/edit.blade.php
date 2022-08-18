@@ -27,7 +27,8 @@
                 {{-- Field in Metadata Documents --}}
                 <div class="antialiased text-gray-900 px-3">
                     <div class="max-w-xl mx-auto py-0 md:max-w-4xl">
-                        <div class="bg-gray-300">
+                        <div class="bg-gray-300 pt-6 pb-3 px-2">
+                            <h2 class="text-2xl font-bold">Identification</h2>
                             <label class="block">
                                 @php
                                     $startURL = 'http://doi.org/';
@@ -51,39 +52,28 @@
                                         @endphp
                                     @break
                                 @endswitch
-                                <span class="text-gray-700 p-2 font-semibold text-lg">Identifier</span>
+                                <span title="In general we do not want to edit the DOI"
+                                    class="text-gray-700 p-2 font-semibold text-lg">Identifier*</span>
                                 <div class="text-slate-900  text-lg font-thin  p-2"><a
                                         class="text-blue-700 hover:text-blue-500 hover:underline active:text-rose-600  visited:text-violet-900"
                                         href="{{ $startURL }}{{ $dataset->identifier }}">{{ $dataset->identifier }}</a>
                                     ({{ $dataset->identifier_type }})
                                 </div>
-                                <div
-                                    class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                    In general we
-                                    do not want to edit the DOI</div>
+
                             </label>
                             <label class="block">
-                                <span class="text-gray-700 p-2 font-semibold text-lg">URL</span>
+                                <span title="URL will be updated automatically if needed"
+                                    class="text-gray-700 p-2 font-semibold text-lg">URL*</span>
                                 <div class="text-slate-900  text-lg font-thin  p-2"><a
                                         class="text-blue-700 hover:text-blue-500 hover:underline active:text-rose-600  visited:text-violet-900"
                                         href="{{ $startURL }}{{ $dataset->identifier }}">{{ $dataset->url }}</a>
                                 </div>
-                                <div
-                                    class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                    URL will be
-                                    updated
-                                    automatically if needed.</div>
                             </label>
                         </div>
                         <label class="block">
                             <span class="text-gray-700 p-2 font-semibold text-lg">Title</span>
                             <input type="text" name="title" class="form-input mt-1 block rounded-md w-full"
                                 value="{{ $dataset->title }}" />
-                        </label>
-                        <label class="block">
-                            <span class="text-gray-700 p-2 font-semibold text-lg">URL</span>
-                            <input type="text" name="url" class="form-input mt-1 block rounded-md w-full"
-                                value="{{ $dataset->url }}" />
                         </label>
                         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                             <div class="grid grid-cols-1 gap-6">
@@ -99,42 +89,27 @@
                                     </select>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">is_ready State</span>
+                                    <span class="text-gray-700 p-2 font-semibold text-lg" title="   0: really nothing to show
+    1: only shows on intranet test site and not minted
+    2: shows on internet and minted DOI">is_ready State*</span>
                                     <input type="text" name="is_ready" class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->is_ready }}" />
-                                    <div
-                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                        0: really
-                                        nothing to show - 1: only shows on intranet test site and not minted - 2: shows on
-                                        internet and minted DOI</div>
                                 </label>
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Grade</span>
                                     <input type="text" name="grade" class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->grade }}" />
-                                    <div
-                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                        This value
-                                        seems deprecated now</div>
+
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">DOI minted</span>
+                                    <span class="text-gray-700 p-2 font-semibold text-lg" title="Delete this if you need the DOI to be minted again. Do not edit otherwise">DOI minted*</span>
                                     <input type="text" name="doi_created" class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->doi_created }}" />
-                                    <div
-                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                        Delete this
-                                        if you need the DOI to be minted again. Do not edit otherwise</div>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">is External</span>
+                                    <span class="text-gray-700 p-2 font-semibold text-lg" title= "in the extremely rare case when the dataset is described here, but hosted womewhere else and we do not mint the DOI">is External*</span>
                                     <input type="text" name="is_external" class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->is_external }}" />
-                                    <div
-                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                        in the
-                                        extremely rare case when the dataset is described here, but hosted womewhere else
-                                        and we do not mint the DOI</div>
                                 </label>
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Publisher</span>
@@ -148,7 +123,6 @@
                                     </select>
                                 </label>
                                 <label class="block">
-
                                     <table class="min-w-full">
                                         <thead class="">
                                             <tr>
@@ -162,12 +136,12 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-gray-200';
+                                                $stripe = 'bg-lime-100';
                                             @endphp
                                             @foreach ($authors as $author)
                                                 @if ($stripe == 'bg-white')
                                                     @php
-                                                        $stripe = 'bg-gray-200';
+                                                        $stripe = 'bg-lime-200';
                                                     @endphp
                                                 @else
                                                     @php
@@ -175,9 +149,9 @@
                                                     @endphp
                                                 @endif
                                                 <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-3 px-4">{{ $author->given_name }}
+                                                    <td class="w-1/4 text-left py-1 px-4">{{ $author->given_name }}
                                                         {{ $author->family_name }}</td>
-                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                    <td class="w-1/4 text-right py-1 px-4">
                                                         <span class=" text-red-500" href="">Delete</span>
                                                     </td>
                                                 </tr>
@@ -200,12 +174,12 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-gray-200';
+                                                $stripe = 'bg-lime-200';
                                             @endphp
                                             @foreach ($authorOrgs as $authorOrg)
                                                 @if ($stripe == 'bg-white')
                                                     @php
-                                                        $stripe = 'bg-gray-200';
+                                                        $stripe = 'bg-lime-200';
                                                     @endphp
                                                 @else
                                                     @php
@@ -213,10 +187,10 @@
                                                     @endphp
                                                 @endif
                                                 <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-3 px-4">{{ $authorOrg->name }}
+                                                    <td class="w-1/4 text-left py-1 px-4">{{ $authorOrg->name }}
                                                         ({{ $authorOrg->abbreviation }})
                                                     </td>
-                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                    <td class="w-1/4 text-right py-1 px-4">
                                                         <span class=" text-red-500" href="">Delete</span>
                                                     </td>
                                                 </tr>
@@ -239,12 +213,12 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-gray-200';
+                                                $stripe = 'bg-lime-200';
                                             @endphp
                                             @foreach ($contributors as $contributor)
                                                 @if ($stripe == 'bg-white')
                                                     @php
-                                                        $stripe = 'bg-gray-200';
+                                                        $stripe = 'bg-lime-200';
                                                     @endphp
                                                 @else
                                                     @php
@@ -265,59 +239,16 @@
                                         </tbody>
                                     </table>
                                 </label>
-                                <label class="block">
-                                    <table class="min-w-full">
-                                        <thead class="">
-                                            <tr>
-                                                <th class="w-2/3 text-left">
-                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Funding
-                                                        Awards</span>
-                                                </th>
-                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
-                                                    <span class=" text-blue-500" href="">Add </span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $stripe = 'bg-gray-200';
-                                            @endphp
-                                            @foreach ($funders as $funder)
-                                                @if ($stripe == 'bg-white')
-                                                    @php
-                                                        $stripe = 'bg-gray-200';
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $stripe = 'bg-white';
-                                                    @endphp
-                                                @endif
-                                                </li>
-                                                <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-3 px-4">{{ $funder->reference_number }}
-                                                        ({{ $funder->organisation->abbreviation }})
-                                                    </td>
-                                                    <td class="w-1/4 text-right py-3 px-4">
-                                                        <span class=" text-red-500" href="">Delete</span>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </label>
+
                             </div>
                             <div class="grid grid-cols-1 gap-6">
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Short Name</span>
+                                    <span class="text-gray-700 p-2 font-semibold text-lg"
+                                        title="This is the name of the folder, or a short name for the dataset. Case sensitive. Leave blank for documents that are at the root of the experiment">Short
+                                        Name*</span>
                                     <input type="text" name="shortname"
                                         class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->short_name }}" />
-                                    <div
-                                        class="text-gray-700 p-2 font-semibold text-lg text-sm font-thin font-italic bg-yellow-100 p-2">
-                                        This is the
-                                        name of the folder,
-                                        or a short name for the dataset. Case sensitive. Leave blank for documents that are
-                                        at the root of the experiment </div>
                                 </label>
                                 <label class="block rounded-md">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Version</span>
@@ -363,14 +294,12 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <p>this is now absent in this version of the database: are we resintating it?</p>
                                 </label>
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Resource General Type</span>
                                     <select class="form-select block w-full mt-1  rounded-md"
                                         name="general_resource_type_id">
                                         <option value="4">Dataset</option>
-
                                         <option value="12">Text</option>
                                     </select>
                                 </label>
@@ -400,12 +329,12 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-gray-200';
+                                                $stripe = 'bg-lime-200';
                                             @endphp
                                             @foreach ($subjects as $subject)
                                                 @if ($stripe == 'bg-white')
                                                     @php
-                                                        $stripe = 'bg-gray-200';
+                                                        $stripe = 'bg-lime-200';
                                                     @endphp
                                                 @else
                                                     @php
@@ -414,9 +343,9 @@
                                                 @endif
                                                 </li>
                                                 <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-3 px-4">{{ $subject->subject }}
+                                                    <td class="w-1/4 text-left py-1 px-4">{{ $subject->subject }}
                                                     </td>
-                                                    <td class="w-1/4 text-right py-3 px-4">
+                                                    <td class="w-1/4 text-right py-1 px-4">
                                                         <span class=" text-red-500" href="">Delete</span>
                                                     </td>
                                                 </tr>
@@ -424,79 +353,178 @@
                                         </tbody>
                                     </table>
                                 </label>
-                                </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Document Dates</span>
-                                    <p>Here I suggest having a table with the dates already created, and a button to add
-                                        another
-                                        dates. When updated, automatic updated date added</p>
+                                    <table class="min-w-full">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="w-2/3 text-left">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Dates</span>
+                                                </th>
+                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                                    <span class=" text-blue-500" href="">Add </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $stripe = 'bg-lime-200';
+                                            @endphp
+                                            @foreach ($dates as $date)
+                                                @if ($stripe == 'bg-white')
+                                                    @php
+                                                        $stripe = 'bg-lime-200';
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $stripe = 'bg-white';
+                                                    @endphp
+                                                @endif
+                                                </li>
+                                                <tr class="{{ $stripe }}">
+                                                    <td class="w-1/4 text-left py-1 px-4">{{ $date->type_value }} -
+                                                        {{ $date->history->document_date }}
+                                                    </td>
+                                                    <td class="w-1/4 text-right py-1 px-4">
+                                                        <span class=" text-green-500" href="">Edit</span>
+                                                        <span class=" text-red-500" href="">Delete</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="max-w-4xl mx-auto py-12">
-
-
-                        <h2 class="text-2xl font-bold">Abstracts and Descriptions</h2>
                         <label class="block">
-                            <span class="text-gray-700">Abstract</span>
+                            <table class="min-w-full">
+                                <thead class="">
+                                    <tr>
+                                        <th class="w-5/6 text-left" colspan=3>
+                                            <span class="text-gray-700 p-2 font-semibold text-lg">Files Provided</span>
+                                        </th>
+                                        <th class="w-1/6 text-right py-3 px-4 font-semibold text-sm">
+                                            <span class=" text-blue-500" href="">Add </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stripe = 'bg-lime-200';
+                                    @endphp
+                                    @foreach ($files as $file)
+                                        @if ($stripe == 'bg-white')
+                                            @php
+                                                $stripe = 'bg-lime-200';
+                                            @endphp
+                                        @else
+                                            @php
+                                                $stripe = 'bg-white';
+                                            @endphp
+                                        @endif
+                                        </li>
+                                        <tr class="{{ $stripe }}">
+                                            <td class="w-1/3 text-left py-3 px-4">{{ $file->file_name }} </td>
+                                            <td class="w-1/3 text-left py-3 px-4">{{ $file->title }} </td>
+                                            <td class="w-1/6 text-left py-3 px-4">{{ $file->is_illustration }}
+
+                                            <td class="w-1/6 text-right py-3 px-4">
+                                                <span class=" text-green-500" href="">Edit</span>
+                                                <span class=" text-red-500" href="">Delete</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </label>
+                        <h2 class="text-2xl font-bold py-12">Abstracts and Descriptions</h2>
+                        <label class="block">
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Abstract</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md " rows="8" placeholder="This is Compulsory"
                                 name="description_abstract">{{ $dataset->description_abstract }} </textarea>
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Table of Content</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Table of Content</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md " rows="8" name="description_toc">{{ $dataset->description_toc }} </textarea>
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Technical Information</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Technical Information</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_technical_info">{{ $dataset->description_technical_info }} </textarea>
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Quality Assurance</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Quality Assurance</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_quality">{{ $dataset->description_quality }} </textarea>
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Provenance</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Provenance</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_provenance">{{ $dataset->description_provenance }} </textarea>
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Methods</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Methods</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_methods">{{ $dataset->description_methods }} </textarea>
                         </label>
-
-
                         <label class="block">
-                            <span class="text-gray-700">Other</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Other</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="8" name="description_other">{{ $dataset->description_other }} </textarea>
                         </label>
 
-
+                        <h2 class="text-2xl font-bold py-12">Licence and funding</h2>
                         <label class="block">
-                            <span class="text-gray-700">Copyright</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Copyright</span>
                             <input type="text" name="rights_text" class="form-input mt-1 block rounded-md w-full"
                                 value="Copyright Rothamsted Research" />
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Copyright Licence URL</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Copyright Licence URL</span>
                             <input type="text" name="rights_licence_uri"
                                 class="form-input mt-1 block rounded-md w-full"
                                 value="http://creativecommons.org/licenses/by/4.0" />
                         </label>
-
                         <label class="block">
-                            <span class="text-gray-700">Copyright Licence</span>
+                            <span class="text-gray-700 p-2 font-semibold text-lg">Copyright Licence</span>
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="3" placeholder=""
                                 name="rights_licence">This work is licensed under the terms of the Creative Commons Attribution 4.0 International License</textarea>
                         </label>
                         <label class="block">
-                            <span class="text-gray-700">Funding Awards</span>
-                            <p>to do</p>
+                            <table class="min-w-full">
+                                <thead class="">
+                                    <tr>
+                                        <th class="w-2/3 text-left">
+                                            <span class="text-gray-700 p-2 font-semibold text-lg">Funding
+                                                Awards</span>
+                                        </th>
+                                        <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                            <span class=" text-blue-500" href="">Add </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stripe = 'bg-lime-200';
+                                    @endphp
+                                    @foreach ($funders as $funder)
+                                        @if ($stripe == 'bg-white')
+                                            @php
+                                                $stripe = 'bg-lime-200';
+                                            @endphp
+                                        @else
+                                            @php
+                                                $stripe = 'bg-white';
+                                            @endphp
+                                        @endif
+                                        </li>
+                                        <tr class="{{ $stripe }}">
+                                            <td class="w-1/4 text-left py-1 px-4">{{ $funder->reference_number }}
+                                                ({{ $funder->organisation->abbreviation }})
+                                            </td>
+                                            <td class="w-1/4 text-right py-1 px-4">
+                                                <span class=" text-red-500" href="">Delete</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </label>
                     </div>
                 </div>
