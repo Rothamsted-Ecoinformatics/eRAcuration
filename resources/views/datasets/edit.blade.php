@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+    @php
+    $stripeDark = 'bg-lime-200';
+    $stripeLight = 'bg-white';
+    @endphp
     <form action="/datasets/{{ $dataset->id }}" method="POST">
         @csrf
         @method('PUT')
@@ -69,6 +73,16 @@
                                         href="{{ $startURL }}{{ $dataset->identifier }}">{{ $dataset->url }}</a>
                                 </div>
                             </label>
+                            <label class="block">
+                                <span class="text-gray-700 p-2 font-semibold text-lg"
+                                    title="This will be deleted when you click submit so the at the  DOI is minted again">DOI
+                                    last
+                                    minted*</span>
+                                @php
+                                    $doi_created = new DateTime($dataset->doi_created);
+                                @endphp
+                                {{ $doi_created->format('Y-m-d') }}
+                            </label>
                         </div>
                         <label class="block">
                             <span class="text-gray-700 p-2 font-semibold text-lg">Title</span>
@@ -89,27 +103,97 @@
                                     </select>
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg" title="   0: really nothing to show
+                                    <span class="text-gray-700 p-2 font-semibold text-lg"
+                                        title="   0: really nothing to show
     1: only shows on intranet test site and not minted
-    2: shows on internet and minted DOI">is_ready State*</span>
-                                    <input type="text" name="is_ready" class="form-input mt-1 block rounded-md w-full"
-                                        value="{{ $dataset->is_ready }}" />
-                                </label>
-                                <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg">Grade</span>
-                                    <input type="text" name="grade" class="form-input mt-1 block rounded-md w-full"
-                                        value="{{ $dataset->grade }}" />
+    2: shows on internet and minted DOI">is_ready
+                                        State*</span>
+
+
+                                    <select class="form-select block w-full mt-1  rounded-md" name="is_ready">
+                                        @php
+                                            $is_readySelected = ' ';
+                                        @endphp
+                                        @for ($grade = 1; $grade < 3; $grade++)
+                                            @if ($dataset->is_ready == $grade)
+                                                @php
+                                                    $is_readySelected = ' selected';
+                                                @endphp
+                                            @else
+                                                @php
+                                                    $is_readySelected = ' ';
+                                                @endphp
+                                            @endif
+                                            <option value="{{ $grade }}" {{ $is_readySelected }}>
+                                                {{ $grade }}
+                                            </option>
+                                        @endfor
+                                    </select>
 
                                 </label>
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg" title="Delete this if you need the DOI to be minted again. Do not edit otherwise">DOI minted*</span>
-                                    <input type="text" name="doi_created" class="form-input mt-1 block rounded-md w-full"
-                                        value="{{ $dataset->doi_created }}" />
+                                    <span class="text-gray-700 p-2 font-semibold text-lg">Grade</span>
+
+
+                                    <select class="form-select block w-full mt-1  rounded-md" name="grade">
+                                        @php
+                                            $gradeSelected = ' ';
+                                        @endphp
+                                        @for ($grade = 0; $grade < 4; $grade++)
+                                            @if ($dataset->grade == $grade)
+                                                @php
+                                                    $gradeSelected = ' selected';
+                                                @endphp
+                                            @else
+                                                @php
+                                                    $gradeSelected = ' ';
+                                                @endphp
+                                            @endif
+                                            <option value="{{ $grade }}" {{ $gradeSelected }}>{{ $grade }}
+                                            </option>
+                                        @endfor
+                                    </select>
+
                                 </label>
+
                                 <label class="block">
-                                    <span class="text-gray-700 p-2 font-semibold text-lg" title= "in the extremely rare case when the dataset is described here, but hosted womewhere else and we do not mint the DOI">is External*</span>
-                                    <input type="text" name="is_external" class="form-input mt-1 block rounded-md w-full"
-                                        value="{{ $dataset->is_external }}" />
+                                    <span class="text-gray-700 p-2 font-semibold text-lg"
+                                        title="in the extremely rare case when the dataset is described here, but hosted womewhere else and we do not mint the DOI">is
+                                        External*</span>
+                                    @php
+                                        $isexternal = ' ';
+                                        $isNotExternal = '';
+                                    @endphp
+
+                                    @if ($dataset->is_external == 0)
+                                        @php
+                                            $isexternal = ' ';
+                                            $isNotExternal = ' checked';
+                                        @endphp
+                                    @else
+                                        @php
+                                            $isexternal = ' checked';
+                                            $isNotExternal = '';
+                                        @endphp
+                                    @endif
+                                    <fieldset class="block">
+                                        <div class="mt-2">
+                                            <div>
+                                                <label class="inline-flex items-center">
+                                                    <input class="form-radio" type="radio" {{ $isNotExternal }}
+                                                        name="is_external" value="0" />
+                                                    <span class="ml-2">No</span>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label class="inline-flex items-center">
+                                                    <input class="form-radio" type="radio" {{ $isexternal }}
+                                                        name="is_external" value="1" />
+                                                    <span class="ml-2">Yes</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </label>
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Publisher</span>
@@ -129,28 +213,34 @@
                                                 <th class="w-2/3 text-left">
                                                     <span class="text-gray-700 p-2 font-semibold text-lg">Authors</span>
                                                 </th>
-                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
-                                                    <span class=" text-blue-500" href="">Add </span>
-                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-lime-100';
+                                                $stripe = $stripeLight;
                                             @endphp
-                                            @foreach ($authors as $author)
-                                                @if ($stripe == 'bg-white')
+                                            @foreach ($dataset->authors as $author)
+                                                @if ($stripe == $stripeDark)
                                                     @php
-                                                        $stripe = 'bg-lime-200';
+                                                        $stripe = $stripeLight;
                                                     @endphp
                                                 @else
                                                     @php
-                                                        $stripe = 'bg-white';
+                                                        $stripe = $stripeDark;
                                                     @endphp
                                                 @endif
                                                 <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-1 px-4">{{ $author->given_name }}
-                                                        {{ $author->family_name }}</td>
+                                                    <td class="w-1/4 text-left py-1 px-4">
+                                                        <select class="form-select block w-full mt-1  rounded-md"
+                                                            name="authors[]">
+                                                            @foreach ($persons as $person)
+                                                                <option value="{{ $person->id }}"
+                                                                    @if ($author->id == $person->id) selected @endif>
+                                                                    {{ $person->given_name }} {{ $person->family_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
                                                     <td class="w-1/4 text-right py-1 px-4">
                                                         <span class=" text-red-500" href="">Delete</span>
                                                     </td>
@@ -174,21 +264,30 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-lime-200';
+                                                $stripe = $stripeLight;
                                             @endphp
-                                            @foreach ($authorOrgs as $authorOrg)
-                                                @if ($stripe == 'bg-white')
+                                            @foreach ($dataset->authorOrgs as $authorOrg)
+                                                @if ($stripe == $stripeDark)
                                                     @php
-                                                        $stripe = 'bg-lime-200';
+                                                        $stripe = $stripeLight;
                                                     @endphp
                                                 @else
                                                     @php
-                                                        $stripe = 'bg-white';
+                                                        $stripe = $stripeDark;
                                                     @endphp
                                                 @endif
                                                 <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-1 px-4">{{ $authorOrg->name }}
-                                                        ({{ $authorOrg->abbreviation }})
+                                                    <td class="w-1/4 text-left py-1 px-4">
+                                                        <select class="form-select block w-full mt-1  rounded-md"
+                                                            name="authorOrgs[]">
+                                                            @foreach ($organisations as $organisation)
+                                                                <option value="{{ $organisation->id }}"
+                                                                    @if ($authorOrg->id == $organisation->id) selected @endif>
+                                                                    {{ $organisation->name }}
+                                                                    {{ $organisation->abbreviation }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </td>
                                                     <td class="w-1/4 text-right py-1 px-4">
                                                         <span class=" text-red-500" href="">Delete</span>
@@ -198,47 +297,7 @@
                                         </tbody>
                                     </table>
                                 </label>
-                                <label class="block">
-                                    <table class="min-w-full">
-                                        <thead class="">
-                                            <tr>
-                                                <th class="w-2/3 text-left" colspan=2>
-                                                    <span
-                                                        class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
-                                                </th>
-                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
-                                                    <span class=" text-blue-500" href="">Add </span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $stripe = 'bg-lime-200';
-                                            @endphp
-                                            @foreach ($contributors as $contributor)
-                                                @if ($stripe == 'bg-white')
-                                                    @php
-                                                        $stripe = 'bg-lime-200';
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $stripe = 'bg-white';
-                                                    @endphp
-                                                @endif
-                                                <tr class="{{ $stripe }}">
-                                                    <td class="w-1/3 text-left py-3 px-4">{{ $contributor->given_name }}
-                                                        {{ $contributor->family_name }}</td>
-                                                    <td class="w-1/3 text-left py-3 px-4">
-                                                        {{ $contributor->pivot->person_role_type->type_value }}</td>
-                                                    <td class="w-1/3 text-right py-3 px-4">
-                                                        <span class=" text-green-500" href="">Edit</span>
-                                                        <span class=" text-red-500" href="">Delete</span>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </label>
+
 
                             </div>
                             <div class="grid grid-cols-1 gap-6">
@@ -246,7 +305,7 @@
                                     <span class="text-gray-700 p-2 font-semibold text-lg"
                                         title="This is the name of the folder, or a short name for the dataset. Case sensitive. Leave blank for documents that are at the root of the experiment">Short
                                         Name*</span>
-                                    <input type="text" name="shortname"
+                                    <input type="text" name="short_name"
                                         class="form-input mt-1 block rounded-md w-full"
                                         value="{{ $dataset->short_name }}" />
                                 </label>
@@ -279,9 +338,12 @@
                                 <label class="block">
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Dataset Access Type</span>
                                     <select class="form-select block w-full mt-1  rounded-md" name="dataset_type">
-                                        <option value="OA">OA</option>
-                                        <option value="Frictionless">Frictionless</option>
-                                        <option value="Other">Other</option>
+                                        <option value="OA" @if ($dataset->dataset_type == 'OA') selected @endif>OA
+                                        </option>
+                                        <option value="Frictionless" @if ($dataset->dataset_type == 'Frictionless') selected @endif>
+                                            Frictionless</option>
+                                        <option value="Other" @if ($dataset->dataset_type == 'Other') selected @endif>Other
+                                        </option>
                                     </select>
                                 </label>
                                 <label class="block">
@@ -299,8 +361,10 @@
                                     <span class="text-gray-700 p-2 font-semibold text-lg">Resource General Type</span>
                                     <select class="form-select block w-full mt-1  rounded-md"
                                         name="general_resource_type_id">
-                                        <option value="4">Dataset</option>
-                                        <option value="12">Text</option>
+                                        <option value="4" @if ($dataset->general_resource_type_id == 4) selected @endif>Dataset
+                                        </option>
+                                        <option value="12" @if ($dataset->general_resource_type_id == 12) selected @endif>Text
+                                        </option>
                                     </select>
                                 </label>
                                 <label class="block">
@@ -329,21 +393,29 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $stripe = 'bg-lime-200';
+                                                $stripe = $stripeLight;
                                             @endphp
-                                            @foreach ($subjects as $subject)
-                                                @if ($stripe == 'bg-white')
+                                            @foreach ($dataset->subjects as $subject)
+                                                @if ($stripe == $stripeDark)
                                                     @php
-                                                        $stripe = 'bg-lime-200';
+                                                        $stripe = $stripeLight;
                                                     @endphp
                                                 @else
                                                     @php
-                                                        $stripe = 'bg-white';
+                                                        $stripe = $stripeDark;
                                                     @endphp
                                                 @endif
-                                                </li>
                                                 <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-1 px-4">{{ $subject->subject }}
+                                                    <td class="w-1/4 text-left py-1 px-4">
+                                                        <select class="form-select block w-full mt-1  rounded-md"
+                                                            name="subjects[]">
+                                                            @foreach ($allSubjects as $allSubject)
+                                                                <option value="{{ $allSubject->id }}"
+                                                                    @if ($subject->id == $allSubject->id) selected @endif>
+                                                                    {{ $allSubject->subject }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </td>
                                                     <td class="w-1/4 text-right py-1 px-4">
                                                         <span class=" text-red-500" href="">Delete</span>
@@ -353,46 +425,7 @@
                                         </tbody>
                                     </table>
                                 </label>
-                                <label class="block">
-                                    <table class="min-w-full">
-                                        <thead class="">
-                                            <tr>
-                                                <th class="w-2/3 text-left">
-                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Dates</span>
-                                                </th>
-                                                <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
-                                                    <span class=" text-blue-500" href="">Add </span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $stripe = 'bg-lime-200';
-                                            @endphp
-                                            @foreach ($dates as $date)
-                                                @if ($stripe == 'bg-white')
-                                                    @php
-                                                        $stripe = 'bg-lime-200';
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $stripe = 'bg-white';
-                                                    @endphp
-                                                @endif
-                                                </li>
-                                                <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-1 px-4">{{ $date->type_value }} -
-                                                        {{ $date->history->document_date }}
-                                                    </td>
-                                                    <td class="w-1/4 text-right py-1 px-4">
-                                                        <span class=" text-green-500" href="">Edit</span>
-                                                        <span class=" text-red-500" href="">Delete</span>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </label>
+
                             </div>
                         </div>
                     </div>
@@ -401,7 +434,133 @@
                             <table class="min-w-full">
                                 <thead class="">
                                     <tr>
-                                        <th class="w-5/6 text-left" colspan=3>
+                                        <th class="w-6/7 text-left" colspan=2>
+                                            <span class="text-gray-700 p-2 font-semibold text-lg">Dates</span>
+                                        </th>
+                                        <th class="w-1/7 text-right py-3 px-4 font-semibold text-sm">
+                                            <span class=" text-blue-500" href="">Add </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stripe = $stripeLight;
+                                        $item = 0;
+                                    @endphp
+                                    @foreach ($dataset->dates as $date)
+                                        @php
+
+                                            $item++;
+                                            //the form input accepts format'Y-m-d' which we get like this
+                                            $time_input = strtotime($date->history->document_date);
+                                            $date_input = date('Y-m-d', $time_input);
+
+                                        @endphp
+                                        @if ($stripe == $stripeDark)
+                                            @php
+                                                $stripe = $stripeLight;
+                                            @endphp
+                                        @else
+                                            @php
+                                                $stripe = $stripeDark;
+                                            @endphp
+                                        @endif
+                                        </li>
+                                        <tr class="{{ $stripe }}">
+                                            <td class="w-3/7 text-left py-1 px-4">
+                                                <select class="form-select block w-full mt-1  rounded-md"
+                                                    name="date[{{ $item }}]['type_value']">
+                                                    @foreach ($date_types as $date_type)
+                                                        <option value="{{ $date_type->id }}"
+                                                            @if ($date->type_value == $date_type->type_value) selected @endif>
+                                                            {{ $date_type->type_value }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td class="w-3/7 text-left py-1 px-4">
+                                                <input type="date" class="form-input mt-1 block rounded-md w-full"
+                                                    name="date[{{ $item }}]['document_date']"
+                                                    value="{{ $date_input }}" />
+
+                                            </td>
+                                            <td class="w-1/7 text-right py-1 px-4">
+
+                                                <span class=" text-red-500" href="">Delete</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </label>
+                        <label class="block">
+                            <table class="min-w-full">
+                                <thead class="">
+                                    <tr>
+                                        <th class="w-2/3 text-left" colspan=2>
+                                            <span class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
+                                        </th>
+                                        <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
+                                            <span class=" text-blue-500" href="">Add </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stripe = $stripeLight;
+                                        $item = 0;
+                                    @endphp
+                                    @foreach ($dataset->contributors as $contributor)
+                                        @php
+                                            $item++;
+                                        @endphp
+                                        @if ($stripe == $stripeDark)
+                                            @php
+                                                $stripe = $stripeLight;
+                                            @endphp
+                                        @else
+                                            @php
+                                                $stripe = $stripeDark;
+                                            @endphp
+                                        @endif
+                                        <tr class="{{ $stripe }}">
+                                            <td class="w-1/3 text-left py-3 px-4">
+                                                <select class="form-select block w-full mt-1  rounded-md"
+                                                    name="contributors[{{ $item }}]['person_id']">
+                                                    @foreach ($persons as $person)
+                                                        <option value="{{ $person->id }}"
+                                                            @if ($contributor->pivot->person_id == $person->id) selected @endif>
+                                                            {{ $person->given_name }} {{ $person->family_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td class="w-1/3 text-left py-3 px-4">
+                                                <select class="form-select block w-full mt-1  rounded-md"
+                                                    name="contributors[{{ $item }}]['person_role_type_id']">
+                                                    @foreach ($person_role_types as $prt)
+                                                        <option value="{{ $prt->id }}"
+                                                            @if ($contributor->pivot->person_role_type->id == $prt->id) selected @endif>
+                                                            {{ $prt->type_value }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+
+                                            </td>
+                                            <td class="w-1/3 text-right py-3 px-4">
+
+                                                <span class=" text-red-500" href="">Delete</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </label>
+                        <label class="block">
+                            <table class="min-w-full">
+                                <thead class="">
+                                    <tr>
+                                        <th class="w-5/6 text-left">
                                             <span class="text-gray-700 p-2 font-semibold text-lg">Files Provided</span>
                                         </th>
                                         <th class="w-1/6 text-right py-3 px-4 font-semibold text-sm">
@@ -411,26 +570,110 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $stripe = 'bg-lime-200';
+                                        $stripe = $stripeLight;
+                                        $item = 0;
                                     @endphp
-                                    @foreach ($files as $file)
-                                        @if ($stripe == 'bg-white')
+                                    @foreach ($dataset->files as $file)
+                                        @php
+                                            $item++;
+                                        @endphp
+                                        @if ($stripe == $stripeDark)
                                             @php
-                                                $stripe = 'bg-lime-200';
+                                                $stripe = $stripeLight;
                                             @endphp
                                         @else
                                             @php
-                                                $stripe = 'bg-white';
+                                                $stripe = $stripeDark;
                                             @endphp
                                         @endif
                                         </li>
                                         <tr class="{{ $stripe }}">
-                                            <td class="w-1/3 text-left py-3 px-4">{{ $file->file_name }} </td>
-                                            <td class="w-1/3 text-left py-3 px-4">{{ $file->title }} </td>
-                                            <td class="w-1/6 text-left py-3 px-4">{{ $file->is_illustration }}
+                                            <td class="w-5/6 text-left py-3 px-4">
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Title or Caption
+                                                    </span>
+                                                    <input type="text" class="form-input mt-1 block rounded-md w-full"
+                                                        name="new_document_file[{{ $item }}]['title']"
+                                                        value="{{ $file->title }} " />
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">File Name with
+                                                        extension</span>
+                                                    <input type="text" class="form-input mt-1 block rounded-md w-full"
+                                                        name="new_document_file[{{ $item }}]['file_name']"
+                                                        value="{{ $file->file_name }}" />
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Size</span>
+                                                    <input type="text" class="form-input mt-1 block rounded-md w-full"
+                                                        name="new_document_file[{{ $item }}]['size_value']"
+                                                        value="{{ $file->size_value }}" />
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Unit</span>
+                                                    <select class="form-select block w-full mt-1  rounded-md"
+                                                        name="new_document_file[{{ $item }}]['document_unit_id']">
+                                                        <option value="GB"
+                                                            @if ($file->document_unit_id == 'GB') selected @endif>GB
+                                                        </option>
+                                                        <option value="KB"
+                                                            @if ($file->document_unit_id == 'KB') selected @endif>KB
+                                                        </option>
+                                                        <option value="MB"
+                                                            @if ($file->document_unit_id == 'MB') selected @endif>MB
+                                                        </option>
+                                                        <option value="pages"
+                                                            @if ($file->document_unit_id == 'pages') selected @endif>pages
+                                                        </option>
 
+                                                    </select>
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg"
+                                                        title="One illustration image can be added here to be placed at the top of the page">is
+                                                        illustration*</span>
+                                                    @php
+                                                        $isIllustration = ' ';
+                                                        $isNotIllustration = ' ';
+                                                    @endphp
+
+                                                    @if ($file->is_illustration == 0)
+                                                        @php
+                                                            $isIllustration = ' ';
+                                                            $isNotIllustration = ' checked';
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $isIllustration = ' checked';
+                                                            $isNotIllustration = '';
+                                                        @endphp
+                                                    @endif
+                                                    <fieldset class="block">
+                                                        <div class="mt-2">
+                                                            <div>
+                                                                <label class="inline-flex items-center">
+                                                                    <input class="form-radio" type="radio"
+                                                                        {{ $isNotIllustration }}
+                                                                        name="new_document_file[{{ $item }}]['is_illustration']"
+                                                                        value="0" />
+                                                                    <span class="ml-2">No</span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex items-center">
+                                                                    <input class="form-radio" type="radio"
+                                                                        {{ $isIllustration }}
+                                                                        name="new_document_file[{{ $item }}]['is_illustration']"
+                                                                        value="1" />
+                                                                    <span class="ml-2">Yes</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </label>
+                                            </td>
                                             <td class="w-1/6 text-right py-3 px-4">
-                                                <span class=" text-green-500" href="">Edit</span>
+
                                                 <span class=" text-red-500" href="">Delete</span>
                                             </td>
                                         </tr>
@@ -501,22 +744,31 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $stripe = 'bg-lime-200';
+                                        $stripe = $stripeLight;
                                     @endphp
-                                    @foreach ($funders as $funder)
-                                        @if ($stripe == 'bg-white')
+                                    @foreach ($dataset->funders as $funder)
+                                        @if ($stripe == $stripeDark)
                                             @php
-                                                $stripe = 'bg-lime-200';
+                                                $stripe = $stripeLight;
                                             @endphp
                                         @else
                                             @php
-                                                $stripe = 'bg-white';
+                                                $stripe = $stripeDark;
                                             @endphp
                                         @endif
                                         </li>
                                         <tr class="{{ $stripe }}">
-                                            <td class="w-1/4 text-left py-1 px-4">{{ $funder->reference_number }}
-                                                ({{ $funder->organisation->abbreviation }})
+                                            <td class="w-1/4 text-left py-1 px-4">
+                                                <select class="form-select block w-full mt-1  rounded-md"
+                                                    name="funders[]">
+                                                    @foreach ($awards as $award)
+                                                        <option value="{{ $award->id }}"
+                                                            @if ($funder->pivot->funding_award_id == $award->id) selected @endif>
+                                                            {{ $award->reference_number }}
+                                                            ({{ $award->organisation->abbreviation }})
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </td>
                                             <td class="w-1/4 text-right py-1 px-4">
                                                 <span class=" text-red-500" href="">Delete</span>
@@ -526,6 +778,101 @@
                                 </tbody>
                             </table>
                         </label>
+                        <label class="block">
+                            <table class="min-w-full">
+                                <thead class="">
+                                    <tr>
+                                        <th class="w-3/4 text-left" colspan=4>
+                                            <span class="text-gray-700 p-2 font-semibold text-lg">Related
+                                                Identifiers</span>
+                                        </th>
+                                        <th class="w-1/4 text-right py-3 px-4 font-semibold text-sm">
+                                            <span class=" text-blue-500" href="">Add </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stripe = $stripeLight;
+                                        $item = 0;
+                                    @endphp
+
+                                    @foreach ($dataset->related_identifiers as $rel_id)
+                                        @if ($stripe == $stripeDark)
+                                            @php
+                                                $stripe = $stripeLight;
+                                            @endphp
+                                        @else
+                                            @php
+                                                $stripe = $stripeDark;
+                                            @endphp
+                                        @endif
+                                        @php
+                                            $item++;
+                                        @endphp
+                                        <tr class="{{ $stripe }}">
+                                            <td class="w-1/5 text-left py-3 px-4">
+                                                <select class="form-select block w-full mt-1  rounded-md"
+                                                    name="new_related_identifiers[{{ $item }}]['identifier_type_id']">
+                                                    <option value="DOI"
+                                                        @if ($rel_id->identifier_type_id == 'DOI') selected @endif>DOI
+                                                    </option>
+                                                    <option value="ISBN"
+                                                        @if ($rel_id->identifier_type_id == 'ISBN') selected @endif>ISBN
+                                                    </option>
+                                                    <option value="ISSN"
+                                                        @if ($rel_id->identifier_type_id == 'ISSN') selected @endif>ISSN
+                                                    </option>
+                                                    <option value="PMID"
+                                                        @if ($rel_id->identifier_type_id == 'PMID') selected @endif>PMID
+                                                    </option>
+                                                    <option value="PURL"
+                                                        @if ($rel_id->identifier_type_id == 'PURL') selected @endif>PURL
+                                                    </option>
+                                                    <option value="URL"
+                                                        @if ($rel_id->identifier_type_id == 'URL') selected @endif>URL
+                                                    </option>
+                                                    <option value="URN"
+                                                        @if ($rel_id->identifier_type_id == 'URN') selected @endif>URN
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <td class="w-1/5 text-left py-3 px-4">
+                                                <select class="form-select block w-full mt-1  rounded-md"
+                                                    name="new_related_identifiers[{{ $item }}]['relation_type_id']">
+                                                    @foreach ($relation_types as $relation_type)
+                                                        <option value="{{ $relation_type->id }}"
+                                                            @if ($rel_id->relation_type_id == $relation_type->id) selected @endif>
+                                                            {{ $relation_type->type_value }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td class="w-1/5 text-left py-3 px-4">
+                                                <input type="text"
+                                                    name="new_related_identifiers[{{ $item }}]['identifier']"
+                                                    class="form-input mt-1 block rounded-md w-full"
+                                                    value="{{ $rel_id->identifier }}" />
+                                            </td>
+                                            <td class="w-1/5 text-left py-3 px-4">
+                                                <input type="text"
+                                                    name="new_related_identifiers[{{ $item }}]['name']"
+                                                    class="form-input mt-1 block rounded-md w-full"
+                                                    value="{{ $rel_id->name }}" />
+                                            </td>
+                                            <td class="w-1/5 text-right py-3 px-4">
+                                                <input type="hidden"
+                                                    name="new_related_identifiers[{{ $item }}]['metadata_document_id']"
+                                                    value="{{ $dataset->id }}">
+
+                                                <span class=" text-red-500" href="">Delete</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </label>
+
                     </div>
                 </div>
                 <div class="flex flex-row items-center justify-between">

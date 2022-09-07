@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-
+use App\Models\RelatedIdentifier;
 use App\Models\Experiment;
-
 use App\Models\GeneralResourceType;
 use App\Models\Publisher;
 use App\Models\Person;
@@ -34,7 +33,6 @@ class Dataset extends Model
     public function document_format() {
         return $this->belongsTo(DocumentFormat::class, 'document_format_id');
     }
-
     public function publisher() {
         return $this->belongsTo(Publisher::class, 'publisher_id');
     }
@@ -65,12 +63,19 @@ class Dataset extends Model
     // see https://www.youtube.com/watch?v=V5xINbA-z9o for that trick to get the role type
     public function contributors()
     {
-
         return $this->belongsToMany(Person::class, 'person_roles', 'metadata_document_id', 'person_id')
         ->withPivot('person_role_type_id')
         ->using(PersonRole::class);
+    }
+    public function related_identifiers()
+    {
+        return $this->hasMany(RelatedIdentifier::class,  'metadata_document_id');
+    }
 
-
+    //$files = DocumentFile::where('metadata_document_id', $id)->get();
+    public function files()
+    {
+        return $this->hasMany(DocumentFile::class, 'metadata_document_id');
     }
 
 }

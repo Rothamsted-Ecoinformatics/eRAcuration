@@ -1,17 +1,22 @@
 <?php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Dataset;
+use App\Models\DateType;
 use App\Models\DocumentFile;
 use App\Models\DocumentFormat;
 use App\Models\Experiment;
 use App\Models\Organisation;
+use App\Models\FundingAward;
 use App\Models\SpecificResourceType;
 use App\Models\Subject;
+use App\Models\Person;
 use App\Models\PersonRole;
 use App\Models\PersonRoleType;
+use App\Models\RelatedIdentifier;
+use App\Models\IdentifierType;
+use App\Models\RelationType;
 
 class DatasetController extends Controller
 {
@@ -60,18 +65,11 @@ class DatasetController extends Controller
     {
         //these are specific to the ID
         $dataset = Dataset::find($id);
-        $subjects = Dataset::findOrFail($id)->subjects()->get();
-        $dates = Dataset::findOrFail($id)->dates()->get();
-        $funders = Dataset::findOrFail($id)->funders()->get();
-        $files = DocumentFile::where('metadata_document_id', $id)->get();
-        $authors = Dataset::findOrFail($id)->authors()->get();
-        $authorOrgs = Dataset::findOrFail($id)->authorOrgs()->get();
-        //using the belongsToMany function
-        $contributors = Dataset::findOrFail($id)
-        ->contributors()
-        ->get();
-        //using PersonRole as a model
-        //these are lists that are more general to use in Select statements
+
+        $allSubjects = Subject::all()->sortBy('subject', SORT_NATURAL|SORT_FLAG_CASE);
+        $date_types = DateType::all()->sortBy('type_value');
+        $awards = FundingAward::all()->sortBy('abbreviation');
+        $persons = Person::all()->sortBy('family_name');
         $experiments = Experiment::where('glten_id', '>', 0)
         ->orWhere('code', 'like', '%MS%')
         ->orderBy('code')
@@ -79,20 +77,23 @@ class DatasetController extends Controller
         $document_formats = DocumentFormat::orderby('id')->get();
         $specific_resource_types = SpecificResourceType::orderBy('type_value')->get();
         $organisations = Organisation::all();
+        $person_role_types = PersonRoleType::all()->sortBy('type_value');
+        $identifier_types = IdentifierType::all()->sortBy('id');
+        $relation_types = RelationType::all()->sortBy('type_value');
 
         $arrData= [
             'dataset' => $dataset,
-            'subjects' => $subjects,
-            'dates' => $dates,
-            'funders' =>   $funders,
-            'authors' => $authors,
-            'authorOrgs' => $authorOrgs,
-            'contributors' => $contributors,
+            'allSubjects' => $allSubjects,
             'organisations' => $organisations,
             'experiments' => $experiments,
             'specific_resource_types' => $specific_resource_types,
             'document_formats' => $document_formats,
-            'files' => $files,
+            'identifier_types' => $identifier_types,
+            'persons' => $persons,
+            'person_role_types' => $person_role_types,
+            'awards' => $awards,
+            'relation_types' => $relation_types,
+            'date_types' => $date_types,
         ];
 
         return  $arrData;
@@ -148,18 +149,40 @@ class DatasetController extends Controller
     public function update(Request $request, $id)
     {/*
 URL: Is there a case that the URL is actually made by formula? after all, we know what to do. Would avoid errors.
-URL for dataset: www.era.rothamsted.ac.uk/dataset/experiment/2digitVersion-shortname
+URL for dataset: www.era.rothamsted.ac.uk/dataset/experiment/2digitVersion-short_name
 doi_created: Actually, if there is a change, the DOI-Created needs to be deleted - so that the thing can be reminted
 created_at: timestamps
 updated_at: timestamps
-
 */
-        $dataset = Dataset::where('id',$id)
+//TODO: validation rules:
+
+$validated = $request->validate([
+    'title' => 'required',
+    'experiment_id' => 'required',
+    'publisher_id'=> 'required',
+    'description_abstract' => 'required',
+]);
+$exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
+$version = $request -> input('version');
+$code = strtolower(str_replace("/", "", $exptCode[0]['code']));
+$shortname = $request -> input('short_name');
+$filename = "ExtractFileName.pdf";
+
+if ($request->general_resource_type_id == 4) {
+    $format = 'http://www.era.rothamsted.ac.uk/dataset/%1$s/%2$02d-%3$s';
+    $formattedURL = sprintf($format, $code, $version, $shortname);
+} else {
+    $format = 'http://www.era.rothamsted.ac.uk/metadata/%1$s/%2$s';
+    $formattedURL = sprintf($format, $code, $filename);
+}
+        $exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
+        //dd($exptCode);
+        $dataset = Dataset::where('id', $id)
         ->update([
             'experiment_id' => $request-> input('experiment_id'),
-            'url' => $request-> input('url'),
             'short_name' => $request-> input('short_name'),
-            'doi_created' => '',
+            'url' => $formattedURL,
+            'doi_created' => '', // this blanks the DOI created field, so now the DOI will be minted again
             'description_toc' => $request-> input('description_toc')." " ,
             'description_technical_info' => $request-> input('description_technical_info')." ",
             'description_quality' => $request-> input('description_quality')." ",
@@ -183,10 +206,68 @@ updated_at: timestamps
             'rights_licence_uri' => $request -> input('rights_licence_uri')." ",
             'rights_licence' => $request -> input('rights_licence')." "
         ]);
+        $dataset= Dataset::where('id', $id)->first()->subjects()->sync($request->subjects);
+        $dataset= Dataset::where('id', $id)->first()->authors()->sync($request->authors);
+        $dataset= Dataset::where('id', $id)->first()->authorOrgs()->sync($request->authorOrgs);
+        $dataset= Dataset::where('id', $id)->first()->funders()->sync($request->funders);
 
-        return redirect ('/datasets');
+        $edContributors = array();
+        if (isset($request->contributors)){
+            foreach ($request->contributors as $contributor) {
+            $edContributors[$contributor["'person_id'"]]['person_role_type_id']=$contributor["'person_role_type_id'"];
+            }
+            $dataset= Dataset::where('id', $id)->first()->contributors()->sync($edContributors);
+        }
+        // we delete the old ones,
+        $deletedRelId = RelatedIdentifier::where('metadata_document_id', $id)->delete();
+        // transform the request and insert
+        $insertRelatedIdentifiers = $request->new_related_identifiers;
+
+        $allRelId = [];
+        foreach ($insertRelatedIdentifiers as $item)
+        {
+            $RelId = new RelatedIdentifier();
+            $RelId->identifier = $item["'identifier'"];
+            $RelId->metadata_document_id = $item["'metadata_document_id'"];
+            $RelId->relation_type_id = $item["'relation_type_id'"];
+            $RelId->identifier_type_id = $item["'identifier_type_id'"];
+            $RelId->name = $item["'name'"];
+            $allRelId = $RelId->attributesToArray();
+            RelatedIdentifier::insert($allRelId);
+        }
+
+        //---- now to deal with files new_document_file
+        //we delete the old ones:
+        //$deleteAssocFiles = DocumentFile::where('metadata_document_id', $id)->delete();
+        //$insertAssocFiles = $request->new_document_file;
+        //$allAssocFiles = [];
+        //foreach ($insertAssocFiles as $item)
+        /*
+        id
+metadata_document_id
+size_value
+document_unit_id
+document_format_id
+file_name
+title
+is_illustration
+old_md_id
+        {
+            $fileParts =explode(".", $item["'file_name'"]);
+            $extension = end($fileParts);
+            $AssocFile = new DocumentFile();
+            $AssocFile->size_value = $item["'size_value'"];
+            $AssocFile->metadata_document_id =$id;
+            $AssocFile->document_unit_id = $item["'document_unit_id'"];
+            $AssocFile->document_format_id = $extension;
+            $AssocFile->file_name = $item["'file_name'"];
+            $AssocFile->title = $item["'title'"];
+            $AssocFile->is_illustration = $item["'is_illustration'"];
+            $allAssocFiles = $AssocFile->attributesToArray();
+            DocumentFile::insert($allAssocFiles);
+        }*/
+        return redirect ('/datasets/'.$id);
     }
-
     /**
      *
      * Copy is a way to use an existing item as a template to make a new one.
@@ -196,24 +277,12 @@ updated_at: timestamps
      */
     public function copy($id)
     {
-
         //consider using replicate function then the edit and save so that save on forms. :)
         // https://medium.com/@imanborumand/8-interesting-functions-of-laravel-eloquent-orm-783df3e41b81
-        $dataset = Dataset::find($id);
-        //$subjects = Dataset::findOrFail($id)->subjects()->get();
-        $experiments = Experiment::where('glten_id', '>', 0)
-        ->orWhere('code', 'like', '%MS%')
-        ->orderBy('code')
-        ->get();
-
-        return view('datasets.copy', [
-            'dataset' => $dataset,
-            'experiments' => $experiments,
-            //'subjects' => $subjects
-        ]) ;
-
+        $arrData = $this-> getData($id);
+        return view('datasets.copy', $arrData)
+     ;
     }
-
     /**
      * Remove the specified resource from storage.
      *

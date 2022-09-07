@@ -5,6 +5,7 @@ use App\Http\Controllers\CropController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::resource('images', ImageController::class);
 Route::resource('datasets', DatasetController::class );
 Route::resource('subjects', SubjectController::class);
 Route::resource('crops', CropController::class);
+Route::resource('updates', UpdateController::class);
 Route::GET('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
 
 #//example of user table
@@ -51,6 +53,6 @@ route::get('/phpinfo', function() {
 //eRAcurate pages : please list here the pages that are in progress or finished
 
 
-//eRAcurate TODOS: list the routes that we could have to build the scafolding. 
+//eRAcurate TODOS: list the routes that we could have to build the scafolding.
 
 

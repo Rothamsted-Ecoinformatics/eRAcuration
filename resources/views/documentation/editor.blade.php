@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div id="editor" ></div>
+<div id="editor"></div>
+
 
 @endsection

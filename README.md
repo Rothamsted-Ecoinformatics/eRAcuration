@@ -1,5 +1,6 @@
 # eRAcuration
 Laravel interface for the curators of eRA database and Web sites. 
+
 ## Entities
 
 These are the entities that we are aiming to manage in this interface and therefore will have Views, Models and Controller. intermediary tables will not.
@@ -7,4 +8,17 @@ These are the entities that we are aiming to manage in this interface and theref
 Experiments: titles, descriptions, keyrefs and GLTENID: the actual metadata for the experiments uis handled in GLTEN
 Datasets: (metadata_documents)
 
+Images: 
+
+
+
+Datasets: 
+
+## Tools
+
+Datasets: 
+
+News: A tool to build a news page and tweet at the same time
+
+Images: 
 
