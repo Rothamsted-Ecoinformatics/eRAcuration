@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Eratables;
 
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 

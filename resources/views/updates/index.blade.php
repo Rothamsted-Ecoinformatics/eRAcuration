@@ -31,7 +31,8 @@
             <li>Could they be twitter several times? </li>
             <li>Could have more than one images: so image becomes a Many to Many</li>
             <li></li>
-            <li>can we have more than one image per tweet: yes..
+            <li>can we have more than one image per tweet: yes..</li>
+            <li>How to upload files: https://harrk.dev/uploading-files-with-laravel/</li>
             <li>The updates could be edited until tweeted.</li>
             <li>it be that the updates are tweeted and could be tweeted again another day? so there would be more than one date for tweets</li>
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
     @php
-    $stripeDark = 'bg-lime-200';
-    $stripeLight = 'bg-white';
+        $stripeDark = 'bg-slate-300';
+        $stripeLight = 'bg-slate-100';
     @endphp
     <form action="/datasets/{{ $dataset->id }}" method="POST">
         @csrf
@@ -379,6 +379,9 @@
                                         @endforeach
                                     </select>
                                 </label>
+
+                                @livewire('input.subjects', ['dataset_id' => $dataset->id])
+
                                 <label class="block">
                                     <table class="min-w-full">
                                         <thead class="">
@@ -782,11 +785,11 @@
                             <table class="min-w-full">
                                 <thead class="">
                                     <tr>
-                                        <th class="w-3/4 text-left" colspan=4>
+                                        <th class="w-5/6 text-left">
                                             <span class="text-gray-700 p-2 font-semibold text-lg">Related
                                                 Identifiers</span>
                                         </th>
-                                        <th class="w-1/4 text-right py-3 px-4 font-semibold text-sm">
+                                        <th class="w-1/6 text-right py-3 px-4 font-semibold text-sm">
                                             <span class=" text-blue-500" href="">Add </span>
                                         </th>
                                     </tr>
@@ -811,54 +814,67 @@
                                             $item++;
                                         @endphp
                                         <tr class="{{ $stripe }}">
-                                            <td class="w-1/5 text-left py-3 px-4">
-                                                <select class="form-select block w-full mt-1  rounded-md"
-                                                    name="new_related_identifiers[{{ $item }}]['identifier_type_id']">
-                                                    <option value="DOI"
-                                                        @if ($rel_id->identifier_type_id == 'DOI') selected @endif>DOI
-                                                    </option>
-                                                    <option value="ISBN"
-                                                        @if ($rel_id->identifier_type_id == 'ISBN') selected @endif>ISBN
-                                                    </option>
-                                                    <option value="ISSN"
-                                                        @if ($rel_id->identifier_type_id == 'ISSN') selected @endif>ISSN
-                                                    </option>
-                                                    <option value="PMID"
-                                                        @if ($rel_id->identifier_type_id == 'PMID') selected @endif>PMID
-                                                    </option>
-                                                    <option value="PURL"
-                                                        @if ($rel_id->identifier_type_id == 'PURL') selected @endif>PURL
-                                                    </option>
-                                                    <option value="URL"
-                                                        @if ($rel_id->identifier_type_id == 'URL') selected @endif>URL
-                                                    </option>
-                                                    <option value="URN"
-                                                        @if ($rel_id->identifier_type_id == 'URN') selected @endif>URN
-                                                    </option>
-                                                </select>
-                                            </td>
-                                            <td class="w-1/5 text-left py-3 px-4">
-                                                <select class="form-select block w-full mt-1  rounded-md"
-                                                    name="new_related_identifiers[{{ $item }}]['relation_type_id']">
-                                                    @foreach ($relation_types as $relation_type)
-                                                        <option value="{{ $relation_type->id }}"
-                                                            @if ($rel_id->relation_type_id == $relation_type->id) selected @endif>
-                                                            {{ $relation_type->type_value }}
+                                            <td class="w-5/6 text-left py-3 px-4">
+
+
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Relation to this
+                                                        item
+                                                    </span>
+                                                    <select class="form-select block w-full mt-1  rounded-md"
+                                                        name="new_related_identifiers[{{ $item }}]['relation_type_id']">
+                                                        @foreach ($relation_types as $relation_type)
+                                                            <option value="{{ $relation_type->id }}"
+                                                                @if ($rel_id->relation_type_id == $relation_type->id) selected @endif>
+                                                                {{ $relation_type->type_value }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Identifier
+                                                    </span>
+                                                    <input type="text"
+                                                        name="new_related_identifiers[{{ $item }}]['identifier']"
+                                                        class="form-input mt-1 block rounded-md w-full"
+                                                        value="{{ $rel_id->identifier }}" />
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Title or Caption
+                                                    </span>
+                                                    <input type="text"
+                                                        name="new_related_identifiers[{{ $item }}]['name']"
+                                                        class="form-input mt-1 block rounded-md w-full"
+                                                        value="{{ $rel_id->name }}" />
+                                                </label>
+                                                <label class="block">
+                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Identifier Type
+                                                    </span>
+                                                    <select class="form-select block w-full mt-1  rounded-md"
+                                                        name="new_related_identifiers[{{ $item }}]['identifier_type_id']">
+                                                        <option value="DOI"
+                                                            @if ($rel_id->identifier_type_id == 'DOI') selected @endif>DOI
                                                         </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td class="w-1/5 text-left py-3 px-4">
-                                                <input type="text"
-                                                    name="new_related_identifiers[{{ $item }}]['identifier']"
-                                                    class="form-input mt-1 block rounded-md w-full"
-                                                    value="{{ $rel_id->identifier }}" />
-                                            </td>
-                                            <td class="w-1/5 text-left py-3 px-4">
-                                                <input type="text"
-                                                    name="new_related_identifiers[{{ $item }}]['name']"
-                                                    class="form-input mt-1 block rounded-md w-full"
-                                                    value="{{ $rel_id->name }}" />
+                                                        <option value="ISBN"
+                                                            @if ($rel_id->identifier_type_id == 'ISBN') selected @endif>ISBN
+                                                        </option>
+                                                        <option value="ISSN"
+                                                            @if ($rel_id->identifier_type_id == 'ISSN') selected @endif>ISSN
+                                                        </option>
+                                                        <option value="PMID"
+                                                            @if ($rel_id->identifier_type_id == 'PMID') selected @endif>PMID
+                                                        </option>
+                                                        <option value="PURL"
+                                                            @if ($rel_id->identifier_type_id == 'PURL') selected @endif>PURL
+                                                        </option>
+                                                        <option value="URL"
+                                                            @if ($rel_id->identifier_type_id == 'URL') selected @endif>URL
+                                                        </option>
+                                                        <option value="URN"
+                                                            @if ($rel_id->identifier_type_id == 'URN') selected @endif>URN
+                                                        </option>
+                                                    </select>
+                                                </label>
                                             </td>
                                             <td class="w-1/5 text-right py-3 px-4">
                                                 <input type="hidden"
@@ -882,11 +898,16 @@
                         </h1>
                     </div>
                     <div class="basis-1/4 p-3">
+                        <a href="/datasets/{{ $dataset->id }}"
+                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
+                        bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
+                        active:bg-gray-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Cancel</a>
                         <button type="submit"
-                            class="float-right inline-block  px-5 py-3 rounded-lg transform transition
+                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
                         bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                         active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
                     </div>
+
                 </div>
             </div>
         </div>

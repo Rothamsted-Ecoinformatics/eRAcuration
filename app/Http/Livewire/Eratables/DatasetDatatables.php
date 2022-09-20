@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Eratables;
 
 
 use Livewire\Component;

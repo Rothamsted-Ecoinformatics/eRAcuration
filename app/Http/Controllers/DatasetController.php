@@ -147,7 +147,8 @@ class DatasetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {/*
+    {
+        /*
 URL: Is there a case that the URL is actually made by formula? after all, we know what to do. Would avoid errors.
 URL for dataset: www.era.rothamsted.ac.uk/dataset/experiment/2digitVersion-short_name
 doi_created: Actually, if there is a change, the DOI-Created needs to be deleted - so that the thing can be reminted
@@ -156,28 +157,31 @@ updated_at: timestamps
 */
 //TODO: validation rules:
 
-$validated = $request->validate([
-    'title' => 'required',
-    'experiment_id' => 'required',
-    'publisher_id'=> 'required',
-    'description_abstract' => 'required',
-]);
+        $validated = $request->validate([
+            'title' => 'required',
+            'experiment_id' => 'required',
+            'publisher_id'=> 'required',
+            'description_abstract' => 'required',
+        ]);
 $exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
 $version = $request -> input('version');
 $code = strtolower(str_replace("/", "", $exptCode[0]['code']));
 $shortname = $request -> input('short_name');
 $filename = "ExtractFileName.pdf";
 
-if ($request->general_resource_type_id == 4) {
+if ($request->general_resource_type_id == 4)
+{
     $format = 'http://www.era.rothamsted.ac.uk/dataset/%1$s/%2$02d-%3$s';
     $formattedURL = sprintf($format, $code, $version, $shortname);
-} else {
+}
+else
+{
     $format = 'http://www.era.rothamsted.ac.uk/metadata/%1$s/%2$s';
     $formattedURL = sprintf($format, $code, $filename);
 }
         $exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
         //dd($exptCode);
-        $dataset = Dataset::where('id', $id)
+        Dataset::where('id', $id)
         ->update([
             'experiment_id' => $request-> input('experiment_id'),
             'short_name' => $request-> input('short_name'),
@@ -206,68 +210,67 @@ if ($request->general_resource_type_id == 4) {
             'rights_licence_uri' => $request -> input('rights_licence_uri')." ",
             'rights_licence' => $request -> input('rights_licence')." "
         ]);
-        $dataset= Dataset::where('id', $id)->first()->subjects()->sync($request->subjects);
-        $dataset= Dataset::where('id', $id)->first()->authors()->sync($request->authors);
-        $dataset= Dataset::where('id', $id)->first()->authorOrgs()->sync($request->authorOrgs);
-        $dataset= Dataset::where('id', $id)->first()->funders()->sync($request->funders);
+        Dataset::where('id', $id)->first()->subjects()->sync($request->subjects);
+        Dataset::where('id', $id)->first()->authors()->sync($request->authors);
+        Dataset::where('id', $id)->first()->authorOrgs()->sync($request->authorOrgs);
+        Dataset::where('id', $id)->first()->funders()->sync($request->funders);
 
         $edContributors = array();
-        if (isset($request->contributors)){
+        if (isset($request->contributors))
+        {
             foreach ($request->contributors as $contributor) {
             $edContributors[$contributor["'person_id'"]]['person_role_type_id']=$contributor["'person_role_type_id'"];
             }
-            $dataset= Dataset::where('id', $id)->first()->contributors()->sync($edContributors);
+            Dataset::where('id', $id)->first()->contributors()->sync($edContributors);
         }
         // we delete the old ones,
-        $deletedRelId = RelatedIdentifier::where('metadata_document_id', $id)->delete();
+        RelatedIdentifier::where('metadata_document_id', $id)->delete();
         // transform the request and insert
-        $insertRelatedIdentifiers = $request->new_related_identifiers;
-
-        $allRelId = [];
-        foreach ($insertRelatedIdentifiers as $item)
+        if (isset($request->new_related_identifiers))
         {
-            $RelId = new RelatedIdentifier();
-            $RelId->identifier = $item["'identifier'"];
-            $RelId->metadata_document_id = $item["'metadata_document_id'"];
-            $RelId->relation_type_id = $item["'relation_type_id'"];
-            $RelId->identifier_type_id = $item["'identifier_type_id'"];
-            $RelId->name = $item["'name'"];
-            $allRelId = $RelId->attributesToArray();
-            RelatedIdentifier::insert($allRelId);
+            $insertRelatedIdentifiers = $request->new_related_identifiers;
+
+            $allRelId = [];
+            foreach ($insertRelatedIdentifiers as $item)
+            {
+                $RelId = new RelatedIdentifier();
+                $RelId->identifier = $item["'identifier'"];
+                $RelId->metadata_document_id = $item["'metadata_document_id'"];
+                $RelId->relation_type_id = $item["'relation_type_id'"];
+                $RelId->identifier_type_id = $item["'identifier_type_id'"];
+                $RelId->name = $item["'name'"];
+                $allRelId = $RelId->attributesToArray();
+                RelatedIdentifier::insert($allRelId);
+            }
         }
 
         //---- now to deal with files new_document_file
         //we delete the old ones:
-        //$deleteAssocFiles = DocumentFile::where('metadata_document_id', $id)->delete();
-        //$insertAssocFiles = $request->new_document_file;
-        //$allAssocFiles = [];
-        //foreach ($insertAssocFiles as $item)
-        /*
-        id
-metadata_document_id
-size_value
-document_unit_id
-document_format_id
-file_name
-title
-is_illustration
-old_md_id
+        DocumentFile::where('metadata_document_id', $id)->delete();
+
+        $insertAssocFiles = $request->new_document_file;
+        if (isset($request->new_document_file))
         {
-            $fileParts =explode(".", $item["'file_name'"]);
-            $extension = end($fileParts);
-            $AssocFile = new DocumentFile();
-            $AssocFile->size_value = $item["'size_value'"];
-            $AssocFile->metadata_document_id =$id;
-            $AssocFile->document_unit_id = $item["'document_unit_id'"];
-            $AssocFile->document_format_id = $extension;
-            $AssocFile->file_name = $item["'file_name'"];
-            $AssocFile->title = $item["'title'"];
-            $AssocFile->is_illustration = $item["'is_illustration'"];
-            $allAssocFiles = $AssocFile->attributesToArray();
-            DocumentFile::insert($allAssocFiles);
-        }*/
+            $allAssocFiles = [];
+            foreach ($insertAssocFiles as $item)
+            {
+                $fileParts =explode(".", $item["'file_name'"]);
+                $extension = end($fileParts);
+                $AssocFile = new DocumentFile();
+                $AssocFile->size_value = $item["'size_value'"];
+                $AssocFile->metadata_document_id =$id;
+                $AssocFile->document_unit_id = $item["'document_unit_id'"];
+                $AssocFile->document_format_id = $extension;
+                $AssocFile->file_name = $item["'file_name'"];
+                $AssocFile->title = $item["'title'"];
+                $AssocFile->is_illustration = $item["'is_illustration'"];
+                $allAssocFiles = $AssocFile->attributesToArray();
+                DocumentFile::insert($allAssocFiles);
+            }
+        }
         return redirect ('/datasets/'.$id);
     }
+
     /**
      *
      * Copy is a way to use an existing item as a template to make a new one.

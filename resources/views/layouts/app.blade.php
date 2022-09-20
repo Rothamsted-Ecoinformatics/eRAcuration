@@ -24,7 +24,8 @@
     @stack('styles')
 </head>
 
-<body class="bg-gradient-to-r from-gray-100 to-gray-200">
+<body class="">
+
     <livewire:toasts />
     @include('layouts.nav')
     @yield('content')

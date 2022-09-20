@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
     @php
-    $stripeDark = 'bg-slate-200';
-    $stripeLight = 'bg-white';
+
+        $stripeDark = 'bg-slate-300';
+        $stripeLight = 'bg-slate-100';
     @endphp
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
@@ -269,7 +270,8 @@ old_md_id --}}
                                     $LinkURL = $rel_id->identifier;
                                 @endphp
                             @endif
-                            <li> {{ $rel_id->relation_type->type_value }} - <a class="text-blue-800 hover:text-blue-700 hover:underline visited:text-pink-700"
+                            <li> {{ $rel_id->relation_type->type_value }} - <a
+                                    class="text-blue-800 hover:text-blue-700 hover:underline visited:text-pink-700"
                                     href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}
                         @endforeach
 

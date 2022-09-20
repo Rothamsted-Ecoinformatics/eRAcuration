@@ -17,7 +17,7 @@
         </div>
 
         <div class="card-body pt-10">
-            <livewire:crop-datatables searchable="crop_name, historic_name, scientific_name" />
+            <livewire:eratables.crop-datatables searchable="crop_name, historic_name, scientific_name" />
 
         </div>
     </div>
