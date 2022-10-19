@@ -20,7 +20,7 @@
         "rappasoft/laravel-livewire-tables": "^1.24",
         "reedware/laravel-relation-joins": "^3.0",
         "spatie/laravel-markdown": "^2.2",
-        "usernotnull/tall-toasts": "^1.4"
+        "usernotnull/tall-toasts": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

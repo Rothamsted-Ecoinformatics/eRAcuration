@@ -1,12 +1,12 @@
 @import '../../vendor/filament/forms/dist/module.esm.css';
-
+@import 'defaults.css';
+@import 'pages.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import 'defaults.css';
-@import 'pages.css';
+
 
 
 [x-cloak] {
