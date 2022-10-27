@@ -4,46 +4,20 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-between">
                 <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">Keywords - Subjects
+                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">Create a new Subject (Keyword)
                     </h1>
                 </div>
                 <div class="basis-1/4 p-3">
-                    <a class="float-right mx-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
-                        href="/subjects/create">New Keyword</a>
+                    <a href="/subjects"
+                        class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
+                    bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
+                    active:bg-gray-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Cancel</a>
+                    <button type="submit"
+                        class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
+                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
+                    active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
                 </div>
             </div>
-        </div>
-
-        <div class="card-body">
-            {{-- <livewire:subject-datatables
-
-            searchable="subject"
-            />
-
-            NumberColumn::name('id')
-                -> label('ID')
-                -> link('subjects/{{id}}', '{{id}}'),
-
-            Column::name('subject')
-                ->label('Keyword'),
-
-            Column::name('uri')
-                ->label('Subject ID'),
-
-            Column::name('subject_schemas.name')
-                -> label('Schema'),--}}
-            <livewire:datatable
-    model="App\Models\Subject"
-    with="subject_schemas"
-    sort="subject|asc"
-    include="id, subject, subject_schemas.name|Schema"
-    searchable="subject, subject_schemas.name"
-    hideable="select"
-    exportable
-/>
-
-
-
         </div>
     </div>
 

@@ -15,11 +15,11 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::All();
-        
+
 
         return view('subjects.index', [
             'subjects' => $subjects
-        ]); 
+        ]);
     }
 
     /**
@@ -29,7 +29,9 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.create', [
+
+        ]);
     }
 
     /**

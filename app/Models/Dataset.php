@@ -38,7 +38,7 @@ class Dataset extends Model
     }
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'document_subjects', 'metadata_document_id', 'subject_id');
+        return $this->belongsToMany(Subject::class, 'document_subjects', 'metadata_document_id', 'subject_id')->orderBy('subject');
     }
     public function dates()
     {
@@ -65,7 +65,8 @@ class Dataset extends Model
     {
         return $this->belongsToMany(Person::class, 'person_roles', 'metadata_document_id', 'person_id')
         ->withPivot('person_role_type_id')
-        ->using(PersonRole::class);
+        ->using(PersonRole::class)
+        ->orderBy('family_name');
     }
     public function related_identifiers()
     {

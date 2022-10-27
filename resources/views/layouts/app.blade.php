@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    @toastScripts
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -20,14 +19,14 @@
 
     @livewireStyles
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
 
     @stack('styles')
 </head>
 
 <body class="">
 
-    <livewire:toasts />
+
     @include('layouts.nav')
     @yield('content')
 

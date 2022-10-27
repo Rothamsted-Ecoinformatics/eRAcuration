@@ -9,27 +9,22 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-between">
                 <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">{{ $dataset->title }}
+                    <h1 class="text-bold justify-center p-8 text-4xl text-slate-100">{{ $dataset->title }}
                     </h1>
                 </div>
                 <div class="basis-1/4 p-3">
-                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition
-                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
-                    active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
+                    <a class="float-right mx-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/edit">edit</a>
-                    <a class="float-right inline-block px-5 py-3 rounded-lg transform transition
-                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
-                    active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
+                    <a class="float-right mx-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/copy">Use as Template</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
 
-
             <div class="flex flex-row">
                 <div class="basis-1/3 p-3">
-                    <div class="border-2 border-slate-400 rounded-xl p-5">
+                    <div class="rounded-xl border-2 border-slate-400 p-5">
                         <ul>
                             <li class="text-sm text-slate-600"><b>id:</b>
                                 {{ $dataset->id }}</li>
@@ -39,13 +34,13 @@
                                 {{ $dataset->experiment_id }} - {{ $dataset->experiment->name }}
                                 ({{ $dataset->experiment->code }})</li>
                             <li class="text-sm text-slate-600"><b>URL:</b> <a
-                                    class="text-blue-900 hover:text-blue-600 visited:text-purple-900"
+                                    class="text-blue-900 visited:text-purple-900 hover:text-blue-600"
                                     href="{{ $dataset->url }}">{{ $dataset->url }}</a></li>
                             <li class="text-sm text-slate-600"><b>identifier_type:</b> {{ $dataset->dataset_type }}
                             </li>
                             @if ($dataset->identifier_type == 'DOI')
                                 <li class="text-sm text-slate-600"><b>identifier :</b> <a
-                                        class="text-blue-900 hover:text-blue-600 visited:text-purple-900"
+                                        class="text-blue-900 visited:text-purple-900 hover:text-blue-600"
                                         href="https://doi.org/{{ $dataset->identifier }}">
                                         {{ $dataset->identifier }}</a></li>
                             @else
@@ -90,6 +85,7 @@
                             <li class="text-sm text-slate-600"><b>language:</b> {{ $dataset->language }}</li>
                             <li class="text-sm text-slate-600"><b>id:</b> {{ $dataset->id }}</li>
                             <li class="text-sm text-slate-600"><b>Keywords:</b>
+
                                 @foreach ($dataset->subjects as $subject)
                                     @if ($loop->last)
                                         {{ $subject->subject }}.
@@ -107,17 +103,17 @@
                     </div>
                 </div>
                 <div class="basis-2/3 p-3">
-                    <div class="border-2 border-slate-400 rounded-xl p-5">
+                    <div class="rounded-xl border-2 border-slate-400 p-5">
                         <h3 class="text-lg font-bold text-slate-600">Files provided</h3>
 
                         <table class="min-w-full">
-                            <thead class="text-gray-700 bg-slate-300 font-semibold text-sm">
+                            <thead class="bg-slate-300 text-sm font-semibold text-gray-700">
                                 <tr>
                                     <th class="w-1/2 text-left">
-                                        <span class="p-2 ">File Name</span>
+                                        <span class="p-2">File Name</span>
                                     </th>
-                                    <th class="w-1/2 text-left py-3 px-4 ">
-                                        <span class="p-2 ">Caption </span>
+                                    <th class="w-1/2 py-3 px-4 text-left">
+                                        <span class="p-2">Caption </span>
                                     </th>
                                 </tr>
                             </thead>
@@ -140,113 +136,75 @@
                                         @endphp
                                     @endif
                                     <tr class="{{ $stripe }}">
-                                        <td class="w-1/2 text-left py-2 px-2">{{ $file->file_name }} </td>
-                                        <td class="w-1/2 text-left py-2 px-2">{{ $file->title }} </td>
+                                        <td class="w-1/2 py-2 px-2 text-left">{{ $file->file_name }} </td>
+                                        <td class="w-1/2 py-2 px-2 text-left">{{ $file->title }} </td>
 
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <h3 class="text-lg font-bold text-slate-600">Contributors</h3>
-                        <table class="min-w-full">
-                            <thead class="text-gray-700 bg-slate-300 font-semibold text-sm">
-                                <tr>
-                                    <th class="w-1/2 text-left">
-                                        <span class="p-2 ">Name</span>
-                                    </th>
-                                    <th class="w-1/2 text-left py-3 px-4 ">
-                                        <span class="p-2 ">Role </span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $stripe = $stripeLight;
-                                    $item = 0;
-                                @endphp
-                                @foreach ($dataset->contributors as $contributor)
-                                    @php
-                                        $item++;
-                                    @endphp
-                                    @if ($stripe == $stripeDark)
-                                        @php
-                                            $stripe = $stripeLight;
-                                        @endphp
-                                    @else
-                                        @php
-                                            $stripe = $stripeDark;
-                                        @endphp
-                                    @endif
-                                    <tr class="{{ $stripe }}">
-                                        <td class="w-1/2 text-left py-2 px-2">{{ $contributor->given_name }}
-                                            {{ $contributor->family_name }} </td>
-                                        <td class="w-1/2 text-left py-2 px-2">
-                                            {{ $contributor->pivot->person_role_type->type_value }} </td>
+                        <ul class="list-disc ml-3 text-sm text-slate-600">
+                            @foreach ($dataset->contributors as $contributor)
+                                <li class="list-disc ml-6  ">{{ $contributor->given_name }}
+                                    {{ $contributor->family_name }} ({{ltrim(ucwords(implode(' ',preg_split('/(?=[A-Z])/', $contributor->pivot->person_role_type->type_value))))}})
+                                </li>
+                            @endforeach
 
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        </ul>
                         <h3 class="text-lg font-bold text-slate-600">Abstract - description_abstract</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_abstract . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Table of Content - description_toc</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_toc . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Technical Information - description_technical_info</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_technical_info . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Quality - description_quality</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_quality . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Provenance - description_provenance</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_provenance . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Methods - description_methods</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_methods . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Other - description_other</h3>
-                        <div class="text-sm text-slate-800 p-3">
-
+                        <div class="p-3 text-sm text-slate-800">
 
                             {!! \Illuminate\Support\Str::markdown($dataset->description_other . ' ') !!}
 
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Copyrith Text - rights_text</h3>
-                        <div class="text-sm text-slate-800 p-3">
+                        <div class="p-3 text-sm text-slate-800">
                             {{ $dataset->rights_text }}
                         </div>
 
                         <h3 class="text-lg font-bold text-slate-600">Copyright Licence - rights_licence</h3>
-                        <div class="text-sm text-slate-800 p-3">
+                        <div class="p-3 text-sm text-slate-800">
                             {{ $dataset->rights_licence }}
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Copyright Licence URL- rights_licence_uri</h3>
-                        <div class="text-sm text-slate-800 p-3">
+                        <div class="p-3 text-sm text-slate-800">
                             {{ $dataset->rights_licence_uri }}
                         </div>
                         <h3 class="text-lg font-bold text-slate-600">Related Identifiers</h3>
@@ -260,6 +218,8 @@ old_md_id --}}
                         @php
                             $LinkURL = '';
                         @endphp
+                        <div class="p-3 text-sm text-slate-600">
+                        <ul class="list-disc ml-6">
                         @foreach ($dataset->related_identifiers as $rel_id)
                             @if ($rel_id->identifier_type_id == 'DOI')
                                 @php
@@ -271,16 +231,17 @@ old_md_id --}}
                                 @endphp
                             @endif
                             <li> {{ $rel_id->relation_type->type_value }} - <a
-                                    class="text-blue-800 hover:text-blue-700 hover:underline visited:text-pink-700"
-                                    href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}
+                                    class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
+                                    href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}</li>
                         @endforeach
-
-
+                            </ul>
+                        </div>
                         <h3 class="text-lg font-bold text-slate-600">Funders</h3>
-                        <div class="text-sm text-slate-800 p-3">
-                            <ul>
+                        <div class="p-3 text-sm text-slate-600">
+                            <ul class="list-disc ml-6">
+
                                 @foreach ($dataset->funders as $funder)
-                                    <li class="list-disc">{{ $funder->reference_number }} : <a class="text-blue-600  "
+                                    <li>{{ $funder->reference_number }} : <a class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
                                             href="{{ $funder->uri }}">{{ $funder->title }}</a>
                                         ({{ $funder->organisation->abbreviation }})
                                     </li>

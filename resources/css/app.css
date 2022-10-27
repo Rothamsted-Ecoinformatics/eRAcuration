@@ -2,12 +2,8 @@
 @import 'defaults.css';
 @import 'pages.css';
 
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-
 
 [x-cloak] {
     display: none !important;

@@ -65,7 +65,6 @@ class DatasetController extends Controller
     {
         //these are specific to the ID
         $dataset = Dataset::find($id);
-
         $allSubjects = Subject::all()->sortBy('subject', SORT_NATURAL|SORT_FLAG_CASE);
         $date_types = DateType::all()->sortBy('type_value');
         $awards = FundingAward::all()->sortBy('abbreviation');
@@ -210,7 +209,11 @@ else
             'rights_licence_uri' => $request -> input('rights_licence_uri')." ",
             'rights_licence' => $request -> input('rights_licence')." "
         ]);
-        Dataset::where('id', $id)->first()->subjects()->sync($request->subjects);
+        $filter_subjects = array_unique($request->subjects);
+
+        Dataset::where('id', $id)->first()->subjects()->sync($filter_subjects);
+
+
         Dataset::where('id', $id)->first()->authors()->sync($request->authors);
         Dataset::where('id', $id)->first()->authorOrgs()->sync($request->authorOrgs);
         Dataset::where('id', $id)->first()->funders()->sync($request->funders);

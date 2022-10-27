@@ -10,12 +10,12 @@
                     </div>
                     <div class="basis-1/4 p-3">
                         <button type="Cancel"
-                            class="float-right inline-block  px-5 py-3 ml-3 rounded-lg transform transition 
-                            bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                            class="float-right inline-block  px-5 py-3 ml-3 rounded-lg transform transition
+                            bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                             active:bg-gray-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Cancel</button>
                         <button type="submit"
-                            class="float-right inline-block  px-5 py-3 ml-3  rounded-lg transform transition 
-                            bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
+                            class="float-right inline-block  px-5 py-3 ml-3  rounded-lg transform transition
+                            bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                             active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
 
                     <div>
 
-                        
+
                         <ul class="p-5">
 
                             <li><span class="text-lg font-bold uppercase text-slate-600">Experiment</span>:
@@ -41,7 +41,7 @@
 
                         </ul>
 <ul>
-                            <li><img class="" src="http://local-info.rothamsted.ac.uk/eRA/era2018-new/images/{{ $image->file_location }}">http://local-info.rothamsted.ac.uk/eRA/era2018-new/{{ $image->file_location }}</li>
+                            <li><img class="" src="http://local-info.rothamsted.ac.uk/eRA/era2018-new/images/{{ $image->file_location }}">http://local-info.rothamsted.ac.uk/eRA/era2018-new/images/{{ $image->file_location }}</li>
                         </ul>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
 
                             </div>
                         </fieldset>
-                        
+
                     </div>
                 </div>
 
