@@ -29,13 +29,8 @@
             @foreach ($dataset->subjects as $subject)
                 <tr>
                     <td class="w-3/4 py-1 px-4 text-left">
-                        <select class="form-select mt-1 block w-full rounded-md" name="subjects[]">
-                            @foreach ($allSubjects as $allSubject)
-                                <option value="{{ $allSubject->id }}" @if ($subject->id == $allSubject->id) selected @endif>
-                                    {{ $allSubject->subject }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <label class="ml-7">{{ $subject->subject }}</label>
+
                     </td>
                     <td class="w-1/4 py-1 px-4 text-right">
                         <button wire:click.prevent="removeSubject({{$subject->id}})">
