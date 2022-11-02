@@ -52,7 +52,7 @@ class Dataset extends Model
     }
     public function authors()
     {
-        return $this->belongsToMany(Person::class, 'person_creators', 'metadata_document_id', 'person_id');
+        return $this->belongsToMany(Person::class, 'person_creators', 'metadata_document_id', 'person_id')->orderBy('family_name');
     }
     public function authorOrgs()
     {

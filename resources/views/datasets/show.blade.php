@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @php
 
-        $stripeDark = 'bg-slate-300';
-        $stripeLight = 'bg-slate-100';
-    @endphp
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-between">
@@ -13,9 +9,9 @@
                     </h1>
                 </div>
                 <div class="basis-1/4 p-3">
-                    <a class="float-right mx-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
+                    <a class="float-right m-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/edit">edit</a>
-                    <a class="float-right mx-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
+                    <a class="float-right m-2 inline-block transform rounded-lg bg-slate-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-slate-300 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/copy">Use as Template</a>
                 </div>
             </div>
@@ -118,24 +114,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $stripe = $stripeLight;
-                                    $item = 0;
-                                @endphp
+
                                 @foreach ($dataset->files as $file)
-                                    @php
-                                        $item++;
-                                    @endphp
-                                    @if ($stripe == $stripeDark)
-                                        @php
-                                            $stripe = $stripeLight;
-                                        @endphp
-                                    @else
-                                        @php
-                                            $stripe = $stripeDark;
-                                        @endphp
-                                    @endif
-                                    <tr class="{{ $stripe }}">
+
+                                    <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                        {{ $loop->last ? 'border-b ' : '' }}
+                                        {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                         <td class="w-1/2 py-2 px-2 text-left">{{ $file->file_name }} </td>
                                         <td class="w-1/2 py-2 px-2 text-left">{{ $file->title }} </td>
 

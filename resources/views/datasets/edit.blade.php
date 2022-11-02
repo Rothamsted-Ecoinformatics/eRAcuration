@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @php
-        $stripeDark = 'bg-slate-300';
-        $stripeLight = 'bg-slate-100';
-    @endphp
+
     <form action="/datasets/{{ $dataset->id }}" method="POST">
         @csrf
         @method('PUT')
@@ -17,11 +14,11 @@
                     </div>
                     <div class="basis-1/4 p-3">
                         <a href="/datasets/{{ $dataset->id }}"
-                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
-                        bg-gray-500 hover:bg-gray-400 hover:-translate-y-0.5 focus:ring-gray-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
-                        active:bg-gray-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Cancel</a>
+                            class="float-right inline-block  px-5 py-3 m-2 rounded-lg transform transition
+                            bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
+                            active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-grey-400 shadow-lg">Cancel</a>
                         <button type="submit"
-                            class="float-right inline-block  px-5 py-3 mx-2 rounded-lg transform transition
+                            class="float-right inline-block  px-5 py-3 m-2 rounded-lg transform transition
                         bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                         active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg">Submit</button>
                     </div>
@@ -206,49 +203,11 @@
                                         @endforeach
                                     </select>
                                 </label>
-                                <label class="block">
-                                    <table class="min-w-full">
-                                        <thead class="">
-                                            <tr>
-                                                <th class="w-2/3 text-left">
-                                                    <span class="text-gray-700 p-2 font-semibold text-lg">Authors</span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
-                                            @foreach ($dataset->authors as $author)
-                                                @if ($stripe == $stripeDark)
-                                                    @php
-                                                        $stripe = $stripeLight;
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $stripe = $stripeDark;
-                                                    @endphp
-                                                @endif
-                                                <tr class="{{ $stripe }}">
-                                                    <td class="w-1/4 text-left py-1 px-4">
-                                                        <select class="form-select block w-full mt-1  rounded-md"
-                                                            name="authors[]">
-                                                            @foreach ($persons as $person)
-                                                                <option value="{{ $person->id }}"
-                                                                    @if ($author->id == $person->id) selected @endif>
-                                                                    {{ $person->given_name }} {{ $person->family_name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td class="w-1/4 text-right py-1 px-4">
-                                                        <span class=" text-red-500" href="">Delete</span>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </label>
+
+                               @livewire('input.authors',['dataset_id'=>$dataset->id])
+
+
+
                                 <label class="block">
                                     <table class="min-w-full">
                                         <thead class="">
@@ -263,20 +222,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
+
                                             @foreach ($dataset->authorOrgs as $authorOrg)
-                                                @if ($stripe == $stripeDark)
-                                                    @php
-                                                        $stripe = $stripeLight;
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $stripe = $stripeDark;
-                                                    @endphp
-                                                @endif
-                                                <tr class="{{ $stripe }}">
+
+                                                <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                                    {{ $loop->last ? 'border-b ' : '' }}
+                                                    {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                                     <td class="w-1/4 text-left py-1 px-4">
                                                         <select class="form-select block w-full mt-1  rounded-md"
                                                             name="authorOrgs[]">
@@ -400,7 +351,7 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $stripe = $stripeLight;
+
                                         $item = 0;
                                     @endphp
                                     @foreach ($dataset->dates as $date)
@@ -412,17 +363,11 @@
                                             $date_input = date('Y-m-d', $time_input);
 
                                         @endphp
-                                        @if ($stripe == $stripeDark)
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
-                                        @else
-                                            @php
-                                                $stripe = $stripeDark;
-                                            @endphp
-                                        @endif
-                                        </li>
-                                        <tr class="{{ $stripe }}">
+
+
+                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                            {{ $loop->last ? 'border-b ' : '' }}
+                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                             <td class="w-3/7 text-left py-1 px-4">
                                                 <select class="form-select block w-full mt-1  rounded-md"
                                                     name="date[{{ $item }}]['type_value']">
@@ -463,23 +408,17 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $stripe = $stripeLight;
+
                                         $item = 0;
                                     @endphp
                                     @foreach ($dataset->contributors as $contributor)
                                         @php
                                             $item++;
                                         @endphp
-                                        @if ($stripe == $stripeDark)
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
-                                        @else
-                                            @php
-                                                $stripe = $stripeDark;
-                                            @endphp
-                                        @endif
-                                        <tr class="{{ $stripe }}">
+
+                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                            {{ $loop->last ? 'border-b ' : '' }}
+                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                             <td class="w-1/3 text-left py-3 px-4">
                                                 <select class="form-select block w-full mt-1  rounded-md"
                                                     name="contributors[{{ $item }}]['person_id']">
@@ -526,24 +465,17 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $stripe = $stripeLight;
+
                                         $item = 0;
                                     @endphp
                                     @foreach ($dataset->files as $file)
                                         @php
                                             $item++;
                                         @endphp
-                                        @if ($stripe == $stripeDark)
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
-                                        @else
-                                            @php
-                                                $stripe = $stripeDark;
-                                            @endphp
-                                        @endif
-                                        </li>
-                                        <tr class="{{ $stripe }}">
+
+                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                            {{ $loop->last ? 'border-b ' : '' }}
+                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                             <td class="w-5/6 text-left py-3 px-4">
                                                 <label class="block">
                                                     <span class="text-gray-700 p-2 font-semibold text-lg">Title or Caption
@@ -699,21 +631,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $stripe = $stripeLight;
-                                    @endphp
+
                                     @foreach ($dataset->funders as $funder)
-                                        @if ($stripe == $stripeDark)
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
-                                        @else
-                                            @php
-                                                $stripe = $stripeDark;
-                                            @endphp
-                                        @endif
-                                        </li>
-                                        <tr class="{{ $stripe }}">
+
+                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                            {{ $loop->last ? 'border-b ' : '' }}
+                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                             <td class="w-1/4 text-left py-1 px-4">
                                                 <select class="form-select block w-full mt-1  rounded-md"
                                                     name="funders[]">
@@ -749,24 +672,18 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $stripe = $stripeLight;
+
                                         $item = 0;
                                     @endphp
 
                                     @foreach ($dataset->related_identifiers as $rel_id)
-                                        @if ($stripe == $stripeDark)
-                                            @php
-                                                $stripe = $stripeLight;
-                                            @endphp
-                                        @else
-                                            @php
-                                                $stripe = $stripeDark;
-                                            @endphp
-                                        @endif
+
                                         @php
                                             $item++;
                                         @endphp
-                                        <tr class="{{ $stripe }}">
+                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
+                                            {{ $loop->last ? 'border-b ' : '' }}
+                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                                             <td class="w-5/6 text-left py-3 px-4">
 
 

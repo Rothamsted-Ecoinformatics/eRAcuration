@@ -8,13 +8,13 @@
             {{-- Field in Metadata Documents
   --: not needed in the form
   * : form input started
-  **: form input finished 
+  **: form input finished
 
 -- id : autoincrement
 -- md_id : That will have to be created with a kind of random formula
-* lte_id : 
+* lte_id :
 -- URL : will be calculated from expt, shortname and version
-* identifier: Will need to have a way to check that it exists or not 
+* identifier: Will need to have a way to check that it exists or not
 * identifier_type: List  taken from another table
 ** dstype: list from another table
 ** title
@@ -49,6 +49,10 @@ SSMA_TimeStamp --}}
                 <div class="max-w-xl mx-auto py-12 md:max-w-4xl">
                     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                         <div class="grid grid-cols-1 gap-6">
+                            <label class="block">
+                                <span class="text-orange-700">It is much easier to use another dataset as a template. So that might be done, but last!</span>
+
+                            </label>
                             <label class="block">
                                 <span class="text-gray-700">Title</span>
                                 <input type="text" name="title" class="form-input mt-1 block rounded-md w-full"
@@ -224,9 +228,9 @@ SSMA_TimeStamp --}}
                                     @foreach ($subjects as $subject)
                                         <option value="{{ $subject -> subject_id }}" class="uppercase">{{ $subject -> subject }}</option>
                                     @endforeach
-                                        
-                                    
-                                    
+
+
+
 
                                 </select>
                                 <p>See also Select2 multiple livewire component</p>
@@ -242,7 +246,7 @@ SSMA_TimeStamp --}}
                 <div class="max-w-4xl mx-auto py-12">
                     <h2 class="text-2xl font-bold">Associated Files</h2>
                     <p>Here I suggest having a table with the files already created, and a button to add another file. </p>
-                           
+
                     <h2 class="text-2xl font-bold">Abstracts and Descriptions</h2>
                     <label class="block">
                         <span class="text-gray-700">Abstract</span>

@@ -3,7 +3,7 @@
         <thead class="">
             <tr>
                 <th class="text-left">
-                    <span class="p-2 text-lg font-semibold text-gray-700">Keywords</span>
+                    <span class="p-2 text-lg font-semibold text-gray-700">Authors</span>
                 </th>
 
             </tr>
@@ -11,11 +11,11 @@
         <tbody>
             <tr>
                 <td class="w-3/4 py-1 px-4 text-left">
-                    <select class="form-select mt-1 block w-full rounded-md" wire:model="subject">
-                        <option value="">Choose a Keyword</option>
-                        @foreach ($filteredSubjects as $filteredSubject)
-                            <option value="{{ $filteredSubject->id }}">
-                                {{ $filteredSubject->subject }}
+                    <select class="form-select mt-1 block w-full rounded-md" wire:model="author">
+                        <option value="">Choose a Person</option>
+                        @foreach ($filteredAuthors as $filteredAuthor)
+                            <option value="{{ $filteredAuthor->id }}">
+                                {{ $filteredAuthor->given_name }} {{ $filteredAuthor->family_name }}
                             </option>
                         @endforeach
                     </select>
@@ -23,19 +23,19 @@
                 <td class="w-1/4 py-1 px-4 text-right">
                     <button
                         class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
-                        wire:click.prevent="AddSubject">Add</button>
+                        wire:click.prevent="addAuthor">Add</button>
                 </td>
             </tr>
-            @foreach ($dataset->subjects as $subject)
+            @foreach ($dataset->authors as $author)
                 <tr class=" {{ $loop->first ? 'border-t ' : '' }}
                     {{ $loop->last ? 'border-b ' : '' }}
                     {{ $loop->even ? 'bg-slate-300 ' : '' }}">
                     <td class="w-3/4 py-1 px-4 text-left">
-                        <label class="ml-7">{{ $subject->subject }}</label>
+                        <label class="ml-7">{{ $author->given_name }} {{ $author->family_name }}</label>
 
                     </td>
                     <td class="w-1/4 py-1 px-4 text-right">
-                        <button wire:click.prevent="removeSubject({{$subject->id}})">
+                        <button wire:click.prevent="removeAuthor({{$author->id}})">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -50,3 +50,4 @@
         </tbody>
     </table>
 </label>
+
