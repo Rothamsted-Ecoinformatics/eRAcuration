@@ -209,13 +209,7 @@ else
             'rights_licence_uri' => $request -> input('rights_licence_uri')." ",
             'rights_licence' => $request -> input('rights_licence')." "
         ]);
-        $filter_subjects = array_unique($request->subjects);
 
-        Dataset::where('id', $id)->first()->subjects()->sync($filter_subjects);
-
-
-        Dataset::where('id', $id)->first()->authors()->sync($request->authors);
-        Dataset::where('id', $id)->first()->authorOrgs()->sync($request->authorOrgs);
         Dataset::where('id', $id)->first()->funders()->sync($request->funders);
 
         $edContributors = array();

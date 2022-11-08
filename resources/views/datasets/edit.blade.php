@@ -355,63 +355,10 @@
                                 </tbody>
                             </table>
                         </label>
-                        <label class="block">
-                            <table class="min-w-full">
-                                <thead class="">
-                                    <tr>
-                                        <th class="w-2/3 text-left" colspan=2>
-                                            <span class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
-                                        </th>
-                                        <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
-                                            <span class=" text-blue-500" href="">Add </span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
 
-                                        $item = 0;
-                                    @endphp
-                                    @foreach ($dataset->contributors as $contributor)
-                                        @php
-                                            $item++;
-                                        @endphp
+                        @livewire('input.contributors', ['dataset_id' => $dataset->id])
 
-                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
-                                            {{ $loop->last ? 'border-b ' : '' }}
-                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
-                                            <td class="w-1/3 text-left py-3 px-4">
-                                                <select class="form-select block w-full mt-1  rounded-md"
-                                                    name="contributors[{{ $item }}]['person_id']">
-                                                    @foreach ($persons as $person)
-                                                        <option value="{{ $person->id }}"
-                                                            @if ($contributor->pivot->person_id == $person->id) selected @endif>
-                                                            {{ $person->given_name }} {{ $person->family_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td class="w-1/3 text-left py-3 px-4">
-                                                <select class="form-select block w-full mt-1  rounded-md"
-                                                    name="contributors[{{ $item }}]['person_role_type_id']">
-                                                    @foreach ($person_role_types as $prt)
-                                                        <option value="{{ $prt->id }}"
-                                                            @if ($contributor->pivot->person_role_type->id == $prt->id) selected @endif>
-                                                            {{ $prt->type_value }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
 
-                                            </td>
-                                            <td class="w-1/3 text-right py-3 px-4">
-
-                                                <span class=" text-red-500" href="">Delete</span>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </label>
                         <label class="block">
                             <table class="min-w-full">
                                 <thead class="">
