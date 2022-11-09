@@ -212,14 +212,7 @@ else
 
         Dataset::where('id', $id)->first()->funders()->sync($request->funders);
 
-        $edContributors = array();
-        if (isset($request->contributors))
-        {
-            foreach ($request->contributors as $contributor) {
-            $edContributors[$contributor["'person_id'"]]['person_role_type_id']=$contributor["'person_role_type_id'"];
-            }
-            Dataset::where('id', $id)->first()->contributors()->sync($edContributors);
-        }
+
         // we delete the old ones,
         RelatedIdentifier::where('metadata_document_id', $id)->delete();
         // transform the request and insert

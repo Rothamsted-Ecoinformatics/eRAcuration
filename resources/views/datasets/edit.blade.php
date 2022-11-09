@@ -298,64 +298,7 @@
                         </div>
                     </div>
                     <div class="max-w-4xl mx-auto py-12">
-                        <label class="block">
-                            <table class="min-w-full">
-                                <thead class="">
-                                    <tr>
-                                        <th class="w-6/7 text-left" colspan=2>
-                                            <span class="text-gray-700 p-2 font-semibold text-lg">Dates</span>
-                                        </th>
-                                        <th class="w-1/7 text-right py-3 px-4 font-semibold text-sm">
-                                            <span class=" text-blue-500" href="">Add </span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-
-                                        $item = 0;
-                                    @endphp
-                                    @foreach ($dataset->dates as $date)
-                                        @php
-
-                                            $item++;
-                                            //the form input accepts format'Y-m-d' which we get like this
-                                            $time_input = strtotime($date->history->document_date);
-                                            $date_input = date('Y-m-d', $time_input);
-
-                                        @endphp
-
-
-                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
-                                            {{ $loop->last ? 'border-b ' : '' }}
-                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
-                                            <td class="w-3/7 text-left py-1 px-4">
-                                                <select class="form-select block w-full mt-1  rounded-md"
-                                                    name="date[{{ $item }}]['type_value']">
-                                                    @foreach ($date_types as $date_type)
-                                                        <option value="{{ $date_type->id }}"
-                                                            @if ($date->type_value == $date_type->type_value) selected @endif>
-                                                            {{ $date_type->type_value }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td class="w-3/7 text-left py-1 px-4">
-                                                <input type="date" class="form-input mt-1 block rounded-md w-full"
-                                                    name="date[{{ $item }}]['document_date']"
-                                                    value="{{ $date_input }}" />
-
-                                            </td>
-                                            <td class="w-1/7 text-right py-1 px-4">
-
-                                                <span class=" text-red-500" href="">Delete</span>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </label>
-
+                        @livewire('input.dates', ['dataset_id' => $dataset->id])
                         @livewire('input.contributors', ['dataset_id' => $dataset->id])
 
 
