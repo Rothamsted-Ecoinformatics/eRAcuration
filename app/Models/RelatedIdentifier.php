@@ -9,7 +9,7 @@ class RelatedIdentifier extends Model
 {
     use HasFactory;
     protected $table = 'related_identifiers';
-
+    public $timestamps = false;
     public function  relation_type()
     {
         return $this->belongsTo(RelationType::class);
