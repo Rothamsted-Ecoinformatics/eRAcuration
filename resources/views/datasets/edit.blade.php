@@ -468,46 +468,7 @@
                             <textarea class="form-textarea mt-1 block w-full h-24  rounded-md" rows="3" placeholder=""
                                 name="rights_licence">This work is licensed under the terms of the Creative Commons Attribution 4.0 International License</textarea>
                         </label>
-                        <label class="block">
-                            <table class="min-w-full">
-                                <thead class="">
-                                    <tr>
-                                        <th class="w-2/3 text-left">
-                                            <span class="text-gray-700 p-2 font-semibold text-lg">Funding
-                                                Awards</span>
-                                        </th>
-                                        <th class="w-1/3 text-right py-3 px-4 font-semibold text-sm">
-                                            <span class=" text-blue-500" href="">Add </span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($dataset->funders as $funder)
-
-                                        <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
-                                            {{ $loop->last ? 'border-b ' : '' }}
-                                            {{ $loop->even ? 'bg-slate-300 ' : '' }}">
-                                            <td class="w-1/4 text-left py-1 px-4">
-                                                <select class="form-select block w-full mt-1  rounded-md"
-                                                    name="funders[]">
-                                                    @foreach ($awards as $award)
-                                                        <option value="{{ $award->id }}"
-                                                            @if ($funder->pivot->funding_award_id == $award->id) selected @endif>
-                                                            {{ $award->reference_number }}
-                                                            ({{ $award->organisation->abbreviation }})
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td class="w-1/4 text-right py-1 px-4">
-                                                <span class=" text-red-500" href="">Delete</span>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </label>
+                        @livewire('input.funders', ['dataset_id' => $dataset->id])
                         <label class="block">
                             <table class="min-w-full">
                                 <thead class="">
