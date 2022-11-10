@@ -58,15 +58,23 @@
         </thead>
         <tbody>
             @foreach ($dataset->related_identifiers as $rel_id)
+                @if ($rel_id->identifier_type_id == 'DOI')
+                                @php
+                                    $LinkURL = 'https://doi.org/' . $rel_id->identifier;
+                                @endphp
+                            @else
+                                @php
+                                    $LinkURL = $rel_id->identifier;
+                                @endphp
+                            @endif
                 <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
                     {{ $loop->last ? 'border-b ' : '' }}
                     {{ $loop->even ? 'bg-slate-300 ' : '' }}">
 
                     <td class="w-5/6 py-3 px-4 text-left">
-                        <li>{{ $rel_id->relation_type->display_value }}</li>
-                        <li>{{ $rel_id->identifier }}" </li>
-                        <li>{{ $rel_id->name }}" </li>
-                        <li>{{ $rel_id->identifier_type_id }}</li>
+                        {{ $rel_id->relation_type->type_value }} - <a
+                                    class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
+                                    href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}
                     </td>
                     <td class="w-1/4 py-1 px-4 text-right">
                         <button wire:click.prevent="removeRelatedIdentifier({{ $rel_id->id }})">
