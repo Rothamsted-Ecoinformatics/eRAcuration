@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="card">
-        <div class="card-header bg-blue-600 text-center">
+        <div class="card-header sticky top-0  bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-between">
                 <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">eRAcuration - Images
+                    <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">eRAcuration - Images
                     </h1>
                 </div>
                 <div class="basis-1/4 p-3">

@@ -210,54 +210,7 @@ else
             'rights_licence' => $request -> input('rights_licence')." "
         ]);
 
-        Dataset::where('id', $id)->first()->funders()->sync($request->funders);
 
-
-        // we delete the old ones,
-        RelatedIdentifier::where('metadata_document_id', $id)->delete();
-        // transform the request and insert
-        if (isset($request->new_related_identifiers))
-        {
-            $insertRelatedIdentifiers = $request->new_related_identifiers;
-
-            $allRelId = [];
-            foreach ($insertRelatedIdentifiers as $item)
-            {
-                $RelId = new RelatedIdentifier();
-                $RelId->identifier = $item["'identifier'"];
-                $RelId->metadata_document_id = $item["'metadata_document_id'"];
-                $RelId->relation_type_id = $item["'relation_type_id'"];
-                $RelId->identifier_type_id = $item["'identifier_type_id'"];
-                $RelId->name = $item["'name'"];
-                $allRelId = $RelId->attributesToArray();
-                RelatedIdentifier::insert($allRelId);
-            }
-        }
-
-        //---- now to deal with files new_document_file
-        //we delete the old ones:
-        DocumentFile::where('metadata_document_id', $id)->delete();
-
-        $insertAssocFiles = $request->new_document_file;
-        if (isset($request->new_document_file))
-        {
-            $allAssocFiles = [];
-            foreach ($insertAssocFiles as $item)
-            {
-                $fileParts =explode(".", $item["'file_name'"]);
-                $extension = end($fileParts);
-                $AssocFile = new DocumentFile();
-                $AssocFile->size_value = $item["'size_value'"];
-                $AssocFile->metadata_document_id =$id;
-                $AssocFile->document_unit_id = $item["'document_unit_id'"];
-                $AssocFile->document_format_id = $extension;
-                $AssocFile->file_name = $item["'file_name'"];
-                $AssocFile->title = $item["'title'"];
-                $AssocFile->is_illustration = $item["'is_illustration'"];
-                $allAssocFiles = $AssocFile->attributesToArray();
-                DocumentFile::insert($allAssocFiles);
-            }
-        }
         return redirect ('/datasets/'.$id);
     }
 

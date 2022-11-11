@@ -23,13 +23,12 @@ class RelatedIdentifiers extends Component
         $this->dataset = Dataset::find($this->dataset_id);
         $this->relation_types = RelationType::all()->sortBy('display_value', SORT_NATURAL|SORT_FLAG_CASE);
 
-
     }
 
     public function refresh() {
 
         $this->dataset = Dataset::find($this->dataset_id);
-        $this->relation_types = RelatedIdentifier::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        $this->relation_types = RelationType::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
         $this->identifier = '';
         $this->name = '';
     }

@@ -1,82 +1,80 @@
 <label class="block">
-    <table class="min-w-full">
+    <table class="mt-5 min-w-full">
         <thead class="">
             <tr>
-                <th class="w-5/6 text-left">
+                <th class="text-left">
                     <span class="p-2 text-lg font-semibold text-gray-700">Related
                         Identifiers</span>
                 </th>
             </tr>
-
-            <tr>
-                <td>
-                <label class="block">
-                    <span class="p-2 text-sm  text-gray-400">Relation to this
-                        item
-                    </span>
-                    <select class="form-select mt-1 block w-full rounded-md" wire:model='relation_type_id'>
-                        <option value="">Please choose type of relation</option>
-                        @foreach ($relation_types as $relation_type)
-
-                            <option value="{{ $relation_type->id }}">
-                                {{ $relation_type->display_value }}
-                            </option>
-                        @endforeach
-                    </select>
-                </label>
-                <label class="block">
-                    <span class="p-2 text-sm  text-gray-400">Identifier
-                    </span>
-                    <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model='identifier' />
-                </label>
-                <label class="block">
-                    <span class="p-2 text-sm  text-gray-400">Title or Caption
-                    </span>
-                    <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model='name' />
-                </label>
-                <label class="block">
-                    <span class="p-2 text-sm  text-gray-400">Identifier Type
-                    </span>
-                    <select class="form-select mt-1 block w-full rounded-md" wire:model='identifier_type'>
-                        <option value="">Select a Type</option>
-                        <option value="DOI">DOI</option>
-                        <option value="ISBN">ISBN</option>
-                        <option value="ISSN">ISSN</option>
-                        <option value="PMID">PMID</option>
-                        <option value="PURL">PURL</option>
-                        <option value="URL">URL</option>
-                        <option value="URN">URN</option>
-                    </select>
-                </label>
+        </thead>
+        <tbody>
+            <tr class="bg-slate-300">
+                <td class="w-5/6 py-3 px-4 text-left">
+                    <label class="block">
+                        <span class="p-2 text-sm text-gray-400">Relation to this
+                            item
+                        </span>
+                        <select class="form-select mt-1 block w-full rounded-md" wire:model='relation_type_id'>
+                            <option value="">Please choose type of relation</option>
+                            @foreach ($relation_types as $relation_type)
+                                <option value="{{ $relation_type->id }}">
+                                    {{ $relation_type->display_value }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </label>
+                    <label class="block">
+                        <span class="p-2 text-sm text-gray-400">Identifier
+                        </span>
+                        <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model='identifier' />
+                    </label>
+                    <label class="block">
+                        <span class="p-2 text-sm text-gray-400">Title or Caption
+                        </span>
+                        <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model='name' />
+                    </label>
+                    <label class="block">
+                        <span class="p-2 text-sm text-gray-400">Identifier Type
+                        </span>
+                        <select class="form-select mt-1 block w-full rounded-md" wire:model='identifier_type'>
+                            <option value="">Select a Type</option>
+                            <option value="DOI">DOI</option>
+                            <option value="ISBN">ISBN</option>
+                            <option value="ISSN">ISSN</option>
+                            <option value="PMID">PMID</option>
+                            <option value="PURL">PURL</option>
+                            <option value="URL">URL</option>
+                            <option value="URN">URN</option>
+                        </select>
+                    </label>
                 </td>
-                <td class="w-1/4 py-1 px-4 text-right">
+                <td class="w-1/6 py-3 px-4 align-bottom text-right">
                     <button
                         class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
                         wire:click.prevent="addRelatedIdentifier">Add</button>
                 </td>
             </tr>
-        </thead>
-        <tbody>
+
             @foreach ($dataset->related_identifiers as $rel_id)
                 @if ($rel_id->identifier_type_id == 'DOI')
-                                @php
-                                    $LinkURL = 'https://doi.org/' . $rel_id->identifier;
-                                @endphp
-                            @else
-                                @php
-                                    $LinkURL = $rel_id->identifier;
-                                @endphp
-                            @endif
-                <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
-                    {{ $loop->last ? 'border-b ' : '' }}
-                    {{ $loop->even ? 'bg-slate-300 ' : '' }}">
+                    @php
+                        $LinkURL = 'https://doi.org/' . $rel_id->identifier;
+                    @endphp
+                @else
+                    @php
+                        $LinkURL = $rel_id->identifier;
+                    @endphp
+                @endif
+                <tr
+                    class="{{ $loop->first ? 'border-t ' : '' }} {{ $loop->last ? 'border-b ' : '' }} border-l border-r">
 
-                    <td class="w-5/6 py-3 px-4 text-left">
-                        {{ $rel_id->relation_type->type_value }} - <a
-                                    class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
-                                    href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}
+                    <td class="w-5/6 py-1 px-4 text-left">
+                        <label class="ml-7">{{ $rel_id->relation_type->type_value }} - <a
+                                class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
+                                href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}</label>
                     </td>
-                    <td class="w-1/4 py-1 px-4 text-right">
+                    <td class="w-1/6 py-1 px-4 text-right">
                         <button wire:click.prevent="removeRelatedIdentifier({{ $rel_id->id }})">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor">

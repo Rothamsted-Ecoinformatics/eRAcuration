@@ -1,15 +1,15 @@
 <label class="block">
-    <table class="min-w-full">
+    <table class="min-w-full mt-5">
         <thead class="">
             <tr>
-                <th class="w-2/3 text-left" colspan=2>
+                <th class="text-left" colspan=2>
                     <span class="text-gray-700 p-2 font-semibold text-lg">Contributors</span>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="w-3/4 py-1 px-4 text-left">
+            <tr class="bg-slate-300 ">
+                <td class="w-5/12 py-3 px-4 text-left">
                      <select class="form-select mt-1 block w-full rounded-md" wire:model="person_id">
                         <option value="">Select a Person</option>
                         @foreach ($filteredPersons as $filteredPerson)
@@ -19,7 +19,7 @@
                         @endforeach
                     </select>
                 </td>
-                <td class="w-3/4 py-1 px-4 text-left">
+                <td class="w-5/12 py-3 px-4 text-left">
                     <select class="form-select mt-1 block w-full rounded-md" wire:model="person_role_type_id">
                         <option value="">Select a Role</option>
                         @foreach ($person_role_types as $person_role_type)
@@ -29,24 +29,19 @@
                         @endforeach
                     </select>
                 </td>
-                <td class="w-1/4 py-1 px-4 text-right">
+                <td class="w-2/12 py-1 px-4 text-right">
                     <button
                         class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
                         wire:click.prevent="addContributor">Add</button>
                 </td>
             </tr>
-            @php
 
-                $item = 0;
-            @endphp
             @foreach ($dataset->contributors as $contributor)
-                @php
-                    $item++;
-                @endphp
 
-                <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
-                    {{ $loop->last ? 'border-b ' : '' }}
-                    {{ $loop->even ? 'bg-slate-300 ' : '' }}">
+
+            <tr class="border-l border-r {{ $loop->first ? 'border-t ' : '' }}
+                {{ $loop->last ? 'border-b ' : '' }}
+                ">
                     <td class="w-1/3 text-left py-3 px-4">
                         <label class="ml-7">{{ $contributor->given_name }} {{ $contributor->family_name }}</label>
                     </td>

@@ -10,4 +10,5 @@ class DocumentFile extends Model
     use HasFactory;
     protected $table = 'document_files';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 }

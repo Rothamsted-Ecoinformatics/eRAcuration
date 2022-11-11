@@ -1,17 +1,16 @@
-
-    <label class="block">
-        <table class="min-w-full">
+<label class="block">
+    <table class="min-w-full mt-5">
             <thead class="">
                 <tr>
-                    <th class="w-6/7 text-left" colspan=3>
+                    <th class="text-left" colspan=3>
                         <span class="text-gray-700 p-2 font-semibold text-lg">Dates</span>
                     </th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="w-3/4 py-1 px-4 text-left">
+                <tr class="bg-slate-300 ">
+                    <td class="w-5/12 py-3 px-4 text-left">
                         <select class="form-select block w-full mt-1  rounded-md"
                               wire:model="date_type_id">
                             @foreach ($date_types as $date_type)
@@ -21,38 +20,34 @@
                             @endforeach
                         </select>
                     </td>
-                    <td class="w-3/7 text-left py-1 px-4">
+                    <td class="w-5/12 text-left py-3 px-4">
                         <input type="date" class="form-input mt-1 block rounded-md w-full"
                             wire:model="selected_date"
                             value="" />
 
                     </td>
-                    <td class="w-1/4 py-1 px-4 text-right">
+                    <td class="w-2/12 py-3 px-4 text-right">
                         <button
                             class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
                             wire:click.prevent="addDate">Add</button>
                     </td>
                 </tr>
-                @php
 
-                    $item = 0;
-                @endphp
                 @foreach ($dataset->dates as $date)
                     @php
 
-                        $item++;
-                        //the form input accepts format'Y-m-d' which we get like this
+
                         $time_input = strtotime($date->history->document_date);
                         $date_input = date('Y-m-d', $time_input);
 
                     @endphp
 
 
-                    <tr  class=" {{ $loop->first ? 'border-t ' : '' }}
-                        {{ $loop->last ? 'border-b ' : '' }}
-                        {{ $loop->even ? 'bg-slate-300 ' : '' }}">
+<tr class="border-l border-r {{ $loop->first ? 'border-t ' : '' }}
+    {{ $loop->last ? 'border-b ' : '' }}
+    ">
 
-                            <td class="w-3/7 text-left py-3 px-4">
+                            <td class="w-5/12 text-left py-1 px-4">
                                 <label class="ml-7">{{ $date->type_value }}</label>
                             </td>
 
@@ -60,13 +55,13 @@
 
 
 
-                            <td class="w-3/7 text-left py-3 px-4">
+                            <td class="w-5/12 text-left py-3 px-4">
                                 <label class="ml-7">{{ $date_input }}</label>
                             </td>
 
 
                         </td>
-                        <td class="w-1/3 text-right py-3 px-4">
+                        <td class="w-2/12 text-right py-3 px-4">
 
                             <button wire:click.prevent="removeDate({{$date->id}})">
                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

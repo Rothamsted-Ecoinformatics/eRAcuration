@@ -52,11 +52,11 @@ class Dataset extends Model
     }
     public function authors()
     {
-        return $this->belongsToMany(Person::class, 'person_creators', 'metadata_document_id', 'person_id')->orderBy('family_name');
+        return $this->belongsToMany(Person::class, 'person_creators', 'metadata_document_id', 'person_id')->orderBy('family_name', 'ASC');
     }
     public function authorOrgs()
     {
-        return $this->belongsToMany(Organisation::class, 'organisation_creators', 'metadata_document_id', 'organisation_id');
+        return $this->belongsToMany(Organisation::class, 'organisation_creators', 'metadata_document_id', 'organisation_id')->orderBy('name', 'ASC');
     }
 
 
@@ -72,13 +72,13 @@ class Dataset extends Model
     }
     public function related_identifiers()
     {
-        return $this->hasMany(RelatedIdentifier::class,  'metadata_document_id');
+        return $this->hasMany(RelatedIdentifier::class,  'metadata_document_id')->orderBy('name',  'ASC');
     }
 
     //$files = DocumentFile::where('metadata_document_id', $id)->get();
     public function files()
     {
-        return $this->hasMany(DocumentFile::class, 'metadata_document_id');
+        return $this->hasMany(DocumentFile::class, 'metadata_document_id')->orderBy('file_name',  'ASC');
     }
 
 }
