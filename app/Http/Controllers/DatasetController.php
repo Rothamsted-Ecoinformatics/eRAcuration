@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Http\Livewire\Input\AssociatedFiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Dataset;
@@ -166,7 +168,8 @@ $exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
 $version = $request -> input('version');
 $code = strtolower(str_replace("/", "", $exptCode[0]['code']));
 $shortname = $request -> input('short_name');
-$filename = "ExtractFileName.pdf";
+$files = DocumentFile::where('metadata_document_ID', $id)->get();
+$filename =$files[0]['file_name'];
 
 if ($request->general_resource_type_id == 4)
 {
