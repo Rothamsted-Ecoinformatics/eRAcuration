@@ -11,7 +11,7 @@
                 <div class="basis-1/4 p-3">
                     <a class="float-right m-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/edit">edit</a>
-                    <a class="float-right m-2 inline-block transform rounded-lg bg-slate-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-slate-300 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
+                    <a class="float-right m-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/copy">Use as Template</a>
                 </div>
             </div>
@@ -75,11 +75,10 @@
                             <li class="text-sm text-slate-600"><b>Grade:</b> {{ $dataset->grade }}</li>
                             <li class="text-sm text-slate-600"><b>isReady:</b> {{ $dataset->is_ready }}</li>
                             <li class="text-sm text-slate-600"><b>isExternal:</b> {{ $dataset->is_external }}</li>
-                            <li class="text-sm text-slate-600"><b>language:</b> {{ $dataset->lang }}</li>
                             <li class="text-sm text-slate-600"><b>version:</b> {{ $dataset->version }}</li>
                             <li class="text-sm text-slate-600"><b>doi_created:</b> {{ $dataset->doi_created }}</li>
-                            <li class="text-sm text-slate-600"><b>language:</b> {{ $dataset->language }}</li>
-                            <li class="text-sm text-slate-600"><b>id:</b> {{ $dataset->id }}</li>
+
+
                             <li class="text-sm text-slate-600"><b>Keywords:</b>
 
                                 @foreach ($dataset->subjects as $subject)

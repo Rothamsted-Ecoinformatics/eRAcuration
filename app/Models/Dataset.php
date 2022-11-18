@@ -13,10 +13,13 @@ use App\Models\DocumentFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Dataset extends Model
 {
     use HasFactory;
+    use \Bkwld\Cloner\Cloneable;
     protected $connection = 'sqlsrv';
+    protected $cloneable_relations = ['subjects', 'authors', 'related_identifiers', 'contributors'];
 
     protected $table = 'metadata_documents';
     public $timestamps = false;

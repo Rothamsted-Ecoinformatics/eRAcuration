@@ -108,7 +108,15 @@ class DatasetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $template = Dataset::findOrFail($request->templateID);
+        $newDataset = $template->duplicate();
+        $newDataset->identifier = $request->identifier;
+        $newDataset->title = $request->title;
+        $newDataset->is_ready = 1;
+        $newDataset->doi_created = null;
+        $newDataset->save();
+
+        return redirect()->route('datasets.edit', $newDataset->id);
     }
 
     /**
@@ -169,7 +177,9 @@ $version = $request -> input('version');
 $code = strtolower(str_replace("/", "", $exptCode[0]['code']));
 $shortname = $request -> input('short_name');
 $files = DocumentFile::where('metadata_document_ID', $id)->get();
-$filename =$files[0]['file_name'];
+
+if(count($files)>0) {$filename =$files[0]['file_name'];} else {$filename="NOTSUPPLIED";}
+
 
 if ($request->general_resource_type_id == 4)
 {
