@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class experiment extends Model
+class Experiment extends Model
 {
     use HasFactory;
-    
+
     // An experiment has many images
     public function images()
     {

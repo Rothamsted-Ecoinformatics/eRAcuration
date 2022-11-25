@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    use HasFactory;    
+    use HasFactory;
+    public $timestamps = false;
     /**
      * The documents that that belong to the subjects.
      */

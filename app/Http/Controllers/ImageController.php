@@ -33,7 +33,7 @@ class ImageController extends Controller
     {
         return view('images.create');//
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -65,9 +65,9 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        //
+
         $image = Image::find($id);
-        
+        //dd($image);
         return view('images.edit') ->with('image',$image);
     }
 
@@ -80,9 +80,9 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        
-        $image = Image::where('id',$id) 
+
+
+        $image = Image::where('id',$id)
         ->update([
             'caption' => $request-> input('caption'),
             'description' => $request-> input('description'),

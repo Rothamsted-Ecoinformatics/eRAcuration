@@ -15,7 +15,7 @@ class SubjectDatatables extends LivewireDatatable
     public $model = Subject::class;
     public $hideable = 'select';
     public $exportable = false;
-    public $complex = true;
+
     public $persistComplexQuery = true;
 
     public $with = "subject_schemas";
@@ -29,13 +29,15 @@ class SubjectDatatables extends LivewireDatatable
                 -> link('subjects/{{id}}', '{{id}}'),
 
             Column::name('subject')
-                ->label('Keyword'),
+                ->label('Keyword')
+                ->editable(),
 
             Column::name('uri')
                 ->label('Subject ID'),
 
             Column::name('subject_schemas.name')
                 -> label('Schema'),
+            Column::delete()->label('delete')->alignRight()
         ];
     }
      public function getSchemasProperty()

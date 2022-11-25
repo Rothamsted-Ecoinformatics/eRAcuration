@@ -113,6 +113,7 @@ class DatasetController extends Controller
         $newDataset->identifier = $request->identifier;
         $newDataset->title = $request->title;
         $newDataset->is_ready = 1;
+        $newDataset->old_id = 1;
         $newDataset->doi_created = null;
         $newDataset->save();
 
