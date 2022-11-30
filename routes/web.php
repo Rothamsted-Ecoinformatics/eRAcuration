@@ -6,6 +6,7 @@ use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UpdateController;
+use App\Http\Controllers\ExperimentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::resource('datasets', DatasetController::class );
 Route::resource('subjects', SubjectController::class);
 Route::resource('crops', CropController::class);
 Route::resource('updates', UpdateController::class);
+Route::resource('experiments', ExperimentController::class);
 Route::GET('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
 
 #//example of user table
