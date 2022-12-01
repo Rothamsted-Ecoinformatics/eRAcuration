@@ -5,6 +5,8 @@
             <tr>
                 <td class="w-2/8  py-3 px-4 text-left">
 <p>{{ $message }}</p>
+<input class="" type="hidden" wire:model="editType"
+                        value="short">
                 </td>
                 <td class="w-2/8  py-3 px-4 text-left">
                     <input class="form-text w-full rounded-lg" type="text" wire:model="name"
