@@ -59,7 +59,7 @@ return [
             'database' => env('DB_DATABASE_2'),
             'username' => env('DB_USERNAME_2'),
             'password' => env('DB_PASSWORD_2'),
-            'unix_socket' => env('DB_SOCKET_2'),
+            //'unix_socket' => env('DB_SOCKET_2'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -97,7 +97,7 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            
+
         ],
     ],
 

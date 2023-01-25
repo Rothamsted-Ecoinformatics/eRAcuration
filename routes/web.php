@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\ExperimentController;
+use App\Http\Controllers\newmarkerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +26,12 @@ Route::resource('subjects', SubjectController::class);
 Route::resource('crops', CropController::class);
 Route::resource('updates', UpdateController::class);
 Route::resource('experiments', ExperimentController::class);
-Route::GET('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
+Route::get('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
 
 #//example of user table
-Route::get('user-datatables', function () {
-    return view('welcome');
-}) ->name('home');
+Route::get('users', [newmarkerController::class,'show']) ->name('users');
+
+
 
 route::get('/about', function() {
     return view('documentation.index');
