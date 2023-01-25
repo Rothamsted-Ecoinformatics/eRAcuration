@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="card-body pt-10">
+        <div class="card-body pt-10 ml-2">
             <ul>
             @foreach ($newmarkers as $newmarker)
 
