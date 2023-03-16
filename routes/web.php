@@ -8,6 +8,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\ExperimentController;
 use App\Http\Controllers\newmarkerController;
+use App\Http\Controllers\DownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::get('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to
 
 #//example of user table
 Route::get('users', [newmarkerController::class,'show']) ->name('users');
-
+Route::get('downloads',[DownloadController::class,'show']) ->name('downloads');
 
 
 route::get('/about', function() {
