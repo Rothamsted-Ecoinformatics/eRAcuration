@@ -23,33 +23,7 @@ class UrequestDatatables extends LivewireDatatable
     }
     */
 
-/*
-Here are the fields available.
-We  could put all of them and hide
 
->id
->email
->reqdate
->>Q1
->Q2
->ltes
->sector
->institution
->country
-role
-isStudent
-supEmail
-supName
-rothColls
-funding
-ISPG
-agreeCOU
-allowEmails
-IP
->fname
->lname
-refer
-*/
 
     public function columns()
     {
@@ -61,26 +35,41 @@ refer
             Column::name('email')
                 ->label('email')
                 ->filterable(),
-            Column::name('IP')
-                ->label('IP'),
             Column::name('fname')
                 -> label('First Name'),
-                Column::name('lname')
+            Column::name('lname')
                 -> label('Last Name'),
+            Column::name('IP')
+                ->label('IP')
+                ->filterable(),
             Column::name('country')
                 -> label('Country'),
             Column::name('institution')
                 -> label('Institution'),
-                Column::name('sector')
+            Column::name('sector')
                 -> label('Sector'),
-
             Column::name('Q1')
                 -> label('Reason for request'),
-
             Column::name('Q2')
                 -> label('More info on data request'),
-                Column::name('ltes')
+            Column::name('ltes')
                 -> label('Data requested'),
+            Column::name('role')
+                -> label('Role'),
+            Column::name('supEmail')
+                -> label('Supervisor Email'),
+            Column::name('rothColls')
+                -> label('Contact at Rothamsted'),
+            Column::name('funding')
+                -> label('Funding'),
+            Column::name('ISPG')
+                -> label('ISPG'),
+            Column::name('allowEmails')
+                -> label('Allows Emails'),
+            Column::name('refer')
+                -> label('Found through'),
+
+
         ];
     }
 
