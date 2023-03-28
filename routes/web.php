@@ -9,6 +9,7 @@ use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\ExperimentController;
 use App\Http\Controllers\newmarkerController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\UrequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,10 @@ Route::resource('subjects', SubjectController::class);
 Route::resource('crops', CropController::class);
 Route::resource('updates', UpdateController::class);
 Route::resource('experiments', ExperimentController::class);
+Route::resource('urequests', UrequestController::class);
 Route::get('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
 
-#//example of user table
+#//ex
 Route::get('users', [newmarkerController::class,'show']) ->name('users');
 Route::get('downloads',[DownloadController::class,'show']) ->name('downloads');
 
