@@ -35,8 +35,8 @@
                 <td class="w-1/8 py-3 px-4 text-left">
 
                     <button
-                        class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
-                        wire:click.prevent="addExpt">Add</button>
+                        class="disable:cursor-not-allowed rounded bg-slate-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
+                        wire:click.prevent="addExpt">Add (buggy)</button>
                 </td>
             </tr>
         </table>

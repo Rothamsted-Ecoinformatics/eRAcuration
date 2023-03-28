@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Experiment;
+use App\Models\Field;
 
 class ExperimentController extends Controller
 {
@@ -61,7 +62,13 @@ class ExperimentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $experiment = Experiment::find($id);
+        $fields = Field::all();
+
+        return view('experiments.edit', [
+            'experiment' => $experiment,
+            'fields' => $fields
+        ]);
     }
 
     /**

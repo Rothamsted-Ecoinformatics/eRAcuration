@@ -1,22 +1,19 @@
 @extends('layouts.app')
 @section('content')
     <div class="card">
-        <div class="card-header sticky top-0  bg-blue-600 text-center">
-                <div class="flex flex-row items-center justify-between">
-                    <div class="basis-3/4 p-3">
-                        <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">eRAcuration Datasets
+
+        <div class="card-header bg-blue-600 text-center">
+            <div class="flex flex-row items-center justify-center">
+                <div class="p-5">
+                    <h1 class="text-4xl text-slate-100 text-bold ">eRA-curation - Datasets (edit metadata)
                     </h1>
                 </div>
-                <div class="basis-1/4 p-3">
-                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition
-                    bg-slate-500 hover:bg-slate-400 hover:-translate-y-0.5 focus:ring-slate-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
-                    active:bg-slate-900 uppercase tracking-wider font-semibold text-sm text-slate-300 shadow-lg"
-                        href="/datasets/create">Add a dataset</a>
-                </div>
+
             </div>
         </div>
 
-        <div class="card-body pt-10">
+        <div class="card-body">
+            <p>To add a new dataset, please select an existing one and create a new one using the new from template form.</p>
             <livewire:eratables.dataset-datatables  />
 
         </div>

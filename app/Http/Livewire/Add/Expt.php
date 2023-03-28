@@ -14,6 +14,7 @@ class Expt extends Component
     public $code;
     public $name;
     public $folder;
+    public $fields;
     public ?int $glten_id = null;
     public $field_id;
     public $key_ref_code;

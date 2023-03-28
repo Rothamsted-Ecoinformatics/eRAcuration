@@ -24,23 +24,23 @@ use function Ramsey\Uuid\v1;
 class ImageDatatables extends LivewireDatatable
 {
     public $model = Image::class;
-    
+
     public $with = "experiment, author";
     public $hideable = 'select';
-    
+
     //public $complex = true;
     //public $persistComplexQuery = true;
-    
-    
-   
-    
-    
+
+
+
+
+
     /**
      * Write code on Method
      *
      * @return response()
      */
-    
+
     public function columns()
     {
         return [
@@ -49,15 +49,15 @@ class ImageDatatables extends LivewireDatatable
                 -> sortBy('id')
                 -> link('images/{{id}}/edit', '{{id}}'),
 
-                //TO DO here, try to extract the list of experiments in a better way. 
-            Column::name('experiment.code')
-                -> label('Experiment')
-                -> filterable($this->codes),
-                
-                
+                //TO DO here, try to extract the list of experiments in a better way.
+            Column::name('experiment_code')
+                -> label('Folder')
+                -> filterable($this->folders),
+
+
             Column::name('file_location')
             -> label('File Location')
-            ->hide(),
+            -> hide(),
 
             Column::name('filename')
             -> label('File Name'),
@@ -74,22 +74,25 @@ class ImageDatatables extends LivewireDatatable
             Column::name('description')
                 -> label('Description')
                 -> truncate(30)
-                -> hide(),        
-                Column::name('author.name')
+                -> hide(),
+
+            Column::name('author.name')
                 -> label('Author'),
-              
+
             Column::callback(['file_location'], function ($file_location  ) {
                 return view('images.callback', ['file_location' => $file_location]);
             })
-            ->label('Thumbnail (TEST)')
+            ->label('on WWW')
             ->unsortable(),
 
             BooleanColumn::name('is_www')
-                -> label('For www'),
+                -> label('For Media tab')
+                -> editable(),
 
-        
+
             BooleanColumn::name('is_reviewed')
-                -> label('Reviewed?'),
+                -> label('Reviewed?')
+                -> filterable(),
 
             NumberColumn::name('width')
                 -> label('Width')
@@ -106,9 +109,9 @@ class ImageDatatables extends LivewireDatatable
         ];
     }
     // if I want a Property Named Codes, I make a function called getCodesProperty!
-    public function getCodesProperty()
+    public function getFoldersProperty()
     {
         return Experiment::distinct()
-        ->pluck('code');
+        ->pluck('folder');
     }
 }

@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <div class="card">
-        <div class="card-header sticky top-0  bg-blue-600 text-center">
-            <div class="flex flex-row items-center justify-between">
-                <div class="basis-3/4 p-3">
-                    <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">eRAcuration - Images
+
+        <div class="card-header bg-blue-600 text-center">
+            <div class="flex flex-row items-center justify-center">
+                <div class="basis-3/4  p-5">
+                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Images
                     </h1>
                 </div>
-                <div class="basis-1/4 p-3">
+                <div class="basis-1/4 p-5">
                     <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition
                     bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
                     active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
@@ -23,16 +24,17 @@
     <div class="border-b-2 border-rose-700 bg-orange-100  px-5">
         <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Quick Help</h2>
         <ul class="text-sm text-slate-900 pt-5 px-9 list-disc list-inside">
-            <li>The image in the pink border is present in the intranet version - eRA2018-new</li>
+
             <li>The image in the green border is present in the WWW. So if image missing, please correct</li>
             <li>Flag: For Galleries: check YES if you want the image to appear in the main media gallery</li>
-            <li>Reviewed? </li>
+            <li>Reviewed?: say yes when the image is ready to be displayed on the live site </li>
+            <li>Some images could be in there but not displayed in the Gallery or reviewed, but still needed as they might have been put there for a page.
 
         </ul>
         <h2 class="text-3xl  uppercase font-extrabold pt-5">Documentation</h2>
 
         <h3 class="text-2xl uppercase font-semibold pt-5">Image location</h3>
-        <p>all the images are located in the `images` folder.
+        <p>All the images are located in the `images` folder.
         </p>
 
         <ul class="text-sm text-slate-900 pt-5 px-9 list-disc list-inside">
@@ -44,7 +46,7 @@
                 in the metadata folder. So if you have a folder in metadata make sure he has a folder in images too.</li>
             <li>`people`: pictures of the staff</li>
             <li>`squares`: a selection of nice pictures formatted as squares: useful for twitter</li>
-            <li>`stock`: images obtain from stock websites</li>
+            <li>`stock`: images obtained from stock websites</li>
 
         </ul>
 
@@ -73,7 +75,7 @@
         <h3 class="text-2xl uppercase font-semibold pt-5"> Using images</h3>
 
         <ul class="text-sm text-slate-900 pt-5 px-9 list-disc list-inside">
-            <li>Images marked as isGallery will be automatically incorporated in the media tab of the relevant experiment
+            <li>Images marked as isWWW will be automatically incorporated in the media tab of the relevant experiment
             </li>
             <li>Or use the normal way to link these images in a file</li>
             <li>There is a good example of usage of the different sizes images in the _people.php page.

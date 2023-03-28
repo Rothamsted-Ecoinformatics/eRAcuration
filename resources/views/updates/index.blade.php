@@ -2,21 +2,18 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
-            <div class="flex flex-row items-center justify-between">
-                <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">eRAcuration - Updates
+            <div class="flex flex-row items-center justify-center">
+                <div class="p-5">
+                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - News and tweets
                     </h1>
                 </div>
-                <div class="basis-1/4 p-3">
-                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition
-                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2
-                    active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
-                        href="/updates/create">Add an update</a>
-                </div>
+
             </div>
         </div>
-        <div class="card-body pt-10">
-            <p>TOD0: make table of the updates</p>
+        <div class="card-body p-3">
+            <p>This is an idea - in case we need to have a way to keep the updates and keep track of what has been sent.
+                In GIT: issue #42
+            </p>
 
         </div>
     </div>

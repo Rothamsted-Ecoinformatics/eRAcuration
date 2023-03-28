@@ -2,17 +2,12 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
-            <div class="flex flex-row items-center justify-between">
-                <div class="basis-3/4 p-3">
-                    <h1 class="text-4xl text-slate-100 text-bold justify-center p-8 ">Add and Image
+            <div class="flex flex-row items-center justify-center">
+                <div class=" p-5">
+                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Add an image
                     </h1>
                 </div>
-                <div class="basis-1/4 p-3">
-                    <a class="float-right inline-block  px-5 py-3 rounded-lg transform transition 
-                    bg-blue-500 hover:bg-blue-400 hover:-translate-y-0.5 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-offset-2 
-                    active:bg-blue-900 uppercase tracking-wider font-semibold text-sm text-white shadow-lg"
-                        href="/images">Save</a>
-                </div>
+
             </div>
         </div>
         <div class="card-body px-9 ">
@@ -24,6 +19,8 @@
                         class="border-2 border-transparent hover:border-blue-500 hover:bg-blue-100 hover:shadow-lg text-blue-600 rounded-lg px-3 py-1"
                         href="http://local-info.rothamsted.ac.uk/eRA/era2018-new/zdevProcessImages.php">the image
                         processing tool</a></li>
+                <li>And the rename codes that need to be ran. Only once the code has been ran can we use the images.
+
                 <li>Import the resulting csv into the database</li>
             </ul>
         </div>
