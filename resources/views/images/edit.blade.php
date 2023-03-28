@@ -2,13 +2,15 @@
 @section('content')
     <div class="card">
         <form action="/images/{{ $image->id }}" method="POST">
-            <div class="card-header sticky top-0 bg-blue-600 text-center">
-                <div class="flex flex-row items-center justify-between">
-                    <div class="basis-3/4 p-3">
-                        <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">Edit an image
+
+
+            <div class="card-header bg-blue-600 text-center">
+                <div class="flex flex-row items-center justify-center">
+                    <div class="basis-3/4  p-5">
+                        <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Edit an image
                         </h1>
                     </div>
-                    <div class="basis-1/4 p-3">
+                    <div class="basis-1/4 p-5">
                         <button
                             class="float-right ml-3 inline-block transform rounded-lg bg-gray-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-gray-900"
                             type="Cancel">Cancel</button>
@@ -22,7 +24,7 @@
                 <div class="flex basis-1/3 justify-center bg-slate-400">
                     <div>
                         <ul class="p-5">
-                            <li><span class="text-lg font-bold uppercase text-slate-600">Experiment</span>:
+                            <li><span class="text-lg font-bold uppercase text-slate-600">Filename</span>:
                                 {{ $image->filename }}</li>
                             <li><span class="text-lg font-bold uppercase text-slate-600">Experiment</span>:
                                 {{ $image->experiment_code }}</li>
@@ -37,7 +39,7 @@
                         </ul>
                         <ul>
                             <li><img class=""
-                                    src="http://local-info.rothamsted.ac.uk/eRA/era2018-new/images/{{ $image->file_location }}">http://local-info.rothamsted.ac.uk/eRA/era2018-new/images/{{ $image->file_location }}
+                                    src="https://www.era.rothamsted.ac.uk/images/{{ $image->file_location }}">https://www.era.rothamsted.ac.uk/images/{{ $image->file_location }}
                             </li>
                         </ul>
                     </div>

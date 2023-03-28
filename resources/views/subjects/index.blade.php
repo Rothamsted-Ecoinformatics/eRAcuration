@@ -4,7 +4,7 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-center">
                 <div class="p-5">
-                    <h1 class="text-4xl text-slate-100 text-bold   ">Keywords or Subjects
+                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Keywords (subjects)
                     </h1>
                 </div>
 

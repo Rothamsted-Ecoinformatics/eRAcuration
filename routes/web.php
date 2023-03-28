@@ -31,7 +31,7 @@ Route::resource('experiments', ExperimentController::class);
 Route::resource('urequests', UrequestController::class);
 Route::get('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
 
-#//ex
+
 Route::get('users', [newmarkerController::class,'show']) ->name('users');
 Route::get('downloads',[DownloadController::class,'show']) ->name('downloads');
 

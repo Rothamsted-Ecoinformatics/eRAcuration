@@ -20,7 +20,8 @@ class ExperimentDatatables extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-                -> label('ID'),
+                -> label('ID')
+                -> link('experiments/{{id}}/edit', '{{id}}'),
 
             Column::name('name')
                 ->label('Name')
