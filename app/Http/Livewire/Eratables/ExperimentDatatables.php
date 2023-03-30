@@ -12,8 +12,8 @@ class ExperimentDatatables extends LivewireDatatable
 {
     public $model = Experiment::class;
     public $hideable = 'select';
-    public $exportable = false;
-
+    public $exportable = true;
+    public $token = "N/A";
     public $persistComplexQuery = true;
 
     public function columns()
@@ -25,6 +25,15 @@ class ExperimentDatatables extends LivewireDatatable
 
             Column::name('name')
                 ->label('Name')
+                ->editable(),
+
+            Column::name('description')
+                ->label('Description')
+                ->truncate(50)
+                ->editable(),
+
+            Column::name('purpose')
+                ->label('Purpose')
                 ->editable(),
 
             Column::name('code')
@@ -45,6 +54,7 @@ class ExperimentDatatables extends LivewireDatatable
             Column::name('start_year')
                 -> label('Start Year')
                 ->editable(),
+
             Column::name('end_year')
                 -> label('End Year')
                 ->editable(),
@@ -52,6 +62,11 @@ class ExperimentDatatables extends LivewireDatatable
             Column::delete()
             ->label('delete')
             ->alignRight()
+            ->exportCallback(function ($token) {
+                return 'N/A';
+            })
+
+
         ];
     }
 }

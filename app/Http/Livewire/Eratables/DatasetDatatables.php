@@ -19,18 +19,34 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class DatasetDatatables extends LivewireDatatable
 {
 
-    //public $hideable = 'select';
-    //public $exportable = true;
-    public $model = Dataset::class;
-    public $with = "experiment, general_resource_type, specific_resource_type";
-    //public $searchable="identifier, title, short_name, experiment.code";
-
+    public $hideable = 'select';
+    public $exportable = true;
+    //public $model = Dataset::class;
+    public $with = "experiment.name, general_resource_type.type_value, specific_resource_type.type_value";
+    public $searchable="identifier, title, short_name, experiment.code";
+    public $token = " ";
 
     /**
      * Write code on Method
      *
      * @return response()
      */
+
+/*
+     $users = DB::table('users')
+     ->join('contacts', 'users.id', '=', 'contacts.user_id')
+     ->join('orders', 'users.id', '=', 'orders.user_id')
+     ->select('users.*', 'contacts.phone', 'orders.price')
+     ->get();
+
+     */
+    public function builder()
+    {
+        return Dataset::query()
+        ->leftJoin('experiments', 'experiments.id', 'metadata_documents.experiment_id')
+        ->leftJoin('general_resource_types', 'general_resource_types.id', 'metadata_documents.general_resource_type_id')
+        ->leftJoin('specific_resource_types', 'specific_resource_types.id', 'metadata_documents.specific_resource_type_id');
+    }
     public function columns()
     {
         return [
@@ -46,8 +62,14 @@ class DatasetDatatables extends LivewireDatatable
             Column::name('identifier')
             -> label('Identifier')
             -> filterable(),
+
             Column::name('experiment.code')
-            -> label('Experiment'),
+            -> label('Experiment')
+            -> exportCallback(function ($token) {
+                return 'testing';
+            }),
+
+
             Column::name('short_name')
             -> label('Dataset')
             -> filterable(),
@@ -62,8 +84,6 @@ class DatasetDatatables extends LivewireDatatable
             Column::name('title')
             ->label('title')
             -> editable(),
-
-
 
             Column::name('general_resource_type.type_value')
             -> label('General Resource Type'),

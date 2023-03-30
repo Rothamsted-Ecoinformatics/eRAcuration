@@ -13,7 +13,7 @@
         </div>
 
         <div class="card-body">
-            <livewire:add.expt />
+
             <livewire:eratables.experiment-datatables
             searchable="folder, name"
             />
