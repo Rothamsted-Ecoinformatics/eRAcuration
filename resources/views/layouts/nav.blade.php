@@ -1,4 +1,4 @@
-@if (env('DB_DATABASE') == 'eraSandpit'))
+@if (env('DB_DATABASE') == 'eraSandpit')
 <div class="bg-yellow-400 p-3">
 @else
 <div class="bg-slate-200 p-3">
