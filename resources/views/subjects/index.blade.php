@@ -18,6 +18,14 @@
             />
 
         </div>
+        <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
+            <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
+
+            <p>This is a very simple table. Add the keywords with the simple adding function.
+                You can edit the ones already entered, but if you need to change the ontology, please delete and start again. That is easy enough. </p>
+            <p>When entering a code: ensure it is only the code that is entered, not the whole URL. It will be obvious anyway if that happens. </p>
+
+        </div>
     </div>
 
 
