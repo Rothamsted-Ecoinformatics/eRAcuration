@@ -19,7 +19,7 @@
                             <option value="">Please choose type of relation</option>
                             @foreach ($relation_types as $relation_type)
                                 <option value="{{ $relation_type->id }}">
-                                    {{ $relation_type->display_value }}
+                                   The edited dataset  <b>{{ $relation_type->display_value }}</b> this related identifier
                                 </option>
                             @endforeach
                         </select>
