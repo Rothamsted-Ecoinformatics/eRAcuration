@@ -25,7 +25,7 @@
                             <li class="text-sm text-slate-600"><b>short_name:</b>
                                 {{ $dataset->short_name }}</li>
                             <li class="text-sm text-slate-600"><b>Experiment :</b>
-                                {{ $dataset->experiment_id }} - {{ $dataset->experiment->name }}
+                                {{ $dataset->experiment->name }}
                                 ({{ $dataset->experiment->code }})</li>
                             <li class="text-sm text-slate-600"><b>URL:</b> <a
                                     class="text-blue-900 visited:text-purple-900 hover:text-blue-600"
@@ -95,7 +95,7 @@
                         </ul>
                     </div>
                     <div class="rounded-xl border-2 border-orange-400 p-5 mt-2">
-                        @livewire('add.dataset-from-template', ['template_id' => $dataset->id])
+                        @livewire('add.dataset-from-template', ['template_id' => $dataset->id ])
                     </div>
                 </div>
                 <div class="basis-2/3 p-3">
