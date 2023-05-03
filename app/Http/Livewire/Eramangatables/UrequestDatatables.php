@@ -31,17 +31,17 @@ class UrequestDatatables extends LivewireDatatable
             NumberColumn::name('id')
                 -> label('ID'),
             DateColumn::name('reqdate')
-                ->label('Date'),
+                ->label('Date')
+                ->sortable(),
             Column::name('email')
-                ->label('email')
-                ->filterable(),
+                ->label('email'),
             Column::name('fname')
                 -> label('First Name'),
             Column::name('lname')
                 -> label('Last Name'),
             Column::name('IP')
                 ->label('IP')
-                ->filterable(),
+                -> maxWidth(40),
             Column::name('country')
                 -> label('Country'),
             Column::name('institution')
@@ -49,11 +49,14 @@ class UrequestDatatables extends LivewireDatatable
             Column::name('sector')
                 -> label('Sector'),
             Column::name('Q1')
-                -> label('Reason for request'),
+                -> label('Reason for request')
+                -> minWidth(400),
             Column::name('Q2')
-                -> label('More info on data request'),
+                -> label('More info on data request')
+                -> minWidth(400),
             Column::name('ltes')
-                -> label('Data requested'),
+                -> label('Data requested')
+                -> minWidth(400),
             Column::name('role')
                 -> label('Role'),
             Column::name('supEmail')
