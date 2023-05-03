@@ -74,6 +74,10 @@ class DatasetDatatables extends LivewireDatatable
             -> label('Dataset')
             -> filterable(),
 
+            Column::name('version')
+            -> label('Version')
+            -> filterable(),
+
             Column::name('dataset_type')
             -> label('Dataset Access')
             -> filterable(['Frictionless','OA', 'Other']),

@@ -35,6 +35,9 @@
                             <li><span class="text-lg font-bold uppercase text-slate-600">height</span>:
                                 {{ $image->height }}
                             </li>
+                            <li><span class="text-lg font-bold uppercase text-slate-600" title="Paste this in the SRC attribute of an image tag to display an image in the web site. ">SRC to embed*</span>:
+                                images/{{ $image->file_location }}
+                            </li>
 
                         </ul>
                         <ul>
@@ -50,16 +53,19 @@
 
                         @csrf
                         @method('PUT')
-                        <label class="p-5">
-                            <span class=" p-2 text-lg font-semibold text-gray-700">Caption for the image</span>
+
+                        <div class="mt-3 p-2 text-lg font-semibold text-blue-700">Once saved, the changes will be incorporated into the web site when the BEXPT tool is run</div>
+
+                        <label class="">
+                            <span class="mt-3 p-2 text-lg font-semibold text-gray-700">Caption for the image</span>
                             <textarea class="form-textarea  w-full  rounded-lg" name="caption" rows="2">{{ $image->caption }}</textarea>
                         </label>
                         <label class="">
-                            <span class="mt-3 p-2 text-lg font-semibold text-gray-700">Description</span>
+                            <span class="mt-3 p-2 text-lg font-semibold text-gray-700"  title="A larger description might be needed sometimes. This field gives flexibility">Description*</span>
                             <textarea class="form-textarea  w-full  rounded-lg" name="description" rows="3">{{ $image->description }}</textarea>
                         </label>
                         <label class="">
-                            <span class="mt-3 p-2 text-lg font-semibold text-gray-700">Credits</span>
+                            <span class="mt-3 p-2 text-lg font-semibold text-gray-700" title="Please ask to add more options if needed">Credits*</span>
                             <select class="form-select  w-full  rounded-lg" name="person_id">
                                 <option value="1">Rothamsted Research</option>
                                 <option value="2">Other</option>
@@ -85,7 +91,7 @@
                             </select>
                         </label>
                         <fieldset class="">
-                            <legend class="mt-3 p-2 text-lg font-semibold text-gray-700">For the Media Galleries</legend>
+                            <legend class="mt-3 p-2 text-lg font-semibold text-gray-700" title="Toggles display of image in the media tab">For the Media Tab* </legend>
                             @if ($image->forWWW)
                                 @php
                                     $checkedYes = ' checked ';
@@ -102,21 +108,21 @@
                                     <label class="inline-flex items-center">
                                         <input class="form-radio" name="forWWW" type="radio" value="1"
                                             {{ $checkedYes }} />
-                                        <span class="ml-2">Yes</span>
+                                        <span class="ml-2">Yes -  display this in the media tab</span>
                                     </label>
                                 </div>
                                 <div>
                                     <label class="inline-flex items-center">
                                         <input class="form-radio" name="forWWW" type="radio" value="0"
                                             {{ $checkedNo }} />
-                                        <span class="ml-2">No</span>
+                                        <span class="ml-2">No - only available for inline images or other use</span>
                                     </label>
                                 </div>
 
                             </div>
                         </fieldset>
                         <fieldset class="">
-                            <legend class="mt-3 p-2 text-lg font-semibold text-gray-700">Accepted</legend>
+                            <legend class="mt-3 p-2 text-lg font-semibold text-gray-700" title="When you are happy with captionand description, please toggle to YES">Accepted</legend>
                             @if ($image->isReviewed)
                                 @php
                                     $revcheckedYes = ' checked ';
@@ -133,14 +139,14 @@
                                     <label class="inline-flex items-center">
                                         <input class="form-radio" name="isReviewed" type="radio" value="1"
                                             {{ $revcheckedYes }} />
-                                        <span class="ml-2">Yes</span>
+                                        <span class="ml-2">Yes - this can be used online, in a media tab or another page. </span>
                                     </label>
                                 </div>
                                 <div>
                                     <label class="inline-flex items-center">
                                         <input class="form-radio" name="isReviewed" type="radio" value="0"
                                             {{ $revcheckedNo }} />
-                                        <span class="ml-2">No</span>
+                                        <span class="ml-2">No - do not use on the web site - considered: not reviewed, or not deemed good enough</span>
                                     </label>
                                 </div>
 

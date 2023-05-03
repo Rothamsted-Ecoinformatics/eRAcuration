@@ -19,7 +19,7 @@
                             <option value="">Please choose type of relation</option>
                             @foreach ($relation_types as $relation_type)
                                 <option value="{{ $relation_type->id }}">
-                                    {{ $relation_type->display_value }}
+                                   The edited dataset  **{{ $relation_type->display_value }}** this related identifier
                                 </option>
                             @endforeach
                         </select>
@@ -70,8 +70,9 @@
                     class="{{ $loop->first ? 'border-t ' : '' }} {{ $loop->last ? 'border-b ' : '' }} border-l border-r">
 
                     <td class="w-5/6 py-1 px-4 text-left">
-                        <label class="ml-7">{{ $rel_id->relation_type->type_value }} - <a
+                        <label class="ml-7">This edited dataset <b>{{ $rel_id->relation_type->display_value }}</b> - <a
                                 class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
+                                target = "_BLANK"
                                 href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}</label>
                     </td>
                     <td class="w-1/6 py-1 px-4 text-right">

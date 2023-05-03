@@ -11,7 +11,10 @@ class DatasetFromTemplate extends Component
     public $identifier = "10.23637/";
 
     public function mount() {
-        $this->identifier = "10.23637/";
+        $template = Dataset::findOrFail($this->template_id);
+        $exptCode = str_replace("/", "",$template->experiment->code );
+        $shortname = $template->short_name;
+        $this->identifier = strtolower ("10.23637/".$exptCode."-".$shortname. "-".date('YmdHis'));
 
     }
 

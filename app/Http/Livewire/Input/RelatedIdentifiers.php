@@ -21,14 +21,15 @@ class RelatedIdentifiers extends Component
 
     public function mount() {
         $this->dataset = Dataset::find($this->dataset_id);
-        $this->relation_types = RelationType::all()->sortBy('display_value', SORT_NATURAL|SORT_FLAG_CASE);
+        $this->relation_types = RelationType::where('is_visible', 1)->get();
 
     }
 
     public function refresh() {
 
         $this->dataset = Dataset::find($this->dataset_id);
-        $this->relation_types = RelationType::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        //$this->relation_types = RelationType::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        $this->relation_types = RelationType::where('is_visible', 1)->get();
         $this->identifier = '';
         $this->name = '';
     }
