@@ -218,7 +218,7 @@
                                 <label class="block rounded-md">
                                     <span class="p-2 text-lg font-semibold text-gray-700">Version</span>
                                     <input class="form-input mt-1 block w-full rounded-md" name="version" type="number"
-                                        value="1" />
+                                        value="{{ $dataset->version }}" />
                                 </label>
                                 <label class="block">
                                     <span class="p-2 text-lg font-semibold text-gray-700">Publication Year</span>
