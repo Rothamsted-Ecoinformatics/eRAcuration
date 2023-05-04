@@ -57,14 +57,8 @@ class ExperimentDatatables extends LivewireDatatable
 
             Column::name('end_year')
                 -> label('End Year')
-                ->editable(),
+                ->editable()
 
-            Column::delete()
-            ->label('delete')
-            ->alignRight()
-            ->exportCallback(function ($token) {
-                return 'N/A';
-            })
 
 
         ];
