@@ -60,7 +60,6 @@ class ExperimentDatatables extends LivewireDatatable
                 ->editable()
 
 
-
         ];
     }
 }

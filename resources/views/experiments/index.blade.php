@@ -19,6 +19,19 @@
             />
 
         </div>
+        <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
+            <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
+
+            <ul>
+                <li>Simple edits are possible as usual</li>
+                <li>To add or delete experiments: please use the database:
+                    this should not happen very often.  so because we do not add
+                    experiments often and cannot add them using that app, I have removed the facility to delete an experiment
+                    becasue that would be too easy. </li>
+
+            </ul>
+
+        </div>
     </div>
 
 
