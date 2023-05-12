@@ -3,8 +3,8 @@
 <h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">In short</h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Images location: All the images are located in the `images` folder.</li>
-    <li>image in the pink border is in teh eracutation storage folder. </li>
-    <li>image in the green border is present in the WWW. So if image missing, please correct</li>
+    <li>Images in the pink border is in the eracuration storage folder. </li>
+    <li>Images in the green border is present in the WWW. So if image missing, please correct</li>
     <li>Flag is_www: For Galleries, or Media tab: check YES or 1 if you want the image to appear in the main media gallery for the experiment</li>
     <li>Flag is_reviewed: say yes when the image is ready to be displayed on the live site: the captions are correct or not</li>
     <li>No Flags? Some images have no flags or all flags set to no: that is OK: they might be included in pages - Some images could be in there but not displayed in the Gallery or reviewed, but still needed as they might

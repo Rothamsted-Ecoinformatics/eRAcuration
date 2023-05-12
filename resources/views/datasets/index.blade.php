@@ -13,7 +13,8 @@
         </div>
 
         <div class="card-body">
-            <p>To add a new dataset, please select an existing one and create a new one using the new from template form.</p>
+            <p class="m-2 p-2 font-bold text-red-900">To add a new dataset, please select an existing one and create a new one using the new from template form.
+            <br />Run CData after changes </p>
             <livewire:eratables.dataset-datatables  />
 
         </div>

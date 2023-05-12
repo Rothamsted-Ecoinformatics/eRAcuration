@@ -9,16 +9,15 @@
                 </div>
             </div>
         </div>
-        <p class="text-lg font-bold text-red-900 m-2 p-2"> A place to start for the managment of e-RA, the metadata,
+        <p class="m-2 p-2 text-lg font-bold text-red-900"> A place to start for the managment of e-RA, the metadata,
             datasets,
             people, ... </p>
         <div class="flex flex-row">
-            <div class="basis-1/3 justify-center m-2">
-                <div class="border-2 border-sky-500 p-2 rounded">
-
+            <div class="m-2 basis-1/3 justify-center">
+                <div class="rounded border-2 border-sky-500 p-2">
 
                     <h2 class="px-5 pt-5 text-3xl font-bold uppercase">At a glance</h2>
-                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Done or In Progress</h3>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Done</h3>
                     <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
                         <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
                                 href="{{ route('images.index') }}">Images</a> - Manage images metadata</li>
@@ -43,6 +42,31 @@
                             searching
                             and
                             export</li>
+                        <li><b>Link to eracurator tool: </b></li>
+                        <ul class="list-inside list-decimal px-9 pt-1 text-xs text-slate-900">
+                            <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                    href="http://burdock2/eracurator/cdstage2shamrock2.aspx">CDSTAGE External update</a> :
+                                Move
+                                Datasets from CDSTAGE to WWW</li>
+                            <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                    href="http://burdock2/eracurator/cdera2shamrock2.aspx">CDERA External update</a> : Move
+                                Datasets from CDERA to WWW - METDATA only</li>
+                        </ul>
+                        <li><b>To update the site once edits have been made: </b></li>
+                        <ul class="list-inside list-decimal px-9 pt-1 text-xs text-slate-900">
+                            <li>Update Metadata : use the app in LOCATION - BExpts, CData... </li>
+                            <li>Mint DOis: NIC to use the app in LOCATION</li>
+                            <li>Package Datasets: use app in LOCATION</li>
+                        </ul>
+                    </ul>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">To Do</h3>
+                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
+                        <li>The interface needs a login system</li>
+                        <li>Image processing tool: needs to move from local-info</li>
+                        <li>Tool to add one image at a time</li>
+                        <li>Add files by selecting the file from the repository (fake adding: we only pick up the filename,
+                            size and so on)</li>
+                        <li>
                     </ul>
                     <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Some ideas</h3>
                     <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
@@ -59,16 +83,10 @@
                                 href="#">Organisations</a>: List, add, edit organisations</li>
                     </ul>
 
-                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Runs Python Programs</h3>
-                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
-                        <li>Update Metadata : use the app in LOCATION - BExpts, CData... </li>
-                        <li>Mint DOis: NIC to use the app in LOCATION</li>
-                        <li>Package Datasets: use app in LOCATION</li>
-                    </ul>
                 </div>
             </div>
-            <div class="flex basis-2/3 justify-center m-2">
-                <div class="border-2 border-sky-500 p-2 rounded ">
+            <div class="m-2 flex basis-2/3 justify-center">
+                <div class="rounded border-2 border-sky-500 p-2">
                     @include('documentation.images')
                     @include('documentation.styles')
                 </div>
