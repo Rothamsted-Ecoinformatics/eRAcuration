@@ -4,45 +4,94 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-center">
                 <div class="p-5">
-                    <h1 class="text-4xl text-slate-100 text-bold ">eRA-curation - Datasets (edit metadata)
+                    <h1 class="text-bold text-4xl text-slate-100">eRA-curation - Datasets (edit metadata)
                     </h1>
                 </div>
-
             </div>
         </div>
-        <div class="card-body p-5">
-            <h2 class="px-5 pt-5 text-3xl font-extrabold uppercase">Goals</h2>
-            <h3 class="px-5 pt-5 text-2xl font-bold text-pink-900">One place for all the eRA and eRAdoc tools</h3>
-            <h4 class="px-7 pt-7 text-xl font-bold text-slate-900">Done or In Progress</h4>
-            <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
-                <li>Images: Manage images metadata</li>
-                <li>Datasets: Edit metadata for the Datasets and Documents DOIs </li>
-                <li>Keywords - Subjects: add new subjects</li>
-                <li>Experiments - list the experiments and make simple edits</li>
-                <li>Downloads: lists the dataset downloads, sorting, searching and exports</li>
-                <li>Requests: lists the user requests, sorting, searching and export</li>
-            </ul>
-            <h4 class="px-7 pt-7 text-xl font-bold text-slate-900">Some Ideas</h4>
-            <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
+        <p class="m-2 p-2 text-lg font-bold text-red-900"> A place to start for the managment of e-RA, the metadata,
+            datasets,
+            people, ... </p>
+        <div class="flex flex-row">
+            <div class="m-2 basis-1/3 justify-center">
+                <div class="rounded border-2 border-sky-500 p-2">
 
-                <li>Updates: an interface to assist with tweeting</li>
-                <li>Data - Will that be used to assist Raw data?</li>
+                    <h2 class="px-5 pt-5 text-3xl font-bold uppercase">At a glance</h2>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Done</h3>
+                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('images.index') }}">Images</a> - Manage images metadata</li>
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('datasets.index') }}">Datasets</a> - Edit metadata for the Datasets and
+                            Documents
+                            DOIs </li>
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('subjects.index') }}">Keywords</a> - Subjects: add new subjects</li>
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('experiments.index') }}">Experiments</a> - list the experiments and make
+                            simple
+                            edits
+                        </li>
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('downloads') }}">Downloads</a> - lists the dataset downloads, sorting,
+                            searching
+                            and
+                            exports</li>
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('urequests.index') }}">Requests</a> : lists the user requests, sorting,
+                            searching
+                            and
+                            export</li>
+                        <li><b>Link to eracurator tool: </b></li>
+                        <ul class="list-inside list-decimal px-9 pt-1 text-xs text-slate-900">
+                            <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                    href="http://burdock2/eracurator/cdstage2shamrock2.aspx">CDSTAGE External update</a> :
+                                Move
+                                Datasets from CDSTAGE to WWW</li>
+                            <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                    href="http://burdock2/eracurator/cdera2shamrock2.aspx">CDERA External update</a> : Move
+                                Datasets from CDERA to WWW - METDATA only</li>
+                        </ul>
+                        <li><b>To update the site once edits have been made: </b></li>
+                        <ul class="list-inside list-decimal px-9 pt-1 text-xs text-slate-900">
+                            <li>Update Metadata : use the app in LOCATION - BExpts, CData... </li>
+                            <li>Mint DOis: NIC to use the app in LOCATION</li>
+                            <li>Package Datasets: use app in LOCATION</li>
+                        </ul>
+                    </ul>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">To Do</h3>
+                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
+                        <li>The interface needs a login system</li>
+                        <li>Image processing tool: needs to move from local-info</li>
+                        <li>Tool to add one image at a time</li>
+                        <li>Add files by selecting the file from the repository (fake adding: we only pick up the filename,
+                            size and so on)</li>
+                        <li>
+                    </ul>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Some ideas</h3>
+                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="{{ route('updates.index') }}">Updates</a>: an interface to assist with tweeting</li>
+                        <li>Data - Will that be used to assist Raw data?</li>
+                    </ul>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Models that could have a page: </h3>
+                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="#">People</a>:
+                            List, add, edit people</li>
+                        <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
+                                href="#">Organisations</a>: List, add, edit organisations</li>
+                    </ul>
 
+                </div>
+            </div>
+            <div class="m-2 flex basis-2/3 justify-center">
+                <div class="rounded border-2 border-sky-500 p-2">
+                    @include('documentation.images')
+                    @include('documentation.styles')
+                </div>
+            </div>
 
-            </ul>
-            <h3 class="px-5 pt-5 text-2xl font-bold text-pink-900">Runs Python Programs</h3>
-            <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
-                <li>Update Metadata</li>
-                <li>Mint DOis</li>
-                <li>Update Metadata for Experiments</li>
-            </ul>
-            <p>It would be nice to link them from here, but the tools are available as CLIs in the datacite folder</p>
-
-            <h3 class="px-5 pt-5 text-2xl font-bold text-pink-900">Documentation</h3>
-
-            <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
-                <li>A place to link to all documentation documents and sites</li>
-            </ul>
         </div>
     </div>
 @endsection

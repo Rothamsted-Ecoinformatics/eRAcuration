@@ -193,10 +193,10 @@
                                 <label class="block">
                                     <span class="p-2 text-lg font-semibold text-gray-700">Publisher</span>
                                     <select class="form-select mt-1 block w-full rounded-md" name="publisher_id">
-                                        @foreach ($organisations as $organisation)
-                                            <option value="{{ $organisation->id }}"
-                                                @if ($dataset->publisher_id == $organisation->id) selected @endif>
-                                                {{ $organisation->name }} ({{ $organisation->abbreviation }})
+                                        @foreach ($publishers as $publisher)
+                                            <option value="{{ $publisher->id }}"
+                                                @if ($dataset->publisher_id == $publisher->id) selected @endif>
+                                                {{ $publisher->name }}
                                             </option>
                                         @endforeach
                                     </select>

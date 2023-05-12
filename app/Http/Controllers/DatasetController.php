@@ -14,6 +14,7 @@ use App\Models\FundingAward;
 use App\Models\SpecificResourceType;
 use App\Models\Subject;
 use App\Models\Person;
+use App\Models\Publisher;
 use App\Models\PersonRole;
 use App\Models\PersonRoleType;
 use App\Models\RelatedIdentifier;
@@ -81,7 +82,7 @@ class DatasetController extends Controller
         $person_role_types = PersonRoleType::all()->sortBy('type_value');
         $identifier_types = IdentifierType::all()->sortBy('id');
         $relation_types = RelationType::all()->sortBy('type_value');
-
+        $publishers = Publisher::all()->sortBy('name');
         $arrData= [
             'dataset' => $dataset,
             'allSubjects' => $allSubjects,
@@ -93,6 +94,7 @@ class DatasetController extends Controller
             'persons' => $persons,
             'person_role_types' => $person_role_types,
             'awards' => $awards,
+            'publishers'=>$publishers,
             'relation_types' => $relation_types,
             'date_types' => $date_types,
         ];

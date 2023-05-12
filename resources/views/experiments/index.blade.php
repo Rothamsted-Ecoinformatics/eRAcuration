@@ -13,7 +13,7 @@
         </div>
 
         <div class="card-body">
-
+            <p class="m-2 p-2 text-lg font-bold text-red-900"> Run BExpts after changes </p>
             <livewire:eratables.experiment-datatables
             searchable="folder, name"
             />
