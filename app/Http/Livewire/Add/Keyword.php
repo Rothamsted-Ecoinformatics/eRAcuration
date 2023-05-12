@@ -11,7 +11,7 @@ class Keyword extends Component
     public $subject;
     public $uri;
     public $schemas;
-    public $schema_id;
+    public $schema_id = 4;
     public $message = "";
 
 
