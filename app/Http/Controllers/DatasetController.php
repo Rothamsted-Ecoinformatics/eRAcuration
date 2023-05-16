@@ -169,7 +169,7 @@ updated_at: timestamps
 */
 //TODO: validation rules:
 
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required',
             'experiment_id' => 'required',
             'publisher_id'=> 'required',
