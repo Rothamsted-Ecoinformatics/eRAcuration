@@ -19,12 +19,13 @@
                                 </option>
                             @endforeach
                         </select>
+                        @error('date_type_id') <span class="text-red-700">{{ $message }}</span> @enderror
                     </td>
                     <td class="w-5/12 text-left py-3 px-4">
                         <input type="date" class="form-input mt-1 block rounded-md w-full"
                             wire:model="selected_date"
-                            value="" />
-
+                            value="{{ $selected_date   }}" />
+                            @error('selected_date') <span class="text-red-700">{{ $message }}</span> @enderror
                     </td>
                     <td class="w-2/12 py-3 px-4 text-right">
                         <button
@@ -38,7 +39,7 @@
 
 
                         $time_input = strtotime($date->history->document_date);
-                        $date_input = date('Y-m-d', $time_input);
+                        $date_input = date('d/m/Y', $time_input);
 
                     @endphp
 
