@@ -12,13 +12,19 @@ class Dates extends Component
 
     public $dataset;
     public $dataset_id;
-    public $date_type_id;
-    public $selected_date;
+    public $date_type_id = 8;
+    public $selected_date ;
     public $date_types;
+
+    protected $rules = [
+        'selected_date' => 'before:tomorrow',
+        'date_type_id' => 'required'
+    ];
 
     public function mount() {
         $this->dataset = Dataset::find($this->dataset_id);
         $this->date_types = DateType::all()->sortBy('type_value');
+        $this->selected_date = date('Y-m-d');
 
     }
 
@@ -27,6 +33,7 @@ class Dates extends Component
     }
 
     public function addDate() {
+        $this->validate();
 
         $this->dataset->dates()->attach($this->date_type_id, ['document_date'=>$this->selected_date]);
         $this->refresh();

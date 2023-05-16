@@ -85,6 +85,7 @@
                             <span class="p-2 text-lg font-semibold text-gray-700">Title</span>
                             <input class="form-input mt-1 block w-full rounded-md" name="title" type="text"
                                 value="{{ $dataset->title }}" />
+                                @error('title') <span class="text-red-700">{{ $message }}</span> @enderror
                         </label>
                         <div class="mt-6 grid grid-cols-1 items-start gap-6 md:grid-cols-2">
                             <div class="grid grid-cols-1 gap-6">
@@ -309,6 +310,7 @@
                             <span class="p-2 text-lg font-semibold text-gray-700">Abstract</span>
                             <textarea class="form-textarea mt-1 block h-24 w-full rounded-md" name="description_abstract" rows="8"
                                 placeholder="This is Compulsory">{{ $dataset->description_abstract }} </textarea>
+                                @error('description_abstract') <span class="text-red-700">{{ $message }}</span> @enderror
                         </label>
                         <label class="block">
                             <span class="p-2 text-lg font-semibold text-gray-700">Table of Content</span>

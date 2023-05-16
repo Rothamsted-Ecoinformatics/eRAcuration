@@ -1,4 +1,6 @@
 <label class="block">
+
+
     <table class="min-w-full mt-5">
         <thead class="">
             <tr>
@@ -17,7 +19,9 @@
                                 {{ $filteredPerson->given_name }} {{ $filteredPerson->family_name }}
                             </option>
                         @endforeach
+
                     </select>
+                    @error('person_id') <span class="text-red-700">{{ $message }}</span> @enderror
                 </td>
                 <td class="w-5/12 py-3 px-4 text-left">
                     <select class="form-select mt-1 block w-full rounded-md" wire:model="person_role_type_id">
@@ -27,9 +31,11 @@
                                 {{ $person_role_type->type_value }}
                             </option>
                         @endforeach
+
                     </select>
-                </td>
+                    @error('person_role_type_id') <span class="text-red-700">{{ $message }}</span> @enderror                </td>
                 <td class="w-2/12 py-1 px-4 text-right">
+
                     <button
                         class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
                         wire:click.prevent="addContributor">Add</button>

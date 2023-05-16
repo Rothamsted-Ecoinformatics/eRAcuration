@@ -19,6 +19,11 @@ class Contributors extends Component
     public $person_role_types;
     public $filteredPersons;
 
+    protected $rules = [
+        'person_role_type_id' => 'required',
+        'person_id' => 'required'
+
+    ];
     public function mount() {
         $this->dataset = Dataset::find($this->dataset_id);
         $this->dsContributors = Dataset::where('id', $this->dataset_id)->first()->contributors()->get();
@@ -37,6 +42,7 @@ class Contributors extends Component
    }
 
     public function addContributor() {
+        $this->validate();
 
         $this->dataset->contributors()->attach($this->person_id, ['person_role_type_id'=>$this->person_role_type_id]);
         $this->refresh();

@@ -17,7 +17,7 @@
                         @foreach ($awards as $award)
                             <option value="{{ $award->id }}">
                                 {{ $award->reference_number }}
-                                ({{ $award->organisation->abbreviation}})
+                                ({{ $award->organisation->abbreviation}}) - {{ $award->title }}
                             </option>
                         @endforeach
                     </select>
