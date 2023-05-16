@@ -18,6 +18,14 @@ class RelatedIdentifiers extends Component
     public $identifier_type = 'DOI';
     public $dataset_id;
 
+    protected $rules = [
+        'identifier' => 'required|max:100',
+        'name' => 'required|max:100',
+        'relation_type_id' => 'required',
+        'identifier' => 'required',
+        'identifier_type' =>'required'
+
+    ];
 
     public function mount() {
         $this->dataset = Dataset::find($this->dataset_id);
@@ -35,6 +43,8 @@ class RelatedIdentifiers extends Component
     }
 
     public function addRelatedIdentifier() {
+
+        $this->validate();
 
         $rel_id = new RelatedIdentifier;
         $rel_id->metadata_document_id = $this->dataset_id;

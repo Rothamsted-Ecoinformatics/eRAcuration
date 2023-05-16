@@ -23,16 +23,19 @@
                                 </option>
                             @endforeach
                         </select>
+                        @error('relation_type_id') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
                         <span class="p-2 text-sm text-gray-400">Identifier
                         </span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model='identifier' />
+                        @error('identifier') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
                         <span class="p-2 text-sm text-gray-400">Title or Caption
                         </span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model='name' />
+                        @error('name') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
                         <span class="p-2 text-sm text-gray-400">Identifier Type
@@ -47,6 +50,7 @@
                             <option value="URL">URL</option>
                             <option value="URN">URN</option>
                         </select>
+                        @error('identifier_type') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                 </td>
                 <td class="w-1/6 py-3 px-4 align-bottom text-right">
@@ -73,7 +77,7 @@
                         <label class="ml-7">This edited dataset <b>{{ $rel_id->relation_type->display_value }}</b> - <a
                                 class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
                                 target = "_BLANK"
-                                href="{{ $LinkURL }}"> {{ $LinkURL }}</a> - {{ $rel_id->name }}</label>
+                                href="{{ $LinkURL }}"> {{ $rel_id->identifier }}</a> - {{ $rel_id->name }}</label>
                     </td>
                     <td class="w-1/6 py-1 px-4 text-right">
                         <button wire:click.prevent="removeRelatedIdentifier({{ $rel_id->id }})">

@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Input;
 
 use Livewire\Component;
 use App\Models\Dataset;
+use App\Models\DocumentFormat;
 use App\Models\DocumentFile;
+use Doctrine\Inflector\Rules\English\Rules;
 use Livewire\WithFileUploads;
 
 class AssociatedFiles extends Component
@@ -17,12 +19,23 @@ class AssociatedFiles extends Component
     public string $document_unit_id = 'KB';
     public string $file_name = '';
     public string $title = '' ;
+    public string $extension;
     public int $is_illustration = 0;
+    public $document_formats ;
 
+    protected $rules = [
+        'title' => 'required|max:100',
+        'size_value' => 'required|integer|gt:0',
+        'file_name' => 'required|max:100',
+        'extension' => 'required',
+        'document_unit_id' =>'required'
 
+    ];
 
     public function mount() {
         $this->dataset = Dataset::find($this->dataset_id);
+
+
     }
 
     public function refresh() {
@@ -32,14 +45,15 @@ class AssociatedFiles extends Component
     }
 
     public function addDocumentFile() {
-/* extract some information from the download button which is not really a download button? */
-$document_format_id = explode('.', $this->file_name);
-//dd($document_format_id[1]);
-$doc_file = new DocumentFile;
+
+
+        $this->validate();
+
+        $doc_file = new DocumentFile;
         $doc_file->metadata_document_id = $this->dataset_id;
         $doc_file->size_value = $this->size_value;
         $doc_file->document_unit_id = $this->document_unit_id;
-        $doc_file->document_format_id = $document_format_id[1];
+        $doc_file->document_format_id = $this->extension;
         $doc_file->file_name = $this->file_name;
         $doc_file->title = $this->title;
         $doc_file->is_illustration = $this->is_illustration;

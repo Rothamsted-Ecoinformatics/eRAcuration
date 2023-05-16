@@ -15,17 +15,39 @@
                         </span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model.lazy='title'
                             placeholder="Please enter a caption of title for that file" />
+                            @error('title') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
-                        <span class="p-2 text-sm  text-gray-400">File Name with
+                        <span class="p-2 text-sm  text-gray-400">File Name without
                             extension</span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model.lazy='file_name'
-                            placeholder="Please enter the filename with extension" />
+                            placeholder="Please enter the filename without extension" />
+                            @error('file_name') <span class="text-red-700">{{ $message }}</span> @enderror
+
                     </label>
+                    <label class="block">
+           <span class="p-2 text-sm  text-gray-400">Extension</span>
+                        <select class="form-select mt-1 block w-full rounded-md" wire:model='extension'>
+                            <option value="">Select extension</option>
+                            <option value="csv">csv</option>
+                            <option value="doc">doc</option>
+                            <option value="gif">gif</option>
+                            <option value="jpg">jpg</option>
+                            <option value="pdf">pdf</option>
+                            <option value="txt">txt</option>
+                            <option value="jpg">jpg</option>
+                            <option value="jpg">xls</option>
+                            <option value="xlsx">xlsx</option>
+                            <option value="zip">zip</option>
+
+                        </select>
+                    </label>
+                    @error('extension') <span class="text-red-700">{{ $message }}</span> @enderror
                     <label class="block">
                         <span class="p-2 text-sm  text-gray-400">Size</span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model.lazy='size_value'
                              />
+                             @error('size_value') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
                         <span class="p-2 text-sm  text-gray-400">Unit</span>
@@ -36,6 +58,7 @@
                             <option value="GB">GB</option>
                             <option value="pages">pages</option>
                         </select>
+                        @error('document_unit_id') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
                         <span class="p-2 text-sm  text-gray-400"
