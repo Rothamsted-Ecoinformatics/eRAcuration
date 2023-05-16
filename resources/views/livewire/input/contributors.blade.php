@@ -17,6 +17,7 @@
                                 {{ $filteredPerson->given_name }} {{ $filteredPerson->family_name }}
                             </option>
                         @endforeach
+                        @error('person_id') <span class="error">Please select a person</span> @enderror
                     </select>
                 </td>
                 <td class="w-5/12 py-3 px-4 text-left">
@@ -27,6 +28,7 @@
                                 {{ $person_role_type->type_value }}
                             </option>
                         @endforeach
+                        @error('person_role_type_id') <span class=" text-red-700">Please select a role</span> @enderror
                     </select>
                 </td>
                 <td class="w-2/12 py-1 px-4 text-right">
