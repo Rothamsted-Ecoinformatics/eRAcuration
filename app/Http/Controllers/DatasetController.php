@@ -186,12 +186,12 @@ if(count($files)>0) {$filename =$files[0]['file_name'];} else {$filename="NOTSUP
 
 if ($request->general_resource_type_id == 4)
 {
-    $format = 'http://www.era.rothamsted.ac.uk/dataset/%1$s/%2$02d-%3$s';
+    $format = 'https://www.era.rothamsted.ac.uk/dataset/%1$s/%2$02d-%3$s';
     $formattedURL = sprintf($format, $code, $version, $shortname);
 }
 else
 {
-    $format = 'http://www.era.rothamsted.ac.uk/metadata/%1$s/%2$s';
+    $format = 'https://www.era.rothamsted.ac.uk/metadata/%1$s/%2$s';
     $formattedURL = sprintf($format, $code, $filename);
 }
         $exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();

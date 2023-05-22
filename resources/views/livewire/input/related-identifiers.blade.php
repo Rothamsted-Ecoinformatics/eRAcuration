@@ -42,13 +42,13 @@
                         </span>
                         <select class="form-select mt-1 block w-full rounded-md" wire:model='identifier_type'>
                             <option value="">Select a Type</option>
-                            <option value="DOI">DOI</option>
-                            <option value="ISBN">ISBN</option>
-                            <option value="ISSN">ISSN</option>
-                            <option value="PMID">PMID</option>
-                            <option value="PURL">PURL</option>
-                            <option value="URL">URL</option>
-                            <option value="URN">URN</option>
+                            <option value="DOI">DOI - only the DOI</option>
+                            <option value="ISBN">ISBN  - only the ISBN</option>
+                            <option value="ISSN">ISSN  - only the ISSN</option>
+                            <option value="PMID">PMID  - only the PMID</option>
+                            <option value="PURL">PURL - persistent URL including http or https</option>
+                            <option value="URL">URL  - URL including http or https</option>
+                            <option value="URN">URN -   URN including http or https</option>
                         </select>
                         @error('identifier_type') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>

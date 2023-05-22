@@ -54,7 +54,7 @@ class AssociatedFiles extends Component
         $doc_file->size_value = $this->size_value;
         $doc_file->document_unit_id = $this->document_unit_id;
         $doc_file->document_format_id = $this->extension;
-        $doc_file->file_name = $this->file_name;
+        $doc_file->file_name = $this->file_name . '.'.$this->extension;
         $doc_file->title = $this->title;
         $doc_file->is_illustration = $this->is_illustration;
         $doc_file->save();

@@ -30,14 +30,14 @@
                         <select class="form-select mt-1 block w-full rounded-md" wire:model='extension'>
                             <option value="">Select extension</option>
                             <option value="csv">csv</option>
-                            <option value="doc">doc</option>
-                            <option value="gif">gif</option>
-                            <option value="jpg">jpg</option>
-                            <option value="pdf">pdf</option>
-                            <option value="txt">txt</option>
-                            <option value="jpg">jpg</option>
                             <option value="jpg">xls</option>
                             <option value="xlsx">xlsx</option>
+                            <option value="doc">doc</option>
+                            <option value="pdf">pdf</option>
+                            <option value="txt">txt</option>
+                            <option value="gif">gif</option>
+                            <option value="jpg">jpg</option>
+                            <option value="png">png</option>
                             <option value="zip">zip</option>
 
                         </select>
