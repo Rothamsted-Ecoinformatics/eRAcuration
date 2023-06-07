@@ -54,22 +54,17 @@
                         </ul>
                         <li><b>To update the site once edits have been made: </b></li>
                         <ul class="list-inside list-decimal px-9 pt-1 text-xs text-slate-900">
-                            <li>Update Metadata : use the app in LOCATION - BExpts, CData... </li>
-                            <li>Mint DOis: NIC to use the app in LOCATION</li>
-                            <li>Package Datasets: use app in LOCATION</li>
+                            <li>Update Metadata : use the app in <b>\Rothamsted Research\e-RA - Documents\Website maintenance\update eRA website from eraGILBERT</b> - BExpts, CData... </li>
+                            <li>Mint DOis: NIC uses DOITools23 to mint information from eraGILBERT</li>
+                            <li>Package Datasets: App not ready yet</li>
                         </ul>
                     </ul>
-                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">To Do</h3>
+                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Improvements</h3>
                     <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
                         <li>The interface needs a login system</li>
-                        <li>Image processing tool: needs to move from local-info</li>
                         <li>Tool to add one image at a time</li>
                         <li>Add files by selecting the file from the repository (fake adding: we only pick up the filename,
                             size and so on)</li>
-                        <li>
-                    </ul>
-                    <h3 class="text-2l px-7 pt-5 font-bold text-slate-900">Some ideas</h3>
-                    <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
                         <li><a class="text-blue-400 hover:text-blue-300 active:bg-blue-900 sm:text-base"
                                 href="{{ route('updates.index') }}">Updates</a>: an interface to assist with tweeting</li>
                         <li>Data - Will that be used to assist Raw data?</li>

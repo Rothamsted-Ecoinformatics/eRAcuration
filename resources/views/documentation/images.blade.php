@@ -2,15 +2,17 @@
 <h2 class="px-5 pt-5 text-3xl font-bold uppercase">Images</h2>
 <h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">In short</h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
-    <li>Images location: All the images are located in the `images` folder.</li>
-    <li>Images in the pink border is in the eracuration storage folder. </li>
-    <li>Images in the green border is present in the WWW. So if image missing, please correct</li>
+    <li>Images location: All the images are located in the `images` folder. Upload them in <b>INTRANET-SERVER\era2023\images\</b></li>
+    <li>Images in the pink border are in the eracuration storage folder - that might be relevant later. </li>
+    <li>Images in the green border are present on the WWW interface. So if image missing, please correct</li>
     <li>Flag is_www: For Galleries, or Media tab: check YES or 1 if you want the image to appear in the main media gallery for the experiment</li>
     <li>Flag is_reviewed: say yes when the image is ready to be displayed on the live site: the captions are correct or not</li>
-    <li>No Flags? Some images have no flags or all flags set to no: that is OK: they might be included in pages - Some images could be in there but not displayed in the Gallery or reviewed, but still needed as they might
+    <li>No Flags? Some images have no flags or all flags set to no: that is OK: they might be included in pages -
+        Some images could be in there but not displayed in the Gallery or reviewed, but still needed as they might
         have been put there for a page.</li>
-    <li>Naming conventions: The images are organised by folders representing their experiment or type. Use the name that makes the most sense.
-            use hyphens (-), no space, no underscores. Running the Image processing tool can give a clue that the name is legal or not.
+    <li>Naming conventions: The images are organised by folders representing their experiment or type.
+        Use the name that makes the most sense.
+            use hyphens (-), no space, no underscores. The image processing tool will rename the images.
 </ul>
 <h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Images folder - types</h2>
 
@@ -54,19 +56,15 @@
 <a name="addImage"></a>
 <h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Add Images</h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
-    <li>Save images in the "INTRANET-SERVER/eRA/era2018-new/images" folder under the relevant folder (metadata
+    <li>Save images in the "INTRANET-SERVER/eRA/era2023/images" folder under the relevant folder (metadata
         for image that is relevant to the experiments or the stations, banners, people and so on) </li>
-    <li>NIC to run <a
-            class="rounded-lg border-2 border-transparent px-3 py-1 text-blue-600 hover:border-blue-500 hover:bg-blue-100 hover:shadow-lg"
-            href="http://local-info.rothamsted.ac.uk/eRA/era2018-new/zdevProcessImages.php">the image
-            processing tool</a> - on demand or on a friday as part of updates</li>
-    <li>NIC to run the relevant codes that need to be ran.
-    <li>NIC to import the resulting csv into the database </li>
+    <li>NIC to run the image  processing tool which will rename teh images if needed and import them in the database
+        - on demand or on a friday as part of updates</li>
     <li>Only when image can be seen in this table, is it safe to use in a web page. </li>
 </ul>
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">To DO</h3>
+<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Imporvements? </h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Make the intranet images read from storage folder</li>
-    <li>make functio to import images into the storage folder and edit captions and so on</li>
+    <li>make function to import images into the storage folder and edit captions and so on</li>
     <li>Think about how we transfer images from the storage folder to the internet</li>
 </ul>
