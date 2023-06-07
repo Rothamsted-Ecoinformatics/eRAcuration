@@ -11,8 +11,15 @@ class Keyword extends Component
     public $subject;
     public $uri;
     public $schemas;
-    public $schema_id = 4;
+    public $schema_id;
     public $message = "";
+
+    protected $rules = [
+        'subject' => 'required|max:100',
+        'uri' => 'required',
+        'schema_id' => 'required|integer',
+
+    ];
 
 
     public function mount() {
@@ -26,7 +33,7 @@ class Keyword extends Component
     }
 
     public function addSubject() {
-
+        $this->validate();
         $isIn = Subject::where('subject',$this->subject)
         ->orWhere('uri',$this->uri)->count();
 
