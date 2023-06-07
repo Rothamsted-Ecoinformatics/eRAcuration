@@ -35,8 +35,8 @@
                             <li><span class="text-lg font-bold uppercase text-slate-600">height</span>:
                                 {{ $image->height }}
                             </li>
-                            <li><span class="text-lg font-bold uppercase text-slate-600" title="Paste this in the SRC attribute of an image tag to display an image in the web site. ">SRC to embed*</span>:
-                                images/{{ $image->file_location }}
+                            <li><span class="text-lg font-bold uppercase text-slate-600" title="Paste this in the SRC attribute of an image tag to display an image in the web site. ">Code to embed this image*</span>:
+                                &lt;img src="images/{{$image->file_location}}" witdh="{{ $image->width }}" height = "{{ $image->height }}"&gt;
                             </li>
 
                         </ul>
