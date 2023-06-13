@@ -54,8 +54,10 @@
                         </ul>
                         <li><b>To update the site once edits have been made: </b></li>
                         <ul class="list-inside list-decimal px-9 pt-1 text-xs text-slate-900">
-                            <li>Update Metadata : use the app in <b>\Rothamsted Research\e-RA - Documents\Website maintenance\update eRA website from eraGILBERT</b> - BExpts, CData... </li>
+                            <li>Update Experiments: after change in GLTEN, or here, use app:  <b>\Rothamsted Research\e-RA - Documents\Website maintenance\update eRA website from eraGILBERT</b> - BExpts  </li>
+                            <li>Update Metadata : use the app in <b>\Rothamsted Research\e-RA - Documents\Website maintenance\update eRA website from eraGILBERT</b> - CData  </li>
                             <li>Mint DOis: NIC uses DOITools23 to mint information from eraGILBERT</li>
+                            <li>After running these apps, use copy.bat to copy over the data to the intranet. </li>
                             <li>Package Datasets: App not ready yet</li>
                         </ul>
                     </ul>

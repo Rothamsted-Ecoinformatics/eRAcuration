@@ -58,8 +58,7 @@
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Save images in the "INTRANET-SERVER/eRA/era2023/images" folder under the relevant folder (metadata
         for image that is relevant to the experiments or the stations, banners, people and so on) </li>
-    <li>NIC to run the image  processing tool which will rename teh images if needed and import them in the database
-        - on demand or on a friday as part of updates</li>
+    <li>Run GImages in the app folder to rename and insert images</li>
     <li>Only when image can be seen in this table, is it safe to use in a web page. </li>
 </ul>
 <h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Imporvements? </h3>
