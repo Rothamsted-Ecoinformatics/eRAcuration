@@ -11,7 +11,7 @@
                 <div>
                     <div class="@unless($column['hidden']) hidden @endif cursor-pointer w-full border-gray-800 border-b bg-gray-700 text-gray-500 hover:bg-blue-600 hover:text-white" wire:click="toggle({{$index}})">
                         <div class="relative flex w-full items-center p-2 group">
-                            <div class=" w-full items-center flex">
+                            <div class="w-full items-center flex">
                                 <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                             </div>
                             <div class="absolute inset-y-0 right-0 pr-2 flex items-center">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="@if($column['hidden']) hidden @endif cursor-pointer w-full border-gray-800 border-b bg-gray-700 text-white hover:bg-red-600" wire:click="toggle({{$index}})">
                         <div class="relative flex w-full items-center p-2 group">
-                            <div class=" w-full items-center flex">
+                            <div class="w-full items-center flex">
                                 <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                             </div>
                             <div class="absolute inset-y-0 right-0 pr-2 flex items-center">

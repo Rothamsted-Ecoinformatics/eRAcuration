@@ -20,18 +20,6 @@ module.exports = {
                 warning: colors.yellow,
             },
         },
-
     },
-    variants: {
-        extend: {
-
-        }
-    },
-    plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
-    ],
-
-
-
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

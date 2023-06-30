@@ -9,9 +9,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-slate-300 ">
+            <tr class="bg-slate-300">
                 <td class="w-5/6 text-left py-3 px-4">
-                    <select class="form-select block w-full mt-1  rounded-md"
+                    <select class="form-select block w-full mt-1 rounded-md"
                         wire:model='funder'>
                         <option value="">Choose a Funding Award</option>
                         @foreach ($awards as $award)

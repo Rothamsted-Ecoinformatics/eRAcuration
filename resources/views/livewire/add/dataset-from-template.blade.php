@@ -8,7 +8,7 @@
             placeholder="Enter a new Title" />
     </label>
     <label class="block">
-        <span class="p-2 text-lg font-semibold text-gray-700">DOI</span><span class="p-2 text-small  text-gray-500">choose carefully as not easy to change afterward</span>
+        <span class="p-2 text-lg font-semibold text-gray-700">DOI</span><span class="p-2 text-small text-gray-500">choose carefully as not easy to change afterward</span>
         <input class="form-input mt-1 block w-full rounded-md" wire:model.lazy="identifier" type="text" placeholder="10.23637/" />
     </label>
     <div class="basis-1/4 p-3">
