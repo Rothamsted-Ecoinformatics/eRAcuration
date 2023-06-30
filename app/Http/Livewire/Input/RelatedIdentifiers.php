@@ -46,10 +46,12 @@ class RelatedIdentifiers extends Component
 
         $this->validate();
 
+        $corrected_identifier = str_replace("https://doi.org/","",$this->identifier); // in case the curator enters teh URL in front.
+
         $rel_id = new RelatedIdentifier;
         $rel_id->metadata_document_id = $this->dataset_id;
         $rel_id->relation_type_id = $this->relation_type_id;
-        $rel_id->identifier = $this->identifier;
+        $rel_id->identifier = $corrected_identifier;
         $rel_id->name = $this->name;
         $rel_id->identifier_type_id = $this->identifier_type;
         $rel_id->save();
