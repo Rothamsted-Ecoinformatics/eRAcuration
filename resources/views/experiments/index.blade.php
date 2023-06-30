@@ -5,7 +5,7 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-center">
                 <div class="p-5">
-                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Experiments
+                    <h1 class="text-4xl text-slate-100 text-bold">eRA-curation - Experiments
                     </h1>
                 </div>
 
@@ -19,8 +19,8 @@
             />
 
         </div>
-        <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
-            <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
+        <div class="border-b-2 border-orange-500 border bg-orange-100 px-5">
+            <h2 class="text-3xl uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
 
             <ul>
                 <li>Simple edits are possible as usual</li>

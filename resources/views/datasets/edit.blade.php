@@ -4,7 +4,7 @@
         @csrf
         @method('PUT')
         <div class="card">
-            <div class="card-header sticky top-0  bg-blue-600 text-center">
+            <div class="card-header sticky top-0 bg-blue-600 text-center">
                 <div class="flex flex-row items-center justify-between">
                     <div class="basis-3/4 p-3">
                         <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">Edit : {{ $dataset->id }} -
@@ -12,10 +12,10 @@
                         </h1>
                     </div>
                     <div class="basis-1/4 p-3">
-                        <a class="text-grey-400 float-right m-2 inline-block transform rounded-lg bg-gray-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider  text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
+                        <a class="text-grey-400 float-right m-2 inline-block transform rounded-lg bg-gray-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                             href="/datasets/{{ $dataset->id }}">Cancel</a>
 
-                        <a class="text-grey-400 float-right m-2 inline-block transform rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider  text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
+                        <a class="text-grey-400 float-right m-2 inline-block transform rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                                 href="{{url('/storage/docs/cheatsheet.docx')}}">Cheatsheet
                         </a>
                         <button
@@ -362,9 +362,7 @@
     </form>
     <div class="border border-b-2 border-orange-500 bg-orange-100 px-5">
         <h2 class="pt-12 text-3xl font-extrabold uppercase"><a name="localHelp"></a> Documentation</h2>
-        <p>Please refer to the  <a class="text-blue-600
-            font-semibold
-         active:bg-blue-900"
+        <p>Please refer to the  <a class="text-blue-600 font-semibold active:bg-blue-900"
             href="{{url('/storage/docs/cheatsheet.docx')}}">Cheatsheet
     </a> for help with what to put in</p>
     </div>

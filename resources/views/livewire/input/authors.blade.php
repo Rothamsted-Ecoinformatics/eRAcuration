@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-slate-300 ">
+            <tr class="bg-slate-300">
                 <td class="w-5/6 py-3 px-4 text-left">
                     <select class="form-select mt-1 block w-full rounded-md" wire:model="author">
                         <option value="">Choose a Person</option>

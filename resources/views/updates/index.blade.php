@@ -4,7 +4,7 @@
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-center">
                 <div class="p-5">
-                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - News and tweets
+                    <h1 class="text-4xl text-slate-100 text-bold">eRA-curation - News and tweets
                     </h1>
                 </div>
 
@@ -17,10 +17,10 @@
 
         </div>
     </div>
-    <div class="border-b-2 border-rose-700 bg-orange-100  px-5">
+    <div class="border-b-2 border-rose-700 bg-orange-100 px-5">
 
 
-        <h2 class="text-3xl  uppercase font-extrabold pt-5">Documentation</h2>
+        <h2 class="text-3xl uppercase font-extrabold pt-5">Documentation</h2>
         <h3 class="text-2xl uppercase font-semibold pt-5">Feature request</h3>
         <ul class="text-sm text-slate-900 pt-5 px-9 list-disc list-inside">
             <li>https://christoph-rumpel.com/2018/11/sending-laravel-notifications-via-twitter</li>

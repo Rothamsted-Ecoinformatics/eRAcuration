@@ -3,16 +3,16 @@
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-center">
-                <div class=" p-5">
-                    <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Add an image
+                <div class="p-5">
+                    <h1 class="text-4xl text-slate-100 text-bold">eRA-curation - Add an image
                     </h1>
                 </div>
 
             </div>
         </div>
-        <div class="card-body px-9 ">
+        <div class="card-body px-9">
             <h2 class="text-3xl font-extrabold pt-5 border-t px-5">Bulk Processing</h2>
-            <ul class="px-9 py-5 text-sm text-grey-800 italic list-decimal  border-l-2  ">
+            <ul class="px-9 py-5 text-sm text-grey-800 italic list-decimal border-l-2">
                 <li>Save images in the "INTRANET-SERVER/eRA/era2018-new/images" folder under the relevant folder (metadata
                     for image that is relevant to the experiments or the stations, banners, people and so on) </li>
                 <li>Run <a
@@ -25,7 +25,7 @@
             </ul>
         </div>
     </div>
-    <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
-        <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Quick Help</h2>
+    <div class="border-b-2 border-orange-500 border bg-orange-100 px-5">
+        <h2 class="text-3xl uppercase font-extrabold pt-5"><a name="localHelp"></a> Quick Help</h2>
     </div>
 @endsection
