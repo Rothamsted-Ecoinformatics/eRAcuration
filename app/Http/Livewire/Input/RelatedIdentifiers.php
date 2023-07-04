@@ -22,7 +22,7 @@ class RelatedIdentifiers extends Component
         'identifier' => 'required|max:100',
         'name' => 'required|max:100',
         'relation_type_id' => 'required',
-        'identifier' => 'required',
+        'identifier' => 'required|starts_with:10',
         'identifier_type' =>'required'
 
     ];
