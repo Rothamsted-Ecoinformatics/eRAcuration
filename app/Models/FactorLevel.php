@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FactorLevel extends Model
 {
     use HasFactory;
+
     protected $table = 'factor_levels';
 }

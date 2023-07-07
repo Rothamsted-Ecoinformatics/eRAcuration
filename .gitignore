@@ -21,6 +21,6 @@ storage/*.key
 Homestead.yaml
 Homestead.json
 /.vagrant
-.phpunit.result.cache
+/.phpunit.cache
 composer.lock
 history.txt

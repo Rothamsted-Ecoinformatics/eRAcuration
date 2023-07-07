@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Experiment;
 use App\Models\Field;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ExperimentController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
-        $experiments  = Experiment::orderBy('code') ->get();
+        $experiments = Experiment::orderBy('code')->get();
 
         return view('experiments.index', [
-            'experiments' => $experiments
+            'experiments' => $experiments,
         ]);
     }
 
@@ -35,7 +34,6 @@ class ExperimentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,39 +44,33 @@ class ExperimentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $experiment = Experiment::find($id);
         $fields = Field::all();
 
         return view('experiments.edit', [
             'experiment' => $experiment,
-            'fields' => $fields
+            'fields' => $fields,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -86,10 +78,9 @@ class ExperimentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

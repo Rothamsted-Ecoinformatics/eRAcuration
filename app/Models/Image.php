@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Experiment;
-use App\Models\ImageType;
-use App\Models\Person;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,13 +11,15 @@ class Image extends Model
 
     protected $connection = 'sqlsrv';
 
-    protected $casts = 
+    protected $casts =
     [
         'is_www' => 'boolean',
         'is_reviewed' => 'boolean',
     ];
+
     //In our story, an image belongs to one experiment although
-    public function experiment() {
+    public function experiment()
+    {
         return $this->belongsTo(Experiment::class, 'experiment_id');
     }
 
@@ -30,8 +28,8 @@ class Image extends Model
         return $this->belongsTo(ImageType::class, 'image_type_id');
     }
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo(Organisation::class, 'person_id');
     }
-
 }

@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PlotYear extends Model
 {
     use HasFactory;
+
     protected $table = 'plot_years';
 }
