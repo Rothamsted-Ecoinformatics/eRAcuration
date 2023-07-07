@@ -23,8 +23,6 @@ class DatasetDatatables extends LivewireDatatable
 
     /**
      * Write code on Method
-     *
-     * @return response()
      */
 
     /*

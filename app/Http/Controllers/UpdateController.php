@@ -10,8 +10,6 @@ class UpdateController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(): View
     {
@@ -23,8 +21,6 @@ class UpdateController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create(): View
     {
@@ -55,7 +51,6 @@ class UpdateController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Update  $update
-     * @return \Illuminate\Http\Response
      */
     public function edit(Update $id): View
     {

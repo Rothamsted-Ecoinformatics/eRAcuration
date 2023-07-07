@@ -28,8 +28,6 @@ class CropDatatables extends LivewireDatatable
 
     /**
      * Write code on Method
-     *
-     * @return response()
      */
     public function columns(): response
     {

@@ -22,8 +22,6 @@ class ImageDatatables extends LivewireDatatable
 
     /**
      * Write code on Method
-     *
-     * @return response()
      */
     public function columns(): response
     {
