@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use App\Models\Dataset;
 use App\Models\DateType;
 use App\Models\DocumentFile;
@@ -18,7 +16,9 @@ use App\Models\Publisher;
 use App\Models\RelationType;
 use App\Models\SpecificResourceType;
 use App\Models\Subject;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class DatasetController extends Controller
 {

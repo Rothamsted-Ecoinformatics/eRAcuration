@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Models\Experiment;
 use App\Models\Field;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ExperimentController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Models\Download;
+use Illuminate\View\View;
 
 class DownloadController extends Controller
 {

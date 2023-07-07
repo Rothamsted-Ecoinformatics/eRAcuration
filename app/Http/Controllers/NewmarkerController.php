@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Models\Newmarker;
+use Illuminate\View\View;
 
 class NewmarkerController extends Controller
 {
