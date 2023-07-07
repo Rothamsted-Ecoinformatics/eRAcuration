@@ -31,7 +31,7 @@ class CropDatatables extends LivewireDatatable
      *
      * @return response()
      */
-    public function columns()
+    public function columns(): response
     {
         /*
 id

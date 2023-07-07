@@ -35,7 +35,7 @@ class DatasetDatatables extends LivewireDatatable
          ->get();
 
          */
-    public function builder()
+    public function builder(): response
     {
         return Dataset::query()
         ->leftJoin('experiments', 'experiments.id', 'metadata_documents.experiment_id')

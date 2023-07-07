@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Models\Experiment;
 use App\Models\Field;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class ExperimentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $experiments = Experiment::orderBy('code')->get();
 
@@ -48,7 +49,7 @@ class ExperimentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -59,7 +60,7 @@ class ExperimentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $experiment = Experiment::find($id);
         $fields = Field::all();
@@ -76,7 +77,7 @@ class ExperimentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -87,7 +88,7 @@ class ExperimentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

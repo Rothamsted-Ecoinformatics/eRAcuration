@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\Models\Dataset;
 use App\Models\DateType;
 use App\Models\DocumentFile;
@@ -25,7 +27,7 @@ class DatasetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $dataset = Dataset::orderBy('id')->get();
 
@@ -39,7 +41,7 @@ class DatasetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $experiments = Experiment::where('glten_id', '>', 0)
         ->orWhere('code', 'like', '%MS%')
@@ -103,7 +105,7 @@ class DatasetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $template = Dataset::findOrFail($request->templateID);
         $newDataset = $template->duplicate();
@@ -123,7 +125,7 @@ class DatasetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         $arrData = $this->getData($id);
 
@@ -136,7 +138,7 @@ class DatasetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $arrData = $this->getData($id);
         //dd($arrData);
@@ -150,7 +152,7 @@ class DatasetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         /*
 URL: Is there a case that the URL is actually made by formula? after all, we know what to do. Would avoid errors.
@@ -227,7 +229,7 @@ updated_at: timestamps
      *
      * consider using the function "replicate and then send to the edit and save"
      */
-    public function copy($id)
+    public function copy($id): View
     {
         //consider using replicate function then the edit and save so that save on forms. :)
         // https://medium.com/@imanborumand/8-interesting-functions-of-laravel-eloquent-orm-783df3e41b81
@@ -242,7 +244,7 @@ updated_at: timestamps
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

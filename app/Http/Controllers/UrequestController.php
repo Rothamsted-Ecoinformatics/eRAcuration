@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Models\Urequest;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class UrequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $urequests = Urequest::all();
 

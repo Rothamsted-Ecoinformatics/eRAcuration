@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Models\Download;
 
 class DownloadController extends Controller
 {
-    public function show()
+    public function show(): View
     {
         $downloads = Download::where('dlresult', 'LIVE')->orderBy('dldate', 'DESC')->get();
 

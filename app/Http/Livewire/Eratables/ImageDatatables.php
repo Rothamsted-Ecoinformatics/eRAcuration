@@ -25,7 +25,7 @@ class ImageDatatables extends LivewireDatatable
      *
      * @return response()
      */
-    public function columns()
+    public function columns(): response
     {
         return [
             NumberColumn::name('id')

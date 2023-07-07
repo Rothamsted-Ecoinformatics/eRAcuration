@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Models\Update;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class UpdateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         return view('updates.index', [
             //'codes' => $codes,
@@ -25,7 +26,7 @@ class UpdateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('updates.create'); //
     }
@@ -56,7 +57,7 @@ class UpdateController extends Controller
      * @param  \App\Models\Update  $update
      * @return \Illuminate\Http\Response
      */
-    public function edit(Update $id)
+    public function edit(Update $id): View
     {
         $update = Update::find($id);
 
