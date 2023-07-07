@@ -10,11 +10,11 @@ class Crop extends Model
     use HasFactory;
 
     protected $connection = 'sqlsrv';
-    protected $table = "crops";
 
+    protected $table = 'crops';
 
-    public function subject_schemas() {
+    public function subject_schemas()
+    {
         return $this->belongsTo(SubjectSchema::class, 'subject_schemas_id');
     }
-
 }

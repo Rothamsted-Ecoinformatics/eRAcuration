@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Newmarker extends Model
 {
-
     protected $connection = 'mysql';
+
     use HasFactory;
 }

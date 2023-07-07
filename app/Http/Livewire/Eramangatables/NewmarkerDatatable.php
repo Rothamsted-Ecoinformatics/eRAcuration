@@ -2,52 +2,46 @@
 
 namespace App\Http\Livewire\Eramangatables;
 
-use App\Models\Newmarker;
 use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
-use Livewire\Component;
+use Mediconesystems\LivewireDatatables\NumberColumn;
 
 class NewmarkerDatatable extends LivewireDatatable
 {
     public $model = Newmarkers::class;
+
     public $hideable = 'select';
+
     public $exportable = false;
-    public $searchable="lname, institution, position";
+
+    public $searchable = 'lname, institution, position';
 
     public function columns()
     {
-
         return [
             NumberColumn::name('nm-id')
-                -> label('ID'),
+                ->label('ID'),
 
             Column::name('position')
-                ->label('Email')
-                ,
+                ->label('Email'),
 
             Column::name('Doorbell')
                 ->label('doorbell'),
 
             Column::name('fname')
-                -> label('First Name'),
+                ->label('First Name'),
 
             Column::name('lname')
-                -> label('Last Name')
+                ->label('Last Name'),
 
-                ,
-
-                Column::name('institution')
-                -> label('Institution'),
+            Column::name('institution')
+            ->label('Institution'),
 
             Column::name('country')
-                -> label('Country')
-
-                ,
+                ->label('Country'),
 
             Column::name('allowEmails')
-                -> label('Allow Emails')
-                ,
+                ->label('Allow Emails'),
 
         ];
     }

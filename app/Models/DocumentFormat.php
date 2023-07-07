@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DocumentFormat extends Model
 {
     use HasFactory;
+
     protected $table = 'document_formats';
+
     protected $primaryKey = 'id';
+
     public $incrementing = false;
 }

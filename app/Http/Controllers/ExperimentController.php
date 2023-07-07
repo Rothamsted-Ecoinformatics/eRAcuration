@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Experiment;
 use App\Models\Field;
+use Illuminate\Http\Request;
 
 class ExperimentController extends Controller
 {
@@ -15,10 +15,10 @@ class ExperimentController extends Controller
      */
     public function index()
     {
-        $experiments  = Experiment::orderBy('code') ->get();
+        $experiments = Experiment::orderBy('code')->get();
 
         return view('experiments.index', [
-            'experiments' => $experiments
+            'experiments' => $experiments,
         ]);
     }
 
@@ -35,7 +35,6 @@ class ExperimentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -67,14 +66,13 @@ class ExperimentController extends Controller
 
         return view('experiments.edit', [
             'experiment' => $experiment,
-            'fields' => $fields
+            'fields' => $fields,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

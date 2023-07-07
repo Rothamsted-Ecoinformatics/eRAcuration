@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Nutrient extends Model
 {
     use HasFactory;
+
     protected $table = 'nutrients';
 }

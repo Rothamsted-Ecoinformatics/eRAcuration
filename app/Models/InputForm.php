@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class InputForm extends Model
 {
     use HasFactory;
+
     protected $table = 'input_forms';
 }

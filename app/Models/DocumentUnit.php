@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DocumentUnit extends Model
 {
     use HasFactory;
-    protected $table= 'document_units';
+
+    protected $table = 'document_units';
 }

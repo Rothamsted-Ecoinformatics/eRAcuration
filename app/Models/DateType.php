@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DateType extends Model
 {
     use HasFactory;
-    protected $table = 'date_types';
 
+    protected $table = 'date_types';
 }

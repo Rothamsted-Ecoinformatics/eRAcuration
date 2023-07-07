@@ -27,13 +27,12 @@ class UpdateController extends Controller
      */
     public function create()
     {
-        return view('updates.create');//
+        return view('updates.create'); //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +43,6 @@ class UpdateController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Update  $update
      * @return \Illuminate\Http\Response
      */
     public function show(Update $update)
@@ -62,14 +60,12 @@ class UpdateController extends Controller
     {
         $update = Update::find($id);
 
-        return view('updates.edit') ->with('update',$update);
+        return view('updates.edit')->with('update', $update);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Update  $update
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Update $update)
@@ -80,7 +76,6 @@ class UpdateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Update  $update
      * @return \Illuminate\Http\Response
      */
     public function destroy(Update $update)

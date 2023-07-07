@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Plot extends Model
 {
     use HasFactory;
+
     protected $table = 'plots';
 }

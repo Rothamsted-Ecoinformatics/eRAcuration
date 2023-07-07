@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\Image;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,8 +11,8 @@ class Update extends Model
 
     protected $connection = 'sqlsrv';
 
-
-    public function image() {
+    public function image()
+    {
         return $this->belongsTo(Image::class, 'image_id');
     }
 }

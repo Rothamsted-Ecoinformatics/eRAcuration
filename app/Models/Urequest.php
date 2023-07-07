@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Urequest extends Model
 {
     protected $connection = 'mysql';
+
     protected $table = 'urequests';
+
     use HasFactory;
 }

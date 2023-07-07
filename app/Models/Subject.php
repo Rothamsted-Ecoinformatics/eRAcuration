@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
+
     /**
      * The documents that that belong to the subjects.
      */
@@ -17,7 +19,8 @@ class Subject extends Model
         return $this->belongsToMany(Dataset::class, 'document_subjects', 'subject_id', 'metadata_document_id');
     }
 
-    public function subject_schemas() {
+    public function subject_schemas()
+    {
         return $this->belongsTo(SubjectSchema::class, 'subject_schemas_id');
     }
 }

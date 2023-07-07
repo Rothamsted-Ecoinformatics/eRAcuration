@@ -1,25 +1,22 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\Input\AssociatedFiles;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Models\Dataset;
 use App\Models\DateType;
 use App\Models\DocumentFile;
 use App\Models\DocumentFormat;
 use App\Models\Experiment;
-use App\Models\Organisation;
 use App\Models\FundingAward;
+use App\Models\IdentifierType;
+use App\Models\Organisation;
+use App\Models\Person;
+use App\Models\PersonRoleType;
+use App\Models\Publisher;
+use App\Models\RelationType;
 use App\Models\SpecificResourceType;
 use App\Models\Subject;
-use App\Models\Person;
-use App\Models\Publisher;
-use App\Models\PersonRole;
-use App\Models\PersonRoleType;
-use App\Models\RelatedIdentifier;
-use App\Models\IdentifierType;
-use App\Models\RelationType;
+use Illuminate\Http\Request;
 
 class DatasetController extends Controller
 {
@@ -30,10 +27,10 @@ class DatasetController extends Controller
      */
     public function index()
     {
-        $dataset  = Dataset::orderBy('id') ->get();
+        $dataset = Dataset::orderBy('id')->get();
 
         return view('datasets.index', [
-            'dataset' => $dataset
+            'dataset' => $dataset,
         ]);
     }
 
@@ -46,29 +43,28 @@ class DatasetController extends Controller
     {
         $experiments = Experiment::where('glten_id', '>', 0)
         ->orWhere('code', 'like', '%MS%')
-        ->orderBy('code') ->get();
+        ->orderBy('code')->get();
 
         $subjects = Subject::all();
 
         return view('datasets.create', [
             'experiments' => $experiments,
-            'subjects' => $subjects
+            'subjects' => $subjects,
         ]);
     }
-
 
     /**
      * getData :  will collect the data needed for the functions show, edit, and copy.
      * this is an attempt as not repeating myself.
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function getData($id)
     {
         //these are specific to the ID
         $dataset = Dataset::find($id);
-        $allSubjects = Subject::all()->sortBy('subject', SORT_NATURAL|SORT_FLAG_CASE);
+        $allSubjects = Subject::all()->sortBy('subject', SORT_NATURAL | SORT_FLAG_CASE);
         $date_types = DateType::all()->sortBy('type_value');
         $awards = FundingAward::all()->sortBy('abbreviation');
         $persons = Person::all()->sortBy('family_name');
@@ -83,7 +79,7 @@ class DatasetController extends Controller
         $identifier_types = IdentifierType::all()->sortBy('id');
         $relation_types = RelationType::all()->sortBy('type_value');
         $publishers = Publisher::all()->sortBy('name');
-        $arrData= [
+        $arrData = [
             'dataset' => $dataset,
             'allSubjects' => $allSubjects,
             'organisations' => $organisations,
@@ -94,7 +90,7 @@ class DatasetController extends Controller
             'persons' => $persons,
             'person_role_types' => $person_role_types,
             'awards' => $awards,
-            'publishers'=>$publishers,
+            'publishers' => $publishers,
             'relation_types' => $relation_types,
             'date_types' => $date_types,
         ];
@@ -105,7 +101,6 @@ class DatasetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -130,7 +125,7 @@ class DatasetController extends Controller
      */
     public function show($id)
     {
-        $arrData = $this-> getData($id);
+        $arrData = $this->getData($id);
 
         return view('datasets.show', $arrData);
     }
@@ -143,18 +138,15 @@ class DatasetController extends Controller
      */
     public function edit($id)
     {
-
-        $arrData = $this-> getData($id);
+        $arrData = $this->getData($id);
         //dd($arrData);
 
         return view('datasets.edit', $arrData);
-
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -167,71 +159,69 @@ doi_created: Actually, if there is a change, the DOI-Created needs to be deleted
 created_at: timestamps
 updated_at: timestamps
 */
-//TODO: validation rules:
+        //TODO: validation rules:
 
         $request->validate([
             'title' => 'required',
             'experiment_id' => 'required',
-            'publisher_id'=> 'required',
+            'publisher_id' => 'required',
             'description_abstract' => 'required',
         ]);
-$exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
-$version = $request -> input('version');
-$code = strtolower(str_replace("/", "", $exptCode[0]['code']));
-$shortname = $request -> input('short_name');
-$files = DocumentFile::where('metadata_document_ID', $id)->get();
+        $exptCode = Experiment::where('id', $request->input('experiment_id'))->get();
+        $version = $request->input('version');
+        $code = strtolower(str_replace('/', '', $exptCode[0]['code']));
+        $shortname = $request->input('short_name');
+        $files = DocumentFile::where('metadata_document_ID', $id)->get();
 
-if(count($files)>0) {$filename =$files[0]['file_name'];} else {$filename="NOTSUPPLIED";}
+        if (count($files) > 0) {
+            $filename = $files[0]['file_name'];
+        } else {
+            $filename = 'NOTSUPPLIED';
+        }
 
-
-if ($request->general_resource_type_id == 4)
-{
-    $format = 'https://www.era.rothamsted.ac.uk/dataset/%1$s/%2$02d-%3$s';
-    $formattedURL = sprintf($format, $code, $version, $shortname);
-}
-else
-{
-    $format = 'https://www.era.rothamsted.ac.uk/metadata/%1$s/%2$s';
-    $formattedURL = sprintf($format, $code, $filename);
-}
-        $exptCode = Experiment::where('id',  $request-> input('experiment_id'))->get();
+        if ($request->general_resource_type_id == 4) {
+            $format = 'https://www.era.rothamsted.ac.uk/dataset/%1$s/%2$02d-%3$s';
+            $formattedURL = sprintf($format, $code, $version, $shortname);
+        } else {
+            $format = 'https://www.era.rothamsted.ac.uk/metadata/%1$s/%2$s';
+            $formattedURL = sprintf($format, $code, $filename);
+        }
+        $exptCode = Experiment::where('id', $request->input('experiment_id'))->get();
         //dd($exptCode);
         Dataset::where('id', $id)
         ->update([
-            'experiment_id' => $request-> input('experiment_id'),
-            'short_name' => $request-> input('short_name'),
+            'experiment_id' => $request->input('experiment_id'),
+            'short_name' => $request->input('short_name'),
             'url' => $formattedURL,
             'doi_created' => '', // this blanks the DOI created field, so now the DOI will be minted again
-            'description_toc' => $request-> input('description_toc')." " ,
-            'description_technical_info' => $request-> input('description_technical_info')." ",
-            'description_quality' => $request-> input('description_quality')." ",
-            'description_provenance' => $request-> input('description_provenance')." ",
-            'description_methods' => $request-> input('description_methods')." ",
-            'description_abstract' => $request-> input('description_abstract')." ",
-            'description_other' => $request-> input('description_other')." ",
-            'document_format_id' => $request -> input('document_format_id')." ",
-            'publication_year' => $request -> input('publication_year')." ",
-            'dataset_type' => $request -> input('dataset_type'),
-            'title' => $request -> input('title')." ",
-            'publisher_id' => $request -> input('publisher_id'),
-            'general_resource_type_id' => $request -> input('general_resource_type_id'),
-            'specific_resource_type_id' => $request -> input('specific_resource_type_id'),
-            'grade' => $request -> input('grade'),
-            'is_ready' => $request -> input('is_ready'),
-            'is_external' => $request -> input('is_external'),
-            'lang' => $request -> input('lang'),
-            'version' => $request -> input('version'),
-            'rights_text' => $request -> input('rights_text')." ",
-            'rights_licence_uri' => $request -> input('rights_licence_uri')." ",
-            'rights_licence' => $request -> input('rights_licence')." "
+            'description_toc' => $request->input('description_toc').' ',
+            'description_technical_info' => $request->input('description_technical_info').' ',
+            'description_quality' => $request->input('description_quality').' ',
+            'description_provenance' => $request->input('description_provenance').' ',
+            'description_methods' => $request->input('description_methods').' ',
+            'description_abstract' => $request->input('description_abstract').' ',
+            'description_other' => $request->input('description_other').' ',
+            'document_format_id' => $request->input('document_format_id').' ',
+            'publication_year' => $request->input('publication_year').' ',
+            'dataset_type' => $request->input('dataset_type'),
+            'title' => $request->input('title').' ',
+            'publisher_id' => $request->input('publisher_id'),
+            'general_resource_type_id' => $request->input('general_resource_type_id'),
+            'specific_resource_type_id' => $request->input('specific_resource_type_id'),
+            'grade' => $request->input('grade'),
+            'is_ready' => $request->input('is_ready'),
+            'is_external' => $request->input('is_external'),
+            'lang' => $request->input('lang'),
+            'version' => $request->input('version'),
+            'rights_text' => $request->input('rights_text').' ',
+            'rights_licence_uri' => $request->input('rights_licence_uri').' ',
+            'rights_licence' => $request->input('rights_licence').' ',
         ]);
 
-
-        return redirect ('/datasets/'.$id);
+        return redirect('/datasets/'.$id);
     }
 
     /**
-     *
      * Copy is a way to use an existing item as a template to make a new one.
      * So we have a copy form filled in with selected fields from the ID, but it is then passed to a Store that creates a new row.
      *
@@ -241,10 +231,11 @@ else
     {
         //consider using replicate function then the edit and save so that save on forms. :)
         // https://medium.com/@imanborumand/8-interesting-functions-of-laravel-eloquent-orm-783df3e41b81
-        $arrData = $this-> getData($id);
-        return view('datasets.copy', $arrData)
-     ;
+        $arrData = $this->getData($id);
+
+        return view('datasets.copy', $arrData);
     }
+
     /**
      * Remove the specified resource from storage.
      *

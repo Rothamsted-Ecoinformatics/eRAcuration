@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class InputUnit extends Model
 {
     use HasFactory;
+
     protected $table = 'input_units';
 }

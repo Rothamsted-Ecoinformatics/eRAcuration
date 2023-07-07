@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ExperimentFactor extends Model
 {
     use HasFactory;
+
     protected $table = 'experiment_factors';
 }

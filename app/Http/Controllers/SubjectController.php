@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Subject;
+use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
@@ -16,9 +16,8 @@ class SubjectController extends Controller
     {
         $subjects = Subject::All();
 
-
         return view('subjects.index', [
-            'subjects' => $subjects
+            'subjects' => $subjects,
         ]);
     }
 
@@ -37,7 +36,6 @@ class SubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -70,7 +68,6 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

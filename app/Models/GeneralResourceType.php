@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralResourceType extends Model
 {
     use HasFactory;
+
     protected $table = 'general_resource_types';
 }

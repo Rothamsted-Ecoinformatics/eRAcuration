@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PlotYearFactorLevel extends Model
 {
     use HasFactory;
+
     protected $table = 'plot_year_factor_levels';
 }

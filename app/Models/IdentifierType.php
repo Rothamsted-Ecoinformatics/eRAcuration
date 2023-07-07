@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class IdentifierType extends Model
 {
     use HasFactory;
+
     protected $table = 'identifier_types';
 }
