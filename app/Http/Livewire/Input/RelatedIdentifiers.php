@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Input;
 
+use Illuminate\Validation\Rule;
+
 use Livewire\Component;
 use App\Models\Dataset;
 use App\Models\RelatedIdentifier;
@@ -17,14 +19,13 @@ class RelatedIdentifiers extends Component
     public $name = '';
     public $identifier_type = 'DOI';
     public $dataset_id;
-
+    /*add the constant validation rules here
+    */
     protected $rules = [
         'identifier' => 'required|max:100',
         'name' => 'required|max:100',
         'relation_type_id' => 'required',
-        'identifier' => 'required|starts_with:10',
         'identifier_type' =>'required'
-
     ];
 
     public function mount() {
@@ -43,15 +44,19 @@ class RelatedIdentifiers extends Component
     }
 
     public function addRelatedIdentifier() {
+        /*
+        add the conditional validation rules here
+        */
+        $this->validate([
+            'identifier' => ['required', Rule::when($this->identifier_type == 'DOI',['starts_with:10'])],
+        ]);
 
-        $this->validate();
-
-        $corrected_identifier = str_replace("https://doi.org/","",$this->identifier); // in case the curator enters teh URL in front.
+        //$corrected_identifier = str_replace("https://doi.org/","",$this->identifier); // in case the curator enters teh URL in front.
 
         $rel_id = new RelatedIdentifier;
         $rel_id->metadata_document_id = $this->dataset_id;
         $rel_id->relation_type_id = $this->relation_type_id;
-        $rel_id->identifier = $corrected_identifier;
+        $rel_id->identifier = $this->identifier;
         $rel_id->name = $this->name;
         $rel_id->identifier_type_id = $this->identifier_type;
         $rel_id->save();
