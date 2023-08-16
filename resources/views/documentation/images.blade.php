@@ -1,6 +1,6 @@
 <a name="images"></a>
 <h2 class="px-5 pt-5 text-3xl font-bold uppercase">Images</h2>
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">In short</h3>
+<h3 class="px-7 pt-5 text-2l font-bold text-slate-900">In short</h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Images location: All the images are located in the `images` folder. Upload them in <b>INTRANET-SERVER\era2023\images\</b></li>
     <li>Images in the pink border are in the eracuration storage folder - that might be relevant later. </li>
@@ -14,7 +14,7 @@
         Use the name that makes the most sense.
             use hyphens (-), no space, no underscores. The image processing tool will rename the images.
 </ul>
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Images folder - types</h2>
+<h3 class="px-7 pt-5 text-2l font-bold text-slate-900">Images folder - types</h2>
 
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>`600X400`: a series of standard images in that format</li>
@@ -29,7 +29,7 @@
 
 </ul>
 
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Sizing</h3>
+<h3 class="px-7 pt-5 text-2l font-bold text-slate-900">Sizing</h3>
 <p>
     It is nice to have the full size image to work on, and may be so that people can download it. However, the max
     size we need is 1200 width. For the web site, there is no need for bigger. <br>
@@ -44,7 +44,7 @@
     <li>`Thumbs`: set to 150</li>
 </ul>
 <p>
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900"> Using images</h3>
+<h3 class="px-7 pt-5 text-2l font-bold text-slate-900"> Using images</h3>
 
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Images marked as is_www (for Media Tab) will be incorporated in the media tab of the relevant experiment
@@ -54,14 +54,16 @@
         The different sizes are loaded at different breakpoint so as to appear sharp at all resolutions.</li>
 </ul>
 <a name="addImage"></a>
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Add Images</h3>
+<h3 class="px-7 pt-5 text-2l font-bold text-slate-900">Add Images</h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Save images in the "INTRANET-SERVER/eRA/era2023/images" folder under the relevant folder (metadata
         for image that is relevant to the experiments or the stations, banners, people and so on) </li>
     <li>Run GImages in the app folder to rename and insert images</li>
     <li>Only when image can be seen in this table, is it safe to use in a web page. </li>
 </ul>
+
 <h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Improvements? </h3>
+
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Make the intranet images read from storage folder</li>
     <li>make function to import images into the storage folder and edit captions and so on</li>
