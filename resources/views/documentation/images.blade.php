@@ -61,7 +61,7 @@
     <li>Run GImages in the app folder to rename and insert images</li>
     <li>Only when image can be seen in this table, is it safe to use in a web page. </li>
 </ul>
-<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Imporvements? </h3>
+<h3 class="px-7 pt-5 text-2l  font-bold text-slate-900">Improvements? </h3>
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Make the intranet images read from storage folder</li>
     <li>make function to import images into the storage folder and edit captions and so on</li>
