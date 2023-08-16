@@ -74,6 +74,8 @@ class DatasetController extends Controller
         $persons = Person::all()->sortBy('family_name');
         $experiments = Experiment::where('glten_id', '>', 0)
         ->orWhere('code', 'like', '%MS%')
+        ->orWhere('code', 'like', '%DOCS%')
+        ->orWhere('code', 'like', '%WASTE%')
         ->orderBy('code')
         ->get();
         $document_formats = DocumentFormat::orderby('id')->get();
