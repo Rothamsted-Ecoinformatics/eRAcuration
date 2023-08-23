@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header sticky top-0  bg-blue-600 text-center">
+        <div class="card-header sticky top-0 bg-blue-600 text-center">
             <div class="flex flex-row items-center justify-between">
                 <div class="basis-3/4 p-3">
                     <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">{{ $dataset->title }}
@@ -130,7 +130,7 @@
                         <h3 class="text-lg font-bold text-slate-600">Contributors</h3>
                         <ul class="list-disc ml-3 text-sm text-slate-600">
                             @foreach ($dataset->contributors as $contributor)
-                                <li class="list-disc ml-6  ">{{ $contributor->given_name }}
+                                <li class="list-disc ml-6">{{ $contributor->given_name }}
                                     {{ $contributor->family_name }} ({{ltrim(ucwords(implode(' ',preg_split('/(?=[A-Z])/', $contributor->pivot->person_role_type->type_value))))}})
                                 </li>
                             @endforeach

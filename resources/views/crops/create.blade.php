@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-blue-600 text-center">
-            <h1 class="text-4xl text-slate-100 text-bold justify-center p-9 ">Add a Crop </h1>
+            <h1 class="text-4xl text-slate-100 text-bold justify-center p-9">Add a Crop </h1>
         </div>
         <div class="card-body">
            

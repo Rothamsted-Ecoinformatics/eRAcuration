@@ -9,9 +9,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-slate-300 ">
+                <tr class="bg-slate-300">
                     <td class="w-5/12 py-3 px-4 text-left">
-                        <select class="form-select block w-full mt-1  rounded-md"
+                        <select class="form-select block w-full mt-1 rounded-md"
                               wire:model="date_type_id">
                             @foreach ($date_types as $date_type)
                                 <option value="{{ $date_type->id }}" >

@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-slate-300 ">
+            <tr class="bg-slate-300">
                 <td class="w-5/6 py-3 px-4 text-left">
                     <select class="form-select mt-1 block w-full rounded-md" wire:model="authorOrg">
                         <option value="">Select an organisation</option>
@@ -30,11 +30,11 @@
             <tr class="border-l border-r {{ $loop->first ? 'border-t ' : '' }}
                 {{ $loop->last ? 'border-b ' : '' }}
                 ">
-                    <td class="w-5/6 py-1 px-4  text-left">
+                    <td class="w-5/6 py-1 px-4 text-left">
                         <label class="ml-7">  {{ $authorOrg->name }} ({{ $authorOrg->abbreviation }})</label>
 
                     </td>
-                    <td class="w-1/6 py-1 px-4  text-right">
+                    <td class="w-1/6 py-1 px-4 text-right">
                         <button wire:click.prevent="removeAuthorOrg({{$authorOrg->id}})">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor">

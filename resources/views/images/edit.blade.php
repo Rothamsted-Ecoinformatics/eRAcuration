@@ -6,8 +6,8 @@
 
             <div class="card-header bg-blue-600 text-center">
                 <div class="flex flex-row items-center justify-center">
-                    <div class="basis-3/4  p-5">
-                        <h1 class="text-4xl text-slate-100 text-bold   ">eRA-curation - Edit an image
+                    <div class="basis-3/4 p-5">
+                        <h1 class="text-4xl text-slate-100 text-bold">eRA-curation - Edit an image
                         </h1>
                     </div>
                     <div class="basis-1/4 p-5">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex  flex-row border-b-2 border-rose-700">
+            <div class="flex flex-row border-b-2 border-rose-700">
                 <div class="flex basis-1/3 justify-center bg-slate-400">
                     <div>
                         <ul class="p-5">
@@ -58,15 +58,15 @@
 
                         <label class="">
                             <span class="mt-3 p-2 text-lg font-semibold text-gray-700">Caption for the image</span>
-                            <textarea class="form-textarea  w-full  rounded-lg" name="caption" rows="2">{{ $image->caption }}</textarea>
+                            <textarea class="form-textarea w-full rounded-lg" name="caption" rows="2">{{ $image->caption }}</textarea>
                         </label>
                         <label class="">
                             <span class="mt-3 p-2 text-lg font-semibold text-gray-700"  title="A larger description might be needed sometimes. This field gives flexibility">Description*</span>
-                            <textarea class="form-textarea  w-full  rounded-lg" name="description" rows="3">{{ $image->description }}</textarea>
+                            <textarea class="form-textarea w-full rounded-lg" name="description" rows="3">{{ $image->description }}</textarea>
                         </label>
                         <label class="">
                             <span class="mt-3 p-2 text-lg font-semibold text-gray-700" title="Please ask to add more options if needed">Credits*</span>
-                            <select class="form-select  w-full  rounded-lg" name="person_id">
+                            <select class="form-select w-full rounded-lg" name="person_id">
                                 <option value="1">Rothamsted Research</option>
                                 <option value="2">Other</option>
                             </select>
@@ -85,7 +85,7 @@
                         @endif
                         <label class="">
                             <span class="mt-3 p-2 text-lg font-semibold text-gray-700">Orientation</span>
-                            <select class="form-select  w-full  rounded-lg" name="orientation">
+                            <select class="form-select w-full rounded-lg" name="orientation">
                                 <option value="landscape" {{ $landscape }}>Landscape</option>
                                 <option value="portrait" {{ $portrait }}>Portrait</option>
                             </select>

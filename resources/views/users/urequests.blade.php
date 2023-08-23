@@ -17,8 +17,8 @@
             <livewire:eramangatables.urequest-datatables searchable="ltes, lname, institution, country, IP" />
 
         </div>
-        <div class="border-b-2 border-orange-500 border bg-orange-100  px-5">
-            <h2 class="text-3xl  uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
+        <div class="border-b-2 border-orange-500 border bg-orange-100 px-5">
+            <h2 class="text-3xl uppercase font-extrabold pt-5"><a name="localHelp"></a> Documentation</h2>
 
             <p>Codes: Here are the translations of the codes</p>
             <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">

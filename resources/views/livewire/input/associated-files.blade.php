@@ -11,14 +11,14 @@
             <tr class="bg-slate-300">
                 <td class="w-5/6 py-3 px-4 text-left">
                     <label class="block">
-                        <span class="p-2 text-sm  text-gray-400">Title or Caption
+                        <span class="p-2 text-sm text-gray-400">Title or Caption
                         </span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model.lazy='title'
                             placeholder="Please enter a caption of title for that file" />
                             @error('title') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
-                        <span class="p-2 text-sm  text-gray-400">File Name without
+                        <span class="p-2 text-sm text-gray-400">File Name without
                             extension</span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model.lazy='file_name'
                             placeholder="Please enter the filename without extension" />
@@ -26,7 +26,7 @@
 
                     </label>
                     <label class="block">
-           <span class="p-2 text-sm  text-gray-400">Extension</span>
+           <span class="p-2 text-sm text-gray-400">Extension</span>
                         <select class="form-select mt-1 block w-full rounded-md" wire:model='extension'>
                             <option value="">Select extension</option>
                             <option value="csv">csv</option>
@@ -44,13 +44,13 @@
                     </label>
                     @error('extension') <span class="text-red-700">{{ $message }}</span> @enderror
                     <label class="block">
-                        <span class="p-2 text-sm  text-gray-400">Size</span>
+                        <span class="p-2 text-sm text-gray-400">Size</span>
                         <input class="form-input mt-1 block w-full rounded-md" type="text" wire:model.lazy='size_value'
                              />
                              @error('size_value') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
-                        <span class="p-2 text-sm  text-gray-400">Unit</span>
+                        <span class="p-2 text-sm text-gray-400">Unit</span>
                         <select class="form-select mt-1 block w-full rounded-md" wire:model='document_unit_id'>
                             <option value="">Select Unit</option>
                             <option value="KB">KB</option>
@@ -61,7 +61,7 @@
                         @error('document_unit_id') <span class="text-red-700">{{ $message }}</span> @enderror
                     </label>
                     <label class="block">
-                        <span class="p-2 text-sm  text-gray-400"
+                        <span class="p-2 text-sm text-gray-400"
                             title="One illustration image can be added here to be placed at the top of the page">is
                             illustration*</span>
                         <fieldset class="block">
