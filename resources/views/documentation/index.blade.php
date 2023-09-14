@@ -99,6 +99,7 @@
             </div>
             <div class="m-2 flex basis-2/3 justify-center">
                 <div class="rounded border-2 border-sky-500 p-2">
+                    @include('documentation.datasets')
                     @include('documentation.images')
                     @include('documentation.styles')
                 </div>

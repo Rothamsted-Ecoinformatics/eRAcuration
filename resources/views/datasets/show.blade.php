@@ -8,7 +8,18 @@
                     <h1 class="text-bold justify-center p-4 text-3xl text-slate-100">{{ $dataset->title }}
                     </h1>
                 </div>
+
+
+
                 <div class="basis-1/4 p-3">
+                    <form action="/datasets/{{ $dataset->id }}/recycle" method="GET">
+                        @csrf
+                        @method('GET')
+                        <button
+                            class="float-right m-2 inline-block transform rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-orange-900"
+                            type="submit">recycle</button>
+                    </form>
+
                     <a class="float-right m-2 inline-block transform rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 active:bg-blue-900"
                         href="/datasets/{{ $dataset->id }}/edit">edit</a>
                 </div>
@@ -94,9 +105,11 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="rounded-xl border-2 border-orange-400 p-5 mt-2">
                         @livewire('add.dataset-from-template', ['template_id' => $dataset->id ])
                     </div>
+
                 </div>
                 <div class="basis-2/3 p-3">
                     <div class="rounded-xl border-2 border-slate-400 p-5">

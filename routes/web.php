@@ -30,7 +30,7 @@ Route::resource('updates', UpdateController::class);
 Route::resource('experiments', ExperimentController::class);
 Route::resource('urequests', UrequestController::class);
 Route::get('datasets/{dataset}/copy', [DatasetController::class, 'copy' ]); //to make a new one from template
-
+Route::get('datasets/{dataset}/recycle', [DatasetController::class, 'recycle' ]); //to move dataset to recycle bin
 
 Route::get('users', [newmarkerController::class,'show']) ->name('users');
 Route::get('downloads',[DownloadController::class,'show']) ->name('downloads');
