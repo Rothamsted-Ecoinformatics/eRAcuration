@@ -248,8 +248,21 @@ else
      ;
     }
     /**
-     * Remove the specified resource from storage.
-     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function recycle($id)
+    {
+        Dataset::where('id', $id)
+        ->update([
+            'experiment_id' => 36
+        ]);
+
+
+        return redirect ('/datasets/');
+    }
+
+    /**
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

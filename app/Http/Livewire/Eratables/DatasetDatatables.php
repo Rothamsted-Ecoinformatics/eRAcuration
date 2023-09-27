@@ -45,7 +45,8 @@ class DatasetDatatables extends LivewireDatatable
         return Dataset::query()
         ->leftJoin('experiments', 'experiments.id', 'metadata_documents.experiment_id')
         ->leftJoin('general_resource_types', 'general_resource_types.id', 'metadata_documents.general_resource_type_id')
-        ->leftJoin('specific_resource_types', 'specific_resource_types.id', 'metadata_documents.specific_resource_type_id');
+        ->leftJoin('specific_resource_types', 'specific_resource_types.id', 'metadata_documents.specific_resource_type_id')
+        ->whereNot('experiments.id', 36);
     }
     public function columns()
     {
