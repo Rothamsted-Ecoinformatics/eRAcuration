@@ -67,8 +67,8 @@
                         <label class="">
                             <span class="mt-3 p-2 text-lg font-semibold text-gray-700" title="Please ask to add more options if needed">Credits*</span>
                             <select class="form-select w-full rounded-lg" name="person_id">
-                                <option value="1">Rothamsted Research</option>
-                                <option value="2">Other</option>
+                                <option value="71">eRA Curator</option>
+                                <option value="17">Sarah Perryman</option>
                             </select>
                         </label>
 

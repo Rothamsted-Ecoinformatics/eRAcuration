@@ -76,9 +76,11 @@ class ImageDatatables extends LivewireDatatable
                 -> truncate(30)
                 -> hide(),
 
-            Column::name('author.name')
+            Column::name('author.given_name')
                 -> label('Author'),
 
+            Column::name('author.family_name')
+                -> label('Author2'),
             Column::callback(['file_location'], function ($file_location  ) {
                 return view('images.callback', ['file_location' => $file_location]);
             })
@@ -114,4 +116,5 @@ class ImageDatatables extends LivewireDatatable
         return Experiment::distinct()
         ->pluck('folder');
     }
+
 }
