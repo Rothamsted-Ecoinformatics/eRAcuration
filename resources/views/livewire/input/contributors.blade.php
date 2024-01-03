@@ -16,7 +16,7 @@
                         <option value="">Select a Person</option>
                         @foreach ($filteredPersons as $filteredPerson)
                             <option value="{{ $filteredPerson->id }}">
-                                {{ $filteredPerson->given_name }} {{ $filteredPerson->family_name }}
+                               {{ $filteredPerson->family_name }}, {{ $filteredPerson->given_name }}
                             </option>
                         @endforeach
 
@@ -49,7 +49,7 @@
                 {{ $loop->last ? 'border-b ' : '' }}
                 ">
                     <td class="w-1/3 text-left py-3 px-4">
-                        <label class="ml-7">{{ $contributor->given_name }} {{ $contributor->family_name }}</label>
+                        <label class="ml-7">{{ $filteredPerson->family_name }}, {{ $filteredPerson->given_name }}</label>
                     </td>
                     <td class="w-1/3 text-left py-3 px-4">
                         <label class="ml-7">{{ $contributor->pivot->person_role_type->type_value  }}</label>
