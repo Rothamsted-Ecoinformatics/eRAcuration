@@ -15,7 +15,7 @@
                         <option value="">Choose a Person</option>
                         @foreach ($filteredAuthors as $filteredAuthor)
                             <option value="{{ $filteredAuthor->id }}">
-                                {{ $filteredAuthor->given_name }} {{ $filteredAuthor->family_name }}
+                                {{ $filteredAuthor->family_name }}, {{ $filteredAuthor->given_name }}
                             </option>
                         @endforeach
                     </select>

@@ -15,7 +15,7 @@ class Image extends Model
 
     protected $connection = 'sqlsrv';
 
-    protected $casts = 
+    protected $casts =
     [
         'is_www' => 'boolean',
         'is_reviewed' => 'boolean',
@@ -31,7 +31,7 @@ class Image extends Model
     }
 
     public function author() {
-        return $this->belongsTo(Organisation::class, 'person_id');
+        return $this->belongsTo(Person::class, 'person_id');
     }
 
 }

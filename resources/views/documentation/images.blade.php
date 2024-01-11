@@ -58,7 +58,7 @@
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Save images in the "INTRANET-SERVER/eRA/era2023/images" folder under the relevant folder (metadata
         for image that is relevant to the experiments or the stations, banners, people and so on) </li>
-    <li>Run GImages in the app folder to rename and insert images</li>
+    <li>Run GImages.exe in the website maintenace (--- \Rothamsted Research\e-RA - Documents\Website maintenance\update eRA website from eraGILBERT )app folder to rename and insert images</li>
     <li>Only when image can be seen in this table, is it safe to use in a web page. </li>
 </ul>
 
@@ -66,6 +66,6 @@
 
 <ul class="list-inside list-disc px-9 pt-5 text-sm text-slate-900">
     <li>Make the intranet images read from storage folder</li>
-    <li>make function to import images into the storage folder and edit captions and so on</li>
+    <li>Make function to import images into the storage folder and edit captions and so on</li>
     <li>Think about how we transfer images from the storage folder to the internet</li>
 </ul>

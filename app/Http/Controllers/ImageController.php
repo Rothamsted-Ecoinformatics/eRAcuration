@@ -87,6 +87,7 @@ class ImageController extends Controller
             'caption' => $request-> input('caption'),
             'description' => $request-> input('description'),
             'orientation' => $request -> input('orientation'),
+            'person_id' => $request -> input('person_id'),
             'is_www' => $request -> input('forWWW'),
             'is_reviewed' => $request -> input('isReviewed')
         ]);
