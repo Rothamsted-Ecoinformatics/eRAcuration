@@ -23,7 +23,7 @@ class RelatedIdentifiers extends Component
     */
     protected $rules = [
         'identifier' => 'required|max:100',
-        'name' => 'required|max:100',
+        'name' => 'required|max:99',
         'relation_type_id' => 'required',
         'identifier_type' =>'required'
     ];
@@ -49,6 +49,9 @@ class RelatedIdentifiers extends Component
         */
         $this->validate([
             'identifier' => ['required', Rule::when($this->identifier_type == 'DOI',['starts_with:10'])],
+            'name' => ['required','max:99'],
+            'relation_type_id' => 'required',
+            'identifier_type' =>'required'
         ]);
 
         //$corrected_identifier = str_replace("https://doi.org/","",$this->identifier); // in case the curator enters teh URL in front.
