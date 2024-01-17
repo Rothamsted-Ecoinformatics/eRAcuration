@@ -22,7 +22,10 @@ class UrequestDatatables extends LivewireDatatable
         return Urequest::where('dlresult','LIVE');
     }
     */
-
+    public function builder()
+    {
+        return Urequest::where('dlresult','LIVE');
+    }
 
 
     public function columns()
