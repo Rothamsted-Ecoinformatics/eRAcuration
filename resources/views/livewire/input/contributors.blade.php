@@ -49,7 +49,7 @@
                 {{ $loop->last ? 'border-b ' : '' }}
                 ">
                     <td class="w-1/3 text-left py-3 px-4">
-                        <label class="ml-7">{{ $filteredPerson->family_name }}, {{ $filteredPerson->given_name }}</label>
+                        <label class="ml-7">{{ $contributor->family_name }}, {{ $contributor->given_name }}</label>
                     </td>
                     <td class="w-1/3 text-left py-3 px-4">
                         <label class="ml-7">{{ $contributor->pivot->person_role_type->type_value  }}</label>
