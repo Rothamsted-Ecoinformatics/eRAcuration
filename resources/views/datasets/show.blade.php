@@ -240,7 +240,7 @@ old_md_id --}}
                                 @foreach ($dataset->funders as $funder)
                                     <li>{{ $funder->reference_number }} : <a class="text-blue-600 visited:text-pink-900 hover:text-blue-800 hover:underline"
                                             href="{{ $funder->uri }}">{{ $funder->title }}</a>
-                                        ({{ $funder->organisation->abbreviation }})
+                                        ({{ $funder->organisation->abbreviation }}) - {{ $funder->pivot->comment }}
                                     </li>
                                 @endforeach
                             </ul>

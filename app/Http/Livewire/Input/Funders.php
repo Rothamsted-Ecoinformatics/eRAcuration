@@ -8,6 +8,7 @@ use App\Models\FundingAward;
 class Funders extends Component
 {
     public $funder;
+    public $comment;
     public $dsfunderid;
     public $awards;
     public $filteredfunders;
@@ -30,7 +31,8 @@ class Funders extends Component
     }
 
     public function addFunder() {
-        $this->dataset->funders()->attach($this->funder);
+
+        $this->dataset->funders()->attach($this->funder, ['comment'=>$this->comment]);
         $this->refresh();
     }
 

@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr class="bg-slate-300">
-                <td class="w-5/6 text-left py-3 px-4">
+                <td class="w-3/6 text-left py-3 px-4">
                     <select class="form-select block w-full mt-1 rounded-md"
                         wire:model='funder'>
                         <option value="">Choose a Funding Award</option>
@@ -21,7 +21,13 @@
                             </option>
                         @endforeach
                     </select>
+
                 </td>
+                <td class="w-2/6 text-left py-3 px-4">
+                    <input class="form-input block w-full mt-1 rounded-md "
+                        wire:model='comment'>
+                </td>
+
                 <td class="w-1/6 py-3 px-4 text-right">
                     <button
                         class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
@@ -38,7 +44,12 @@
                 <td class="w-5/6 text-left py-1 px-4">
                     <label class="ml-7">
                                 {{ $funder->reference_number }} - {{ $funder->title }}
-                                ({{ $funder->organisation->abbreviation }})</label>
+                                ({{ $funder->organisation->abbreviation }})
+                            @if ($funder->pivot->comment )
+                               - {{ $funder->pivot->comment }}
+                            @else
+                            @endif
+                    </label>
 
                 </td>
                 <td class="w-1/6 py-1 px-4 text-right">
