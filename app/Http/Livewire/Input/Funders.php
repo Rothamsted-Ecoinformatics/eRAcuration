@@ -7,7 +7,7 @@ use App\Models\Dataset;
 use App\Models\FundingAward;
 class Funders extends Component
 {
-    public $funderID = 6;
+    public $funderID = 0;
     public $comment;
     public $dsfunderid;
     public $awards;
@@ -25,10 +25,10 @@ class Funders extends Component
     }
     public function getComment()
     {
-        if ($this->funderID != '') {
+        if ($this->funderID != 0) {
             $this->comment = FundingAward::where('id', $this->funderID)->pluck('WorkPackages');
         } else {
-            $this->comment = '';
+            $this->comment = 'Delete what is not needed';
         }
     }
     public function updatedFunderID() {
@@ -39,10 +39,12 @@ class Funders extends Component
 
 
     public function refresh() {
+        $this->funderID = 0;
         $this->dataset = Dataset::find($this->dataset_id);
         $this->dsfunderid = Dataset::where('id', $this->dataset_id)->first()->funders()->pluck('funding_awards.id')->toArray();
         $this->awards = FundingAward::all()->whereNotIn('id', $this->dsfunderid)->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
         //$this->awards = FundingAward::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        $this ->  getComment();
     }
 
     public function addFunder() {

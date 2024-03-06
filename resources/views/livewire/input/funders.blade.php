@@ -35,7 +35,7 @@
                             </span>
                     <input class="form-input block w-full mt-1 rounded-md "
                     id = "comment"
-                        wire:model='comment'>
+                    wire:model='comment'>
                         </label>
                 </td>
                 <td class="w-1/6 py-3 px-4 text-right">
