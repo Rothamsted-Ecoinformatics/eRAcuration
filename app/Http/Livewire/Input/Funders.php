@@ -7,7 +7,7 @@ use App\Models\Dataset;
 use App\Models\FundingAward;
 class Funders extends Component
 {
-    public $funder;
+    public $funderID = 6;
     public $comment;
     public $dsfunderid;
     public $awards;
@@ -20,8 +20,23 @@ class Funders extends Component
         $this->dsfunderid = Dataset::where('id', $this->dataset_id)->first()->funders()->pluck('funding_awards.id')->toArray();
         $this->awards = FundingAward::all()->whereNotIn('id', $this->dsfunderid)->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
         //$this->awards = FundingAward::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        // I am getting the comment from the database: this will be the list of work packages. The curator will then delete those that do not apply
+        $this ->  getComment();
+    }
+    public function getComment()
+    {
+        if ($this->funderID != '') {
+            $this->comment = FundingAward::where('id', $this->funderID)->pluck('WorkPackages');
+        } else {
+            $this->comment = '';
+        }
+    }
+    public function updatedFunderID() {
+        $this -> getComment();
 
     }
+
+
 
     public function refresh() {
         $this->dataset = Dataset::find($this->dataset_id);
@@ -32,7 +47,7 @@ class Funders extends Component
 
     public function addFunder() {
 
-        $this->dataset->funders()->attach($this->funder, ['comment'=>$this->comment]);
+        $this->dataset->funders()->attach($this->funderID, ['comment'=>$this->comment]);
         $this->refresh();
     }
 
