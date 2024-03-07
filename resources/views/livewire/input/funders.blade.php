@@ -11,8 +11,11 @@
         <tbody>
             <tr class="bg-slate-300">
                 <td class="w-5/6 text-left py-3 px-4">
-                    <select class="form-select block w-full mt-1 rounded-md"
-                        wire:model='funder'>
+                    <label class="block">
+                        <span class="p-2 text-sm text-gray-400">Choose the ISP or main award
+                        </span>
+                    <select class="form-select block w-full mt-1 rounded-md" id="funderID"
+                        wire:model='funderID'>
                         <option value="">Choose a Funding Award</option>
                         @foreach ($awards as $award)
                             <option value="{{ $award->id }}">
@@ -21,12 +24,26 @@
                             </option>
                         @endforeach
                     </select>
+                    </label>
+
+                </td>
+                <td></td></tr>
+            <tr class="bg-slate-300">
+                    <td class="w-5/6 text-left py-3 px-4">
+                        <label class="block">
+                            <span class="p-2 text-sm text-gray-400">List of Work Packages: delete what's not needed
+                            </span>
+                    <input class="form-input block w-full mt-1 rounded-md "
+                    id = "comment"
+                    wire:model='comment'>
+                        </label>
                 </td>
                 <td class="w-1/6 py-3 px-4 text-right">
                     <button
                         class="disable:cursor-not-allowed rounded bg-indigo-500 py-2 px-4 text-white hover:bg-indigo-500 disabled:bg-opacity-10"
                         wire:click.prevent="addFunder">Add</button>
-                </td>
+                <td></td></tr>
+
             </tr>
 
 
@@ -38,7 +55,12 @@
                 <td class="w-5/6 text-left py-1 px-4">
                     <label class="ml-7">
                                 {{ $funder->reference_number }} - {{ $funder->title }}
-                                ({{ $funder->organisation->abbreviation }})</label>
+                                ({{ $funder->organisation->abbreviation }})
+                            @if ($funder->pivot->comment )
+                               - {{ $funder->pivot->comment }}
+                            @else
+                            @endif
+                    </label>
 
                 </td>
                 <td class="w-1/6 py-1 px-4 text-right">

@@ -51,7 +51,7 @@ class Dataset extends Model
     }
     public function funders()
     {
-        return $this->belongsToMany(FundingAward::class, 'document_funders', 'metadata_document_id', 'funding_award_id');
+        return $this->belongsToMany(FundingAward::class, 'document_funders', 'metadata_document_id', 'funding_award_id')->withPivot('comment');
     }
     public function authors()
     {
