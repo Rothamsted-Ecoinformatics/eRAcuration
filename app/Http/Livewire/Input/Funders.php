@@ -17,16 +17,16 @@ class Funders extends Component
 
     public function mount() {
         $this->dataset = Dataset::find($this->dataset_id);
-        $this->dsfunderid = Dataset::where('id', $this->dataset_id)->first()->funders()->pluck('funding_awards.id')->toArray();
-        $this->awards = FundingAward::all()->whereNotIn('id', $this->dsfunderid)->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
-        //$this->awards = FundingAward::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        $this->dsfunderid = Dataset::where('id',$this->dataset_id)->first()->funders()->pluck('funding_awards.id')->toArray();
+        $this->awards = FundingAward::all()->whereNotIn('id',$this->dsfunderid)->sortBy('title',SORT_NATURAL|SORT_FLAG_CASE);
+        //$this->awards = FundingAward::all()->sortBy('title',SORT_NATURAL|SORT_FLAG_CASE);
         // I am getting the comment from the database: this will be the list of work packages. The curator will then delete those that do not apply
         $this ->  getComment();
     }
     public function getComment()
     {
         if ($this->funderID != 0) {
-            $this->comment = FundingAward::where('id', $this->funderID)->pluck('WorkPackages');
+            $this->comment = FundingAward::where('id',$this->funderID)->pluck('WorkPackages');
         } else {
             $this->comment = 'Delete what is not needed';
         }
@@ -41,15 +41,15 @@ class Funders extends Component
     public function refresh() {
         $this->funderID = 0;
         $this->dataset = Dataset::find($this->dataset_id);
-        $this->dsfunderid = Dataset::where('id', $this->dataset_id)->first()->funders()->pluck('funding_awards.id')->toArray();
-        $this->awards = FundingAward::all()->whereNotIn('id', $this->dsfunderid)->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
-        //$this->awards = FundingAward::all()->sortBy('title', SORT_NATURAL|SORT_FLAG_CASE);
+        $this->dsfunderid = Dataset::where('id',$this->dataset_id)->first()->funders()->pluck('funding_awards.id')->toArray();
+        $this->awards = FundingAward::all()->whereNotIn('id',$this->dsfunderid)->sortBy('title',SORT_NATURAL|SORT_FLAG_CASE);
+        //$this->awards = FundingAward::all()->sortBy('title',SORT_NATURAL|SORT_FLAG_CASE);
         $this ->  getComment();
     }
 
     public function addFunder() {
 
-        $this->dataset->funders()->attach($this->funderID, ['comment'=>$this->comment]);
+        $this->dataset->funders()->attach($this->funderID,['comment'=>$this->comment]);
         $this->refresh();
     }
 
@@ -65,3 +65,4 @@ class Funders extends Component
         return view('livewire.input.funders');
     }
 }
+
