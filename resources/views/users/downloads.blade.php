@@ -14,7 +14,7 @@
         <div class="card-body">
 
             <livewire:eramangatables.download-datatables
-            searchable="DOI, fullname, institution, dldate, country, IP"
+            searchable="DOI, fullname, institution, dldate, country, IP, information"
             />
 
         </div>
