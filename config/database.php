@@ -53,7 +53,7 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL_2'),
+            #'url' => env('DATABASE_URL_2'),
             'host' => env('DB_HOST_2'),
             'port' => env('DB_PORT_2'),
             'database' => env('DB_DATABASE_2'),
@@ -88,7 +88,7 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'url' => env('DATABASE_URL'),
+            #'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST'),
             'port' => env('DB_PORT'),
             'database' => env('DB_DATABASE'),

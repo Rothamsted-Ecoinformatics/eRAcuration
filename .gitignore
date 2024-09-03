@@ -24,3 +24,7 @@ Homestead.json
 .phpunit.result.cache
 composer.lock
 history.txt
+
+# logs and files created by container
+*.log
+*.pid
