@@ -202,7 +202,6 @@ else
         ->update([
             'experiment_id' => $request-> input('experiment_id'),
             'short_name' => $request-> input('short_name'),
-            'url' => $formattedURL,
             'doi_created' => '', // this blanks the DOI created field, so now the DOI will be minted again
             'description_toc' => $request-> input('description_toc')." " ,
             'description_technical_info' => $request-> input('description_technical_info')." ",
@@ -227,6 +226,11 @@ else
             'rights_licence_uri' => $request -> input('rights_licence_uri')." ",
             'rights_licence' => $request -> input('rights_licence')." "
         ]);
+//             'url' => $formattedURL,
+if ($request -> input('is_external') == 0) {
+    Dataset::where('id', $id)
+        ->update(['url' => $formattedURL]);
+}
 
 
         return redirect ('/datasets/'.$id);
