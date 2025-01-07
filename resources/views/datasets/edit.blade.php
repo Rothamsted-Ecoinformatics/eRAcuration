@@ -227,7 +227,7 @@
                                         @php
                                             $yearSelected = ' ';
                                         @endphp
-                                        @for ($year = 2010; $year < 2026; $year++)
+                                        @for ($year = 2010; $year < 2030; $year++)
                                             @if ($dataset->publication_year == $year)
                                                 @php
                                                     $yearSelected = ' selected';
