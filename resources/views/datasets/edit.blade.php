@@ -226,9 +226,9 @@
                                     <select class="form-select mt-1 block w-full rounded-md" name="publication_year">
                                         @php
                                             $yearSelected = ' ';
-                                            $yearMax = int(date("Y")) + 1
+                                            $maxYear = 2031
                                         @endphp
-                                        @for ($year = 2010; $year < $yearMax ; $year++)
+                                        @for ($year = 2010; $year < $maxYear ; $year++)
                                             @if ($dataset->publication_year == $year)
                                                 @php
                                                     $yearSelected = ' selected';
